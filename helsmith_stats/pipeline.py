@@ -4,6 +4,7 @@ from datetime import datetime
 
 from .constants import INPUT_FILE, README_FILE
 from .parser import parse_lists
+from .web import build_web_page
 from .writers import write_scope_outputs
 
 
@@ -39,4 +40,5 @@ def run() -> None:
     write_scope_outputs("combined", "Combined", all_lists)
     write_scope_outputs("singles", "Singles", singles_lists)
     write_scope_outputs("teams", "Teams", teams_lists)
+    build_web_page()
     update_readme_run_date()

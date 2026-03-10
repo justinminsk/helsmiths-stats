@@ -39,7 +39,10 @@ Created with Warhammer Age of Sigmar: The App
     assert singles.subfaction == "Taar's Grand Forgehost"
     assert singles.manifestation_lore == "Forbidden Power"
     assert ("Deathshrieker Rocket Battery", 140) in singles.units
-    assert ("Scourge of Ghyran Infernal Cohort with Hashutite Spears", 220) in singles.units
+    assert (
+        "Scourge of Ghyran Infernal Cohort with Hashutite Spears",
+        220,
+    ) in singles.units
     assert "Ruthless Overseer" in singles.traits
 
     teams = parsed[1]

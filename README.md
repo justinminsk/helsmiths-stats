@@ -4,7 +4,7 @@
 
 Small repo for parsing Helsmiths of Hashut event lists and generating readable summaries.
 
-- Last run date: 2026-03-10 16:19:21 Mountain Daylight Time
+- Last run date: 2026-03-10 16:38:07 Mountain Daylight Time
 
 ## What lives where
 
@@ -14,6 +14,7 @@ Small repo for parsing Helsmiths of Hashut event lists and generating readable s
 - [reports/combined.md](reports/combined.md): combined Markdown report
 - [reports/singles.md](reports/singles.md): singles-only Markdown report
 - [reports/teams.md](reports/teams.md): teams-only Markdown report
+- [docs/index.html](docs/index.html): generated static dashboard for GitHub Pages
 - [summaries/combined](summaries/combined): combined CSV outputs
 - [summaries/singles](summaries/singles): singles-only CSV outputs
 - [summaries/teams](summaries/teams): teams-only CSV outputs
@@ -39,6 +40,15 @@ Each scope folder under [summaries](summaries) contains:
 2. Run the parser:
 	- `python analyze_helsmith_lists.py`
 3. Read the outputs in [reports](reports) and [summaries](summaries)
+
+## Web dashboard + hosting
+
+- Running `python analyze_helsmith_lists.py` also rebuilds [docs/index.html](docs/index.html).
+- Local preview: open [docs/index.html](docs/index.html) in a browser.
+- GitHub Pages deploy is handled by [.github/workflows/pages.yml](.github/workflows/pages.yml).
+- In GitHub repo settings, set **Pages** source to **GitHub Actions** (one-time).
+- After push to `main`, your site will be available at:
+	- `https://<your-github-username>.github.io/helsmiths-stats/`
 
 ## Linting (pre-commit)
 

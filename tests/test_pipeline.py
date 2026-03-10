@@ -26,7 +26,9 @@ def test_update_readme_run_date_replaces_existing_marker(tmp_path, monkeypatch) 
     assert "- Last run date: old" not in updated
 
 
-def test_update_readme_run_date_inserts_marker_when_missing(tmp_path, monkeypatch) -> None:
+def test_update_readme_run_date_inserts_marker_when_missing(
+    tmp_path, monkeypatch
+) -> None:
     readme = tmp_path / "README.md"
     readme.write_text(
         "# Title\n\nIntro\n\nBody\n",
