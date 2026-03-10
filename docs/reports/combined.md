@@ -80,4 +80,3 @@
 - Alias normalization is applied for known spelling and export differences.
 - Trait categories are mapped by a fixed dictionary and count occurrences across lists.
 - Subfaction is parsed from battle formation, pipe-delimited exports, or Army of Renown lines.
-
