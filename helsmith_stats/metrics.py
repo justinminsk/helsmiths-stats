@@ -1,6 +1,12 @@
 from __future__ import annotations
 
-from .constants import ARTIFACTS, COMMAND_TRAITS, POINT_INFERENCES, UNIT_MODEL_BASE_SIZE, WARMACHINE_TRAITS
+from .constants import (
+    ARTIFACTS,
+    COMMAND_TRAITS,
+    POINT_INFERENCES,
+    UNIT_MODEL_BASE_SIZE,
+    WARMACHINE_TRAITS,
+)
 from .models import ListData, ScopeMetrics, UnitEntry
 
 
@@ -18,7 +24,10 @@ def total_models(units: list[UnitEntry]) -> int:
 def compute_unplayed_units(played_units: set[str]) -> list[tuple[str, int]]:
     known_units = set(UNIT_MODEL_BASE_SIZE.keys())
     return sorted(
-        [(unit_name, UNIT_MODEL_BASE_SIZE[unit_name]) for unit_name in known_units - played_units],
+        [
+            (unit_name, UNIT_MODEL_BASE_SIZE[unit_name])
+            for unit_name in known_units - played_units
+        ],
         key=lambda item: item[0],
     )
 
@@ -47,5 +56,7 @@ def collect_scope_metrics(lists_for_scope: list[ListData]) -> ScopeMetrics:
             if trait in WARMACHINE_TRAITS:
                 metrics.warmachine_traits[trait] += 1
 
-    metrics.unplayed_units = compute_unplayed_units(set(metrics.unit_presence_lists.keys()))
+    metrics.unplayed_units = compute_unplayed_units(
+        set(metrics.unit_presence_lists.keys())
+    )
     return metrics

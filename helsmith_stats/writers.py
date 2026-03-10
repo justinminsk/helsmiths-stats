@@ -9,7 +9,9 @@ from .models import ListData, MetricCounter, ScopeMetrics
 from .reporting import build_report
 
 
-def write_counter_csv(path: Path, counter: MetricCounter, header_left: str, header_right: str) -> None:
+def write_counter_csv(
+    path: Path, counter: MetricCounter, header_left: str, header_right: str
+) -> None:
     with path.open("w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow([header_left, header_right])
@@ -17,7 +19,9 @@ def write_counter_csv(path: Path, counter: MetricCounter, header_left: str, head
             writer.writerow([key, value])
 
 
-def write_presence_csv(path: Path, presence_counter: MetricCounter, total_lists: int) -> None:
+def write_presence_csv(
+    path: Path, presence_counter: MetricCounter, total_lists: int
+) -> None:
     with path.open("w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow(["unit_name", "lists_with_unit", "percent_of_lists"])
@@ -38,7 +42,15 @@ def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
     with path.open("w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(
             file,
-            fieldnames=["source", "name", "result", "subfaction", "manifestation_lore", "unit_entries", "models"],
+            fieldnames=[
+                "source",
+                "name",
+                "result",
+                "subfaction",
+                "manifestation_lore",
+                "unit_entries",
+                "models",
+            ],
         )
         writer.writeheader()
         for army_list in lists_for_scope:
@@ -55,7 +67,9 @@ def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
             )
 
 
-def write_scope_outputs(scope_slug: str, scope_name: str, lists_for_scope: list[ListData]) -> None:
+def write_scope_outputs(
+    scope_slug: str, scope_name: str, lists_for_scope: list[ListData]
+) -> None:
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     scope_dir = SUMMARIES_DIR / scope_slug
     scope_dir.mkdir(parents=True, exist_ok=True)
@@ -63,20 +77,51 @@ def write_scope_outputs(scope_slug: str, scope_name: str, lists_for_scope: list[
     metrics: ScopeMetrics = collect_scope_metrics(lists_for_scope)
     report_text = build_report(scope_name, lists_for_scope, metrics)
 
-    write_counter_csv(scope_dir / "unit_entry_counts.csv", metrics.unit_entries, "unit_name", "unit_entries")
-    write_counter_csv(scope_dir / "unit_model_counts.csv", metrics.model_counts, "unit_name", "model_count")
-    write_presence_csv(scope_dir / "unit_presence_percent.csv", metrics.unit_presence_lists, len(lists_for_scope))
+    write_counter_csv(
+        scope_dir / "unit_entry_counts.csv",
+        metrics.unit_entries,
+        "unit_name",
+        "unit_entries",
+    )
+    write_counter_csv(
+        scope_dir / "unit_model_counts.csv",
+        metrics.model_counts,
+        "unit_name",
+        "model_count",
+    )
+    write_presence_csv(
+        scope_dir / "unit_presence_percent.csv",
+        metrics.unit_presence_lists,
+        len(lists_for_scope),
+    )
     write_unplayed_csv(scope_dir / "unplayed_units.csv", metrics.unplayed_units)
-    write_counter_csv(scope_dir / "subfaction_counts.csv", metrics.subfactions, "subfaction", "list_count")
+    write_counter_csv(
+        scope_dir / "subfaction_counts.csv",
+        metrics.subfactions,
+        "subfaction",
+        "list_count",
+    )
     write_counter_csv(
         scope_dir / "manifestation_lore_counts.csv",
         metrics.manifestation_lores,
         "manifestation_lore",
         "list_count",
     )
-    write_counter_csv(scope_dir / "artifact_counts.csv", metrics.artifacts, "artifact", "count")
-    write_counter_csv(scope_dir / "command_trait_counts.csv", metrics.command_traits, "command_trait", "count")
-    write_counter_csv(scope_dir / "warmachine_trait_counts.csv", metrics.warmachine_traits, "warmachine_trait", "count")
+    write_counter_csv(
+        scope_dir / "artifact_counts.csv", metrics.artifacts, "artifact", "count"
+    )
+    write_counter_csv(
+        scope_dir / "command_trait_counts.csv",
+        metrics.command_traits,
+        "command_trait",
+        "count",
+    )
+    write_counter_csv(
+        scope_dir / "warmachine_trait_counts.csv",
+        metrics.warmachine_traits,
+        "warmachine_trait",
+        "count",
+    )
     write_list_summary(scope_dir / "list_level_summary.csv", lists_for_scope)
 
     (REPORTS_DIR / f"{scope_slug}.md").write_text(report_text + "\n", encoding="utf-8")

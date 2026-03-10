@@ -1,5 +1,7 @@
 # Helsmith stats
 
+[![Python tests](https://github.com/justinminsk/helsmiths-stats/actions/workflows/tests.yml/badge.svg)](https://github.com/justinminsk/helsmiths-stats/actions/workflows/tests.yml)
+
 Small repo for parsing Helsmiths of Hashut event lists and generating readable summaries.
 
 - Last run date: 2026-03-10 16:19:21 Mountain Daylight Time
@@ -37,6 +39,17 @@ Each scope folder under [summaries](summaries) contains:
 2. Run the parser:
 	- `python analyze_helsmith_lists.py`
 3. Read the outputs in [reports](reports) and [summaries](summaries)
+
+## Linting (pre-commit)
+
+1. Install dev dependencies:
+	- `python -m pip install -r requirements-dev.txt`
+2. Install git hooks:
+	- `pre-commit install`
+3. Run linting on all files anytime:
+	- `pre-commit run --all-files`
+
+The same pre-commit checks run in GitHub Actions before tests.
 
 ## Python modules
 

@@ -31,7 +31,9 @@ def run() -> None:
     text = INPUT_FILE.read_text(encoding="utf-8")
     all_lists = parse_lists(text)
 
-    singles_lists = [army_list for army_list in all_lists if army_list.source == "Singles"]
+    singles_lists = [
+        army_list for army_list in all_lists if army_list.source == "Singles"
+    ]
     teams_lists = [army_list for army_list in all_lists if army_list.source == "Teams"]
 
     write_scope_outputs("combined", "Combined", all_lists)

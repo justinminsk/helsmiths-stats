@@ -74,7 +74,9 @@ def parse_lists(text: str) -> list[ListData]:
             if current_list is not None and current_list.units:
                 close_current()
             if current_list is None:
-                current_list = ListData(source=current_source, result_bucket=current_result)
+                current_list = ListData(
+                    source=current_source, result_bucket=current_result
+                )
                 current_list.name = pending_name or line
                 if pending_subfaction:
                     current_list.subfaction = pending_subfaction
@@ -91,12 +93,18 @@ def parse_lists(text: str) -> list[ListData]:
                 current_list.subfaction = parsed_subfaction
             continue
 
-        if current_list is not None and current_list.units and line.startswith(STARTER_PREFIXES):
+        if (
+            current_list is not None
+            and current_list.units
+            and line.startswith(STARTER_PREFIXES)
+        ):
             close_current()
 
         if current_list is None:
             if line.startswith(STARTER_PREFIXES):
-                current_list = ListData(source=current_source, result_bucket=current_result)
+                current_list = ListData(
+                    source=current_source, result_bucket=current_result
+                )
                 if pending_name:
                     current_list.name = pending_name
                 if pending_subfaction:
@@ -124,7 +132,10 @@ def parse_lists(text: str) -> list[ListData]:
             continue
 
         if awaiting_subfaction:
-            if line not in {"Army of Renown", "General's Handbook 2025-26"} and not line.startswith("Drops:"):
+            if line not in {
+                "Army of Renown",
+                "General's Handbook 2025-26",
+            } and not line.startswith("Drops:"):
                 current_list.subfaction = normalize_subfaction(line)
             awaiting_subfaction = False
             continue

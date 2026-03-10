@@ -2,7 +2,13 @@ from __future__ import annotations
 
 import re
 
-from .constants import LIST_NAME_EXCLUDED_PREFIXES, LIST_NAME_EXCLUSIONS, TRAIT_NAMES, UNIT_NAME_ALIASES, UNKNOWN
+from .constants import (
+    LIST_NAME_EXCLUDED_PREFIXES,
+    LIST_NAME_EXCLUSIONS,
+    TRAIT_NAMES,
+    UNIT_NAME_ALIASES,
+    UNKNOWN,
+)
 
 
 def clean_line(line: str) -> str:
