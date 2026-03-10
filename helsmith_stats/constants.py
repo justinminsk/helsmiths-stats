@@ -8,6 +8,7 @@ INPUT_FILE = ROOT / "Helsmiths 5-0s.md"
 README_FILE = ROOT / "README.md"
 REPORTS_DIR = ROOT / "reports"
 SUMMARIES_DIR = ROOT / "summaries"
+DOCS_DIR = ROOT / "docs"
 
 UNKNOWN = "Unknown"
 SCOPE_NAMES = ("Singles", "Teams")

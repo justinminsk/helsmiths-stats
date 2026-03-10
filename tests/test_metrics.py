@@ -19,7 +19,11 @@ def test_collect_scope_metrics_counts_presence_and_traits() -> None:
                 ("Deathshrieker Rocket Battery", 140),
                 ("Infernal Cohort with Hashutite Spears", 220),
             ],
-            traits=["Scroll of Petrification", "An Eye for Weakness", "Overdrive Switch"],
+            traits=[
+                "Scroll of Petrification",
+                "An Eye for Weakness",
+                "Overdrive Switch",
+            ],
             subfaction="Industrial Polluters",
             manifestation_lore="Forbidden Power",
         ),
