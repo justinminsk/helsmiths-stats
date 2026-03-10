@@ -9,6 +9,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 INPUT_FILE = ROOT / "Helsmiths 5-0s.md"
+REPORTS_DIR = ROOT / "reports"
+SUMMARIES_DIR = ROOT / "summaries"
 
 
 UNIT_MODEL_BASE_SIZE = {
@@ -368,7 +370,7 @@ def write_unplayed_csv(path: Path, unplayed_units: list[tuple[str, int]]) -> Non
             writer.writerow([unit_name, unit_size])
 
 
-def build_report(scope_name: str, lists_for_scope: list[ListData]) -> str:
+def collect_scope_metrics(lists_for_scope: list[ListData]) -> dict[str, object]:
     unit_entries = Counter()
     unit_presence_lists = Counter()
     model_counts = Counter()
@@ -405,6 +407,30 @@ def build_report(scope_name: str, lists_for_scope: list[ListData]) -> str:
         [(unit_name, UNIT_MODEL_BASE_SIZE[unit_name]) for unit_name in known_units - played_units],
         key=lambda item: item[0],
     )
+
+    return {
+        "unit_entries": unit_entries,
+        "unit_presence_lists": unit_presence_lists,
+        "model_counts": model_counts,
+        "subfactions": subfactions,
+        "manifestation_lores": manifestation_lores,
+        "artifacts": artifacts,
+        "command_traits": command_traits,
+        "warmachine_traits": warmachine_traits,
+        "unplayed_units": unplayed_units,
+    }
+
+
+def build_report(scope_name: str, lists_for_scope: list[ListData], metrics: dict[str, object]) -> str:
+    unit_entries = metrics["unit_entries"]
+    unit_presence_lists = metrics["unit_presence_lists"]
+    model_counts = metrics["model_counts"]
+    subfactions = metrics["subfactions"]
+    manifestation_lores = metrics["manifestation_lores"]
+    artifacts = metrics["artifacts"]
+    command_traits = metrics["command_traits"]
+    warmachine_traits = metrics["warmachine_traits"]
+    unplayed_units = metrics["unplayed_units"]
 
     assumptions = [
         "Model counts are inferred from points where reinforced pricing is obvious in this dataset.",
@@ -481,53 +507,31 @@ def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
             )
 
 
-def write_combined_metric_files(all_lists: list[ListData]) -> None:
-    unit_entries = Counter()
-    unit_presence_lists = Counter()
-    model_counts = Counter()
-    subfactions = Counter()
-    manifestation_lores = Counter()
-    artifacts = Counter()
-    command_traits = Counter()
-    warmachine_traits = Counter()
+def write_scope_outputs(scope_slug: str, scope_name: str, lists_for_scope: list[ListData]) -> None:
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    scope_dir = SUMMARIES_DIR / scope_slug
+    scope_dir.mkdir(parents=True, exist_ok=True)
 
-    for army_list in all_lists:
-        subfactions[army_list.subfaction] += 1
-        manifestation_lores[army_list.manifestation_lore] += 1
+    metrics = collect_scope_metrics(lists_for_scope)
+    report_text = build_report(scope_name, lists_for_scope, metrics)
 
-        units_in_this_list = set()
-        for unit_name, points in army_list.units:
-            unit_entries[unit_name] += 1
-            units_in_this_list.add(unit_name)
-            model_counts[unit_name] += infer_models(unit_name, points)
-
-        for unit_name in units_in_this_list:
-            unit_presence_lists[unit_name] += 1
-
-        for trait in army_list.traits:
-            if trait in ARTIFACTS:
-                artifacts[trait] += 1
-            if trait in COMMAND_TRAITS:
-                command_traits[trait] += 1
-            if trait in WARMACHINE_TRAITS:
-                warmachine_traits[trait] += 1
-
-    known_units = set(UNIT_MODEL_BASE_SIZE.keys())
-    played_units = set(unit_presence_lists.keys())
-    unplayed_units = sorted(
-        [(unit_name, UNIT_MODEL_BASE_SIZE[unit_name]) for unit_name in known_units - played_units],
-        key=lambda item: item[0],
+    write_counter_csv(scope_dir / "unit_entry_counts.csv", metrics["unit_entries"], "unit_name", "unit_entries")
+    write_counter_csv(scope_dir / "unit_model_counts.csv", metrics["model_counts"], "unit_name", "model_count")
+    write_presence_csv(scope_dir / "unit_presence_percent.csv", metrics["unit_presence_lists"], len(lists_for_scope))
+    write_unplayed_csv(scope_dir / "unplayed_units.csv", metrics["unplayed_units"])
+    write_counter_csv(scope_dir / "subfaction_counts.csv", metrics["subfactions"], "subfaction", "list_count")
+    write_counter_csv(
+        scope_dir / "manifestation_lore_counts.csv",
+        metrics["manifestation_lores"],
+        "manifestation_lore",
+        "list_count",
     )
+    write_counter_csv(scope_dir / "artifact_counts.csv", metrics["artifacts"], "artifact", "count")
+    write_counter_csv(scope_dir / "command_trait_counts.csv", metrics["command_traits"], "command_trait", "count")
+    write_counter_csv(scope_dir / "warmachine_trait_counts.csv", metrics["warmachine_traits"], "warmachine_trait", "count")
+    write_list_summary(scope_dir / "list_level_summary.csv", lists_for_scope)
 
-    write_counter_csv(ROOT / "unit_entry_counts.csv", unit_entries, "unit_name", "unit_entries")
-    write_counter_csv(ROOT / "unit_model_counts.csv", model_counts, "unit_name", "model_count")
-    write_presence_csv(ROOT / "unit_presence_percent.csv", unit_presence_lists, len(all_lists))
-    write_unplayed_csv(ROOT / "unplayed_units.csv", unplayed_units)
-    write_counter_csv(ROOT / "subfaction_counts.csv", subfactions, "subfaction", "list_count")
-    write_counter_csv(ROOT / "manifestation_lore_counts.csv", manifestation_lores, "manifestation_lore", "list_count")
-    write_counter_csv(ROOT / "artifact_counts.csv", artifacts, "artifact", "count")
-    write_counter_csv(ROOT / "command_trait_counts.csv", command_traits, "command_trait", "count")
-    write_counter_csv(ROOT / "warmachine_trait_counts.csv", warmachine_traits, "warmachine_trait", "count")
+    (REPORTS_DIR / f"{scope_slug}.md").write_text(report_text + "\n", encoding="utf-8")
 
 
 def main() -> None:
@@ -537,23 +541,9 @@ def main() -> None:
     singles_lists = [army_list for army_list in all_lists if army_list.source == "Singles"]
     teams_lists = [army_list for army_list in all_lists if army_list.source == "Teams"]
 
-    reports = {
-        "combined": build_report("Combined", all_lists),
-        "singles": build_report("Singles", singles_lists),
-        "teams": build_report("Teams", teams_lists),
-    }
-
-    (ROOT / "combined_helsmith_stats_report.md").write_text(reports["combined"] + "\n", encoding="utf-8")
-    (ROOT / "singles_helsmith_stats_report.md").write_text(reports["singles"] + "\n", encoding="utf-8")
-    (ROOT / "teams_helsmith_stats_report.md").write_text(reports["teams"] + "\n", encoding="utf-8")
-    (ROOT / "helsmith_stats_report.md").write_text(reports["combined"] + "\n", encoding="utf-8")
-
-    write_list_summary(ROOT / "combined_list_level_summary.csv", all_lists)
-    write_list_summary(ROOT / "singles_list_level_summary.csv", singles_lists)
-    write_list_summary(ROOT / "teams_list_level_summary.csv", teams_lists)
-    write_list_summary(ROOT / "list_level_summary.csv", all_lists)
-
-    write_combined_metric_files(all_lists)
+    write_scope_outputs("combined", "Combined", all_lists)
+    write_scope_outputs("singles", "Singles", singles_lists)
+    write_scope_outputs("teams", "Teams", teams_lists)
 
 
 if __name__ == "__main__":
