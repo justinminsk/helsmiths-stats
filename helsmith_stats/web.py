@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import csv
+import shutil
 from datetime import datetime
 from html import escape
 from pathlib import Path
 from collections import Counter
 
-from .constants import DOCS_DIR, SUMMARIES_DIR
+from .constants import DOCS_DIR, REPORTS_DIR, SUMMARIES_DIR
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -100,7 +101,7 @@ def _scope_section(scope: str, label: str) -> str:
     )
     result_rows = _result_breakdown_rows(list_rows)
 
-    report_link = f"../reports/{scope}.md"
+    report_link = f"reports/{scope}.md"
 
     return f"""
 <section class=\"scope\">
@@ -125,6 +126,13 @@ def _scope_section(scope: str, label: str) -> str:
 
 def build_web_page() -> None:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    docs_reports_dir = DOCS_DIR / "reports"
+    docs_reports_dir.mkdir(parents=True, exist_ok=True)
+
+    for scope in ("combined", "singles", "teams"):
+        source_report = REPORTS_DIR / f"{scope}.md"
+        if source_report.exists():
+            shutil.copy2(source_report, docs_reports_dir / source_report.name)
 
     generated_at = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")
     html = f"""<!doctype html>
