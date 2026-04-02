@@ -54,8 +54,6 @@ POINT_INFERENCES = {
     ("Infernal Razers with Flamehurlers", 200): 20,
     ("Scourge of Ghyran Infernal Cohort with Hashutite Blades", 110): 10,
     ("Scourge of Ghyran Infernal Cohort with Hashutite Blades", 220): 20,
-    ("Scourge of Ghyran Infernal Cohort with Hashutite Spears", 110): 10,
-    ("Scourge of Ghyran Infernal Cohort with Hashutite Spears", 220): 20,
 }
 
 UNIT_MODEL_BASE_SIZE = {
@@ -76,7 +74,6 @@ UNIT_MODEL_BASE_SIZE = {
     "Infernal Razers with Blunderbusses": 10,
     "Infernal Razers with Flamehurlers": 10,
     "Scourge of Ghyran Infernal Cohort with Hashutite Blades": 10,
-    "Scourge of Ghyran Infernal Cohort with Hashutite Spears": 10,
     "Anointed Sentinels": 3,
 }
 
@@ -84,7 +81,8 @@ UNIT_NAME_ALIASES = {
     "Rocket battery because anointed suck": "Deathshrieker Rocket Battery",
     "Bull Centaur": "Bull Centaurs",
     "Hobgrot Vandals": "Hobgrotz Vandalz",
-    "Scourge of Ghyran Cohort with Hashutite Spears": "Scourge of Ghyran Infernal Cohort with Hashutite Spears",
+    "Scourge of Ghyran Cohort with Hashutite Spears": "Scourge of Ghyran Infernal Cohort with Hashutite Blades",
+    "Scourge of Ghyran Infernal Cohort with Hashutite Spears": "Scourge of Ghyran Infernal Cohort with Hashutite Blades",
 }
 
 TRAIT_NAMES = {

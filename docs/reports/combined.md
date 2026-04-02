@@ -1,77 +1,78 @@
 # Helsmith stats - Combined
 
-- Lists parsed: 25
-- Total unit entries: 250
-- Total inferred models: 1494
+- Lists parsed: 30
+- Total unit entries: 302
+- Total inferred models: 1838
 
 ## Top units by entries
-- Infernal Cohort with Hashutite Spears: 36
-- Deathshrieker Rocket Battery: 35
-- Bull Centaurs: 32
-- Urak Taar, the First Daemonsmith: 21
-- Ashen Elder: 20
-- Tormentor Bombard: 15
-- Infernal Cohort with Hashutite Blades: 14
-- Dominator Engine with Bane Maces: 13
-- Infernal Razers with Blunderbusses: 12
-- Hobgrotz Vandalz: 11
+- Infernal Cohort with Hashutite Spears: 45
+- Deathshrieker Rocket Battery: 41
+- Bull Centaurs: 35
+- Urak Taar, the First Daemonsmith: 25
+- Ashen Elder: 24
+- Tormentor Bombard: 18
+- Dominator Engine with Bane Maces: 18
+- Infernal Cohort with Hashutite Blades: 18
+- Infernal Razers with Blunderbusses: 15
+- Hobgrotz Vandalz: 13
 
 ## Top units by list presence
-- Deathshrieker Rocket Battery: 22/25 lists (88.0%)
-- Urak Taar, the First Daemonsmith: 21/25 lists (84.0%)
-- Infernal Cohort with Hashutite Spears: 20/25 lists (80.0%)
-- Bull Centaurs: 19/25 lists (76.0%)
-- Ashen Elder: 19/25 lists (76.0%)
-- Tormentor Bombard: 15/25 lists (60.0%)
-- Dominator Engine with Bane Maces: 10/25 lists (40.0%)
-- Infernal Razers with Blunderbusses: 10/25 lists (40.0%)
-- Daemonsmith on Infernal Taurus: 8/25 lists (32.0%)
-- Infernal Cohort with Hashutite Blades: 8/25 lists (32.0%)
+- Deathshrieker Rocket Battery: 26/30 lists (86.7%)
+- Urak Taar, the First Daemonsmith: 25/30 lists (83.3%)
+- Infernal Cohort with Hashutite Spears: 24/30 lists (80.0%)
+- Ashen Elder: 23/30 lists (76.7%)
+- Bull Centaurs: 21/30 lists (70.0%)
+- Tormentor Bombard: 18/30 lists (60.0%)
+- Dominator Engine with Bane Maces: 13/30 lists (43.3%)
+- Infernal Razers with Blunderbusses: 12/30 lists (40.0%)
+- Daemonsmith on Infernal Taurus: 10/30 lists (33.3%)
+- Infernal Cohort with Hashutite Blades: 10/30 lists (33.3%)
 
 ## Top units by model count
-- Infernal Cohort with Hashutite Spears: 550
-- Infernal Razers with Blunderbusses: 240
-- Infernal Cohort with Hashutite Blades: 190
-- Bull Centaurs: 180
-- Hobgrotz Vandalz: 130
-- Deathshrieker Rocket Battery: 35
+- Infernal Cohort with Hashutite Spears: 700
+- Infernal Razers with Blunderbusses: 300
+- Infernal Cohort with Hashutite Blades: 250
+- Bull Centaurs: 198
+- Hobgrotz Vandalz: 150
+- Deathshrieker Rocket Battery: 41
 - Scourge of Ghyran Infernal Cohort with Hashutite Blades: 30
-- Urak Taar, the First Daemonsmith: 21
-- Ashen Elder: 20
-- Infernal Razers with Flamehurlers: 20
+- Urak Taar, the First Daemonsmith: 25
+- Ashen Elder: 24
+- Anointed Sentinels: 21
 
 ## Unplayed units
-- Scourge of Ghyran Infernal Cohort with Hashutite Spears (unit size 10)
+- None
 
 ## Subfaction counts
-- Taar's Grand Forgehost: 6
+- Taar's Grand Forgehost: 9
+- The Bullfather's Horns: 5
 - Industrial Polluters: 5
-- The Bullfather's Horns: 4
-- Domination Force: 4
+- Domination Force: 5
 - Daemonsmith Cabal: 3
 - Castigation Battery: 2
 - Ziggurat Stampede: 1
 
 ## Manifestation lore counts
-- Forbidden Power: 9
-- Aetherwrought Machineries: 8
+- Forbidden Power: 10
+- Aetherwrought Machineries: 9
+- Primal Energy: 5
 - Morbid Conjuration: 3
-- Primal Energy: 2
 - Krondspine Incarnate: 1
 - Twilit Sorceries: 1
 - Unknown: 1
 
 ## Artifact counts
-- Scroll of Petrification: 14
-- Talisman of Obsidian: 6
+- Scroll of Petrification: 15
+- Talisman of Obsidian: 9
 - Crucible of Spite: 1
+- Gauntlets of Punishment: 1
 
 ## Command trait counts
-- An Eye for Weakness: 12
-- Ruthless Overseer: 6
+- An Eye for Weakness: 14
+- Ruthless Overseer: 9
 
 ## Warmachine trait counts
-- Overdrive Switch: 9
+- Overdrive Switch: 10
 - Breath of Contempt: 3
 - Servile Automaton: 3
 

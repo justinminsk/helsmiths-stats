@@ -536,6 +536,124 @@ Hobgrotz Vandalz (70)
 Created with Warhammer Age of Sigmar: The App  
 App: v1.28.0 (1) | Data: v409
 
+#### March 16-23
+
+##### 4-1
+
+**Renoir did nothing wrong 2000/2000 pts**
+
+Helsmiths of Hashut | Taar's Grand Forgehost  
+Army of Renown  
+General's Handbook 2025-26  
+Drops: 3  
+Spell Lore \- Taar's Grand Forgehost Spell Lore  
+Prayer Lore \- Taar's Grand Forgehost Prayer Lore  
+Manifestation Lore \- Primal Energy (20 Points)
+
+Battle Tactic Cards: Attuned to Ghyran, Master The Paths
+
+General's Regiment  
+Urak Taar, the First Daemonsmith (350)  
+• General  
+Infernal Cohort with Hashutite Blades (100)  
+Infernal Cohort with Hashutite Blades (100)  
+Infernal Cohort with Hashutite Spears (220)  
+• Reinforced  
+Infernal Cohort with Hashutite Spears (220)  
+• Reinforced
+
+Regiment 1  
+Ashen Elder (120)  
+Dominator Engine with Bane Maces (160)  
+Dominator Engine with Bane Maces (160)
+
+Regiment 2  
+Scourge of Ghyran War Despot (140)  
+• Ruthless Oversser  
+• Talisman of Obsidian  
+Deathshrieker Rocket Battery (140)  
+Deathshrieker Rocket Battery (140)  
+Tormentor Bombard (130)
+
+Created with Warhammer Age of Sigmar: The App  
+App: 1.26.0 | Data: 400
+
+#### March 23-29
+
+##### 4-1
+
+**Love will Taurus apart 2000/2000 pts**  
+\-----  
+Grand Alliance Chaos | Helsmiths of Hashut | The Bullfather's Horns  
+General's Handbook 2025-26  
+Drops: 2  
+Spell Lore \- Lore of Infernal Power  
+Manifestation Lore \- Aetherwrought Machineries  
+Battle Tactics Cards: Restless Energy and Wrathful Cycles  
+\-----  
+General's Regiment  
+Ashen Elder (120)  
+• General  
+• An Eye for Weakness  
+Infernal Cohort with Hashutite Blades (200)  
+• Reinforced  
+Infernal Cohort with Hashutite Blades (200)  
+• Reinforced  
+Infernal Razers with Blunderbusses (220)  
+• Reinforced  
+Infernal Razers with Blunderbusses (220)  
+• Reinforced  
+\---  
+Regiment 1  
+Daemonsmith on Infernal Taurus (290)  
+• Greed Pistons  
+• Scroll of Petrification  
+Anointed Sentinels (300)  
+• Reinforced  
+Bull Centaurs (380)  
+• Reinforced  
+Hobgrotz Vandalz (70)  
+\-----  
+Created with Warhammer Age of Sigmar: The App  
+App: v1.28.0 (1) | Data: v409
+
+**1 Legion 1990/2000 pts**
+
+Helsmiths of Hashut | Taar's Grand Forgehost  
+Army of Renown  
+General's Handbook 2025-26  
+Drops: 3  
+Spell Lore \- Taar's Grand Forgehost Spell Lore  
+Prayer Lore \- Taar's Grand Forgehost Prayer Lore  
+Manifestation Lore \- Primal Energy (20 Points)
+
+Battle Tactic Cards: Restless Energy, Master The Paths
+
+General's Regiment  
+Urak Taar, the First Daemonsmith (350)  
+• General  
+Infernal Cohort with Hashutite Spears (220)  
+• Reinforced  
+Infernal Cohort with Hashutite Spears (110)  
+Infernal Cohort with Hashutite Spears (110)  
+Scourge of Ghyran War Despot (140)  
+• Ruthless Oversser
+
+Regiment 1  
+Daemonsmith (110)  
+Dominator Engine with Bane Maces (160)  
+Dominator Engine with Immolation Cannons (190)  
+Dominator Engine with Immolation Cannons (190)
+
+Regiment 2  
+Ashen Elder (120)  
+• Talisman of Obsidian  
+Deathshrieker Rocket Battery (140)  
+Tormentor Bombard (130)
+
+Created with Warhammer Age of Sigmar: The App  
+App: 1.28.1 | Data: 410
+
 # **Teams**
 
 ### January
@@ -811,12 +929,6 @@ Infernal Cohort with Hashutite Spears (220)
 Created with Warhammer Age of Sigmar: The App  
 App: 1.24.0 | Data: 377
 
-#### Feb 9-15
-
-#### Feb 16-2
-
-#### Feb 23-Mar 1
-
 ### March
 
 #### Mar 2-8
@@ -993,9 +1105,78 @@ Tormentor Bombard (130)
 Created with Warhammer Age of Sigmar: The App  
 App: 1.27.0 | Data: 401
 
-#### Mar 9-15
-
-##### 5-0
+#### Mar 16-23
 
 ##### 4-1
+
+**143511915**  
+**\=== QUI TRAIE LA VACHE PRENDS LA ROQUETTE AU CUL \===**  
+Faction: Helsmiths of Hashut  
+Army of Renown: Helsmiths of Hashut \- Taar's Grand Forgehost  
+Points: 2000 / 2000  
+Drops: 3  
+Battle Tactics: Restless Energy, Intercept and Recover  
+Spell lore: Spell Lore: Taar's Grand Forgehost  
+Prayer lore: Prayer Lore: Taar's Grand Forgehost  
+Manifestation lore: Primal Energy
+
+\--------------------
+
+REGIMENTS  
+\--- General's Regiment \---  
+Urak Taar, the First Daemonsmith (350 pts)  
+\~ General  
+Infernal Razers with Blunderbusses (220 pts)  
+\~ Reinforced  
+Deathshrieker Rocket Battery (140 pts)  
+Deathshrieker Rocket Battery (140 pts)  
+Dominator Engine with Bane Maces (160 pts)
+
+\--- Regiment \#1 \---  
+War Despot (Scourge of Ghyran) (140 pts)  
+\~ Talisman of Obsidian  
+\~ Ruthless Overseer  
+Infernal Cohort with Hashutite Spears (220 pts)  
+\~ Reinforced
+
+\--- Regiment \#2 \---  
+Ashen Elder (120 pts)  
+Infernal Cohort with Hashutite Spears (220 pts)  
+\~ Reinforced  
+Infernal Cohort with Hashutite Spears (110 pts)  
+Dominator Engine with Bane Maces (160 pts)
+
+**Bull Centaures nains 1980/2000 pts**  
+**145324260**
+
+Helsmiths of Hashut  
+Domination Force  
+General's Handbook 2025-26  
+Drops: 2  
+Spell Lore \- Lore of Infernal Power  
+Manifestation Lore \- Forbidden Power (20 Points)
+
+Battle Tactic Cards: Master The Paths, Intercept and Recover
+
+General's Regiment  
+Urak Taar, the First Daemonsmith (350)  
+• General  
+Deathshrieker Rocket Battery (140)  
+Hobgrotz Vandalz (70)  
+Infernal Cohort with Hashutite Spears (220)  
+• Reinforced  
+Tormentor Bombard (130)
+
+Regiment 1  
+Daemonsmith on Infernal Taurus (290)  
+• Overdrive Switch  
+• Gauntlets of Punishment  
+• An Eye for Weakness  
+Bull Centaurs (380)  
+• Reinforced  
+Bull Centaurs (380)  
+• Reinforced
+
+Created with Warhammer Age of Sigmar: The App  
+App: 1.28.0 | Data: 409
 
