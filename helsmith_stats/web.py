@@ -2,12 +2,20 @@ from __future__ import annotations
 
 import csv
 import shutil
+from collections import Counter
 from datetime import datetime
 from html import escape
 from pathlib import Path
-from collections import Counter
 
-from .constants import DOCS_DIR, REPORTS_DIR, SUMMARIES_DIR
+from .constants import DOCS_DIR, REPORTS_DIR, ROOT, SUMMARIES_DIR
+
+SCOPES = ("combined", "singles", "teams")
+MAX_ARCHIVED_SNAPSHOTS = 3
+SCOPE_LABELS = {
+    "combined": "Combined",
+    "singles": "Singles",
+    "teams": "Teams",
+}
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -52,8 +60,14 @@ def _result_breakdown_rows(list_rows: list[dict[str, str]]) -> list[list[str]]:
     return [[result, str(count)] for result, count in ordered_results]
 
 
-def _scope_section(scope: str, label: str) -> str:
-    scope_dir = SUMMARIES_DIR / scope
+def _scope_section(
+    scope: str,
+    label: str,
+    summaries_dir: Path,
+    report_base_link: str,
+    anchor_prefix: str,
+) -> str:
+    scope_dir = summaries_dir / scope
     list_rows = _read_csv(scope_dir / "list_level_summary.csv")
     presence_rows = [
         [
@@ -101,11 +115,12 @@ def _scope_section(scope: str, label: str) -> str:
     )
     result_rows = _result_breakdown_rows(list_rows)
 
-    report_link = f"reports/{scope}.md"
+    report_link = f"{report_base_link}/{scope}.md"
+    scope_anchor = f"{anchor_prefix}-{scope}"
 
     return f"""
 <section class=\"scope\">
-    <a id=\"{escape(scope)}\"></a>
+    <a id=\"{escape(scope_anchor)}\"></a>
   <h2>{escape(label)}</h2>
   <p>Lists parsed: <strong>{len(list_rows)}</strong> · <a href=\"{escape(report_link)}\">View full markdown report</a></p>
   <div class=\"grid\">
@@ -124,15 +139,100 @@ def _scope_section(scope: str, label: str) -> str:
 """
 
 
+def _discover_datasets() -> list[dict[str, Path | str]]:
+    datasets: list[dict[str, Path | str]] = [
+        {
+            "key": "current",
+            "label": "Current",
+            "summaries_dir": SUMMARIES_DIR,
+            "reports_dir": REPORTS_DIR,
+        }
+    ]
+
+    history_dir = ROOT / "history"
+    if history_dir.exists():
+        archived = sorted(
+            [entry for entry in history_dir.iterdir() if entry.is_dir()],
+            key=lambda entry: entry.name,
+            reverse=True,
+        )
+
+        for entry in archived[:MAX_ARCHIVED_SNAPSHOTS]:
+            datasets.append(
+                {
+                    "key": f"archive-{entry.name}",
+                    "label": f"Snapshot ({entry.name})",
+                    "summaries_dir": entry / "summaries",
+                    "reports_dir": entry / "reports",
+                }
+            )
+
+    return datasets
+
+
+def _copy_dataset_reports(dataset_key: str, reports_dir: Path) -> None:
+    destination = DOCS_DIR / "reports" / dataset_key
+    destination.mkdir(parents=True, exist_ok=True)
+    for scope in SCOPES:
+        source_report = reports_dir / f"{scope}.md"
+        if source_report.exists():
+            shutil.copy2(source_report, destination / source_report.name)
+
+
+def _render_dataset_section(
+    dataset_key: str,
+    dataset_label: str,
+    summaries_dir: Path,
+    report_base_link: str,
+) -> str:
+    scope_links = "".join(
+        f'<a href="#{dataset_key}-{scope}">{SCOPE_LABELS[scope]}</a>'
+        for scope in SCOPES
+    )
+    scope_sections = "".join(
+        _scope_section(
+            scope=scope,
+            label=SCOPE_LABELS[scope],
+            summaries_dir=summaries_dir,
+            report_base_link=report_base_link,
+            anchor_prefix=dataset_key,
+        )
+        for scope in SCOPES
+    )
+    return f"""
+<section class=\"dataset\">
+  <h2 class=\"dataset-title\">{escape(dataset_label)}</h2>
+  <nav class=\"subnav\" aria-label=\"{escape(dataset_label)} section navigation\">{scope_links}</nav>
+  {scope_sections}
+</section>
+"""
+
+
 def build_web_page() -> None:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    docs_reports_dir = DOCS_DIR / "reports"
-    docs_reports_dir.mkdir(parents=True, exist_ok=True)
+    docs_reports_root = DOCS_DIR / "reports"
+    if docs_reports_root.exists():
+        shutil.rmtree(docs_reports_root)
+    docs_reports_root.mkdir(parents=True, exist_ok=True)
 
-    for scope in ("combined", "singles", "teams"):
-        source_report = REPORTS_DIR / f"{scope}.md"
-        if source_report.exists():
-            shutil.copy2(source_report, docs_reports_dir / source_report.name)
+    datasets = _discover_datasets()
+    for dataset in datasets:
+        _copy_dataset_reports(dataset["key"], dataset["reports_dir"])
+
+    dataset_links = "".join(
+        f'<a href="#dataset-{dataset["key"]}">{escape(str(dataset["label"]))}</a>'
+        for dataset in datasets
+    )
+    dataset_sections = "".join(
+        f'<a id="dataset-{dataset["key"]}"></a>'
+        + _render_dataset_section(
+            dataset_key=str(dataset["key"]),
+            dataset_label=str(dataset["label"]),
+            summaries_dir=dataset["summaries_dir"],
+            report_base_link=f"reports/{dataset['key']}",
+        )
+        for dataset in datasets
+    )
 
     generated_at = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")
     html = f"""<!doctype html>
@@ -149,6 +249,10 @@ def build_web_page() -> None:
       .meta {{ color: #9ca3af; margin-bottom: 1.5rem; }}
     .nav {{ position: sticky; top: 0; z-index: 10; display: flex; gap: .75rem; flex-wrap: wrap; margin: 0 0 1.25rem; padding: .5rem 0; background: rgba(17, 24, 39, .82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid #374151; }}
     .nav a {{ display: inline-block; padding: .35rem .65rem; border: 1px solid #374151; border-radius: 999px; text-decoration: none; }}
+            .dataset {{ margin: 1.5rem 0 2.25rem; }}
+            .dataset-title {{ margin: 0 0 .75rem; }}
+            .subnav {{ display: flex; gap: .5rem; flex-wrap: wrap; margin: 0 0 .75rem; }}
+            .subnav a {{ display: inline-block; padding: .25rem .55rem; border: 1px solid #374151; border-radius: 999px; text-decoration: none; }}
       .scope {{ margin: 1.5rem 0 2rem; }}
       .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1rem; }}
       .card {{ background: #1f2937; border: 1px solid #374151; border-radius: 10px; padding: .75rem; }}
@@ -162,14 +266,8 @@ def build_web_page() -> None:
     <main>
       <h1>Helsmith Stats Dashboard</h1>
       <p class=\"meta\">Generated: {escape(generated_at)}</p>
-            <nav class=\"nav\" aria-label=\"Section navigation\">
-                <a href=\"#combined\">Combined</a>
-                <a href=\"#singles\">Singles</a>
-                <a href=\"#teams\">Teams</a>
-            </nav>
-      {_scope_section("combined", "Combined")}
-      {_scope_section("singles", "Singles")}
-      {_scope_section("teams", "Teams")}
+            <nav class=\"nav\" aria-label=\"Dataset navigation\">{dataset_links}</nav>
+            {dataset_sections}
     </main>
   </body>
 </html>

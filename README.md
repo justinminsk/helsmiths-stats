@@ -4,7 +4,7 @@
 
 Small repo for parsing Helsmiths of Hashut event lists and generating readable summaries.
 
-- Last run date: 2026-04-02 17:48:03 Mountain Daylight Time
+- Last run date: 2026-04-02 17:58:16 Mountain Daylight Time
 
 ## What lives where
 
@@ -41,9 +41,23 @@ Each scope folder under [summaries](summaries) contains:
 	- `python analyze_helsmith_lists.py`
 3. Read the outputs in [reports](reports) and [summaries](summaries)
 
+## Historical snapshots
+
+- Pre-points-change data has been archived at [history/2026-04-02-pre-points](history/2026-04-02-pre-points).
+- The active source file [Helsmiths 5-0s.md](Helsmiths%205-0s.md) is reset for the new points era starting 2026-04-06.
+- Future runs will overwrite root [reports](reports), [summaries](summaries), and [docs](docs), while archived snapshots remain unchanged.
+
+For future points rollovers, use the helper script:
+
+- `python rollover_snapshot.py --label 2026-07-01-pre-points --start-date 2026-07-07`
+- Preview first (no file changes): `python rollover_snapshot.py --label 2026-07-01-pre-points --start-date 2026-07-07 --dry-run`
+
+This command archives the current [Helsmiths 5-0s.md](Helsmiths%205-0s.md), [reports](reports), [summaries](summaries), and [docs](docs) into `history/<label>/`, then resets [Helsmiths 5-0s.md](Helsmiths%205-0s.md) to a clean template.
+
 ## Web dashboard + hosting
 
 - Running `python analyze_helsmith_lists.py` also rebuilds [docs/index.html](docs/index.html).
+- The dashboard shows **Current** plus up to the 3 newest archived snapshots from [history](history).
 - Local preview: open [docs/index.html](docs/index.html) in a browser.
 - GitHub Pages deploy is handled by [.github/workflows/pages.yml](.github/workflows/pages.yml).
 - In GitHub repo settings, set **Pages** source to **GitHub Actions** (one-time).

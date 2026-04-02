@@ -1,76 +1,44 @@
 # Helsmith stats - Singles
 
-- Lists parsed: 16
-- Total unit entries: 159
-- Total inferred models: 1046
+- Lists parsed: 0
+- Total unit entries: 0
+- Total inferred models: 0
 
 ## Top units by entries
-- Infernal Cohort with Hashutite Spears: 25
-- Deathshrieker Rocket Battery: 20
-- Bull Centaurs: 16
-- Urak Taar, the First Daemonsmith: 14
-- Ashen Elder: 14
-- Infernal Cohort with Hashutite Blades: 10
-- Infernal Razers with Blunderbusses: 10
-- Tormentor Bombard: 9
-- Dominator Engine with Bane Maces: 9
-- Dominator Engine with Immolation Cannons: 8
 
 ## Top units by list presence
-- Urak Taar, the First Daemonsmith: 14/16 lists (87.5%)
-- Deathshrieker Rocket Battery: 13/16 lists (81.2%)
-- Ashen Elder: 13/16 lists (81.2%)
-- Infernal Cohort with Hashutite Spears: 12/16 lists (75.0%)
-- Bull Centaurs: 11/16 lists (68.8%)
-- Tormentor Bombard: 9/16 lists (56.2%)
-- Infernal Razers with Blunderbusses: 7/16 lists (43.8%)
-- Dominator Engine with Bane Maces: 6/16 lists (37.5%)
-- Hobgrotz Vandalz: 5/16 lists (31.2%)
-- Daemonsmith on Infernal Taurus: 5/16 lists (31.2%)
 
 ## Top units by model count
-- Infernal Cohort with Hashutite Spears: 370
-- Infernal Razers with Blunderbusses: 200
-- Infernal Cohort with Hashutite Blades: 160
-- Bull Centaurs: 96
-- Hobgrotz Vandalz: 80
-- Deathshrieker Rocket Battery: 20
-- Scourge of Ghyran Infernal Cohort with Hashutite Blades: 20
-- Infernal Razers with Flamehurlers: 20
-- Urak Taar, the First Daemonsmith: 14
-- Ashen Elder: 14
 
 ## Unplayed units
-- None
+- Anointed Sentinels (unit size 3)
+- Ashen Elder (unit size 1)
+- Bull Centaurs (unit size 3)
+- Daemonsmith (unit size 1)
+- Daemonsmith on Infernal Taurus (unit size 1)
+- Deathshrieker Rocket Battery (unit size 1)
+- Dominator Engine with Bane Maces (unit size 1)
+- Dominator Engine with Immolation Cannons (unit size 1)
+- Hobgrotz Vandalz (unit size 10)
+- Infernal Cohort with Hashutite Blades (unit size 10)
+- Infernal Cohort with Hashutite Spears (unit size 10)
+- Infernal Razers with Blunderbusses (unit size 10)
+- Infernal Razers with Flamehurlers (unit size 10)
+- Scourge of Ghyran Infernal Cohort with Hashutite Blades (unit size 10)
+- Scourge of Ghyran War Despot (unit size 1)
+- Tormentor Bombard (unit size 1)
+- Urak Taar, the First Daemonsmith (unit size 1)
+- War Despot (unit size 1)
 
 ## Subfaction counts
-- Taar's Grand Forgehost: 5
-- The Bullfather's Horns: 4
-- Daemonsmith Cabal: 3
-- Industrial Polluters: 2
-- Domination Force: 2
 
 ## Manifestation lore counts
-- Aetherwrought Machineries: 6
-- Primal Energy: 3
-- Forbidden Power: 3
-- Morbid Conjuration: 2
-- Krondspine Incarnate: 1
-- Twilit Sorceries: 1
 
 ## Artifact counts
-- Scroll of Petrification: 8
-- Talisman of Obsidian: 5
-- Crucible of Spite: 1
 
 ## Command trait counts
-- An Eye for Weakness: 7
-- Ruthless Overseer: 5
 
 ## Warmachine trait counts
-- Overdrive Switch: 5
-- Breath of Contempt: 2
-- Servile Automaton: 2
 
 ## Assumptions
 - Model counts are inferred from points where reinforced pricing is obvious in this dataset.
