@@ -40,7 +40,7 @@ Created with Warhammer Age of Sigmar: The App
     assert singles.manifestation_lore == "Forbidden Power"
     assert ("Deathshrieker Rocket Battery", 140) in singles.units
     assert (
-        "Scourge of Ghyran Infernal Cohort with Hashutite Spears",
+        "Scourge of Ghyran Infernal Cohort with Hashutite Blades",
         220,
     ) in singles.units
     assert "Ruthless Overseer" in singles.traits
