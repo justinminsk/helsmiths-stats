@@ -5,7 +5,13 @@ import shutil
 from datetime import date
 from pathlib import Path
 
-from helsmith_stats.constants import DOCS_DIR, INPUT_FILE, REPORTS_DIR, ROOT, SUMMARIES_DIR
+from helsmith_stats.constants import (
+    DOCS_DIR,
+    INPUT_FILE,
+    REPORTS_DIR,
+    ROOT,
+    SUMMARIES_DIR,
+)
 
 
 def build_template(start_date: str) -> str:
