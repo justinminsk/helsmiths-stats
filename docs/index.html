@@ -11,11 +11,16 @@
       h1 { margin: 0 0 .25rem; }
       .meta { color: #9ca3af; margin-bottom: 1.5rem; }
     .nav { position: sticky; top: 0; z-index: 10; display: flex; gap: .75rem; flex-wrap: wrap; margin: 0 0 1.25rem; padding: .5rem 0; background: rgba(17, 24, 39, .82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid #374151; }
-    .nav a { display: inline-block; padding: .35rem .65rem; border: 1px solid #374151; border-radius: 999px; text-decoration: none; }
+        .tab, .subtab { display: inline-block; padding: .35rem .65rem; border: 1px solid #374151; border-radius: 999px; text-decoration: none; background: transparent; color: #93c5fd; cursor: pointer; }
+        .tab.is-active, .subtab.is-active { background: #1f2937; color: #f3f4f6; }
             .dataset { margin: 1.5rem 0 2.25rem; }
             .dataset-title { margin: 0 0 .75rem; }
             .subnav { display: flex; gap: .5rem; flex-wrap: wrap; margin: 0 0 .75rem; }
-            .subnav a { display: inline-block; padding: .25rem .55rem; border: 1px solid #374151; border-radius: 999px; text-decoration: none; }
+            .dataset-panel, .scope-panel { display: none; }
+            .dataset-panel.is-active, .scope-panel.is-active { display: block; }
+            .scope-head { display: flex; align-items: center; gap: .5rem; justify-content: space-between; }
+            .copy-link { border: 1px solid #374151; border-radius: 999px; padding: .25rem .55rem; background: transparent; color: #93c5fd; cursor: pointer; }
+            .copy-link.copied { color: #f3f4f6; background: #1f2937; }
       .scope { margin: 1.5rem 0 2rem; }
       .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1rem; }
       .card { background: #1f2937; border: 1px solid #374151; border-radius: 10px; padding: .75rem; }
@@ -28,16 +33,18 @@
   <body>
     <main>
       <h1>Helsmith Stats Dashboard</h1>
-      <p class="meta">Generated: 2026-04-02 17:58:16 Mountain Daylight Time</p>
-            <nav class="nav" aria-label="Dataset navigation"><a href="#dataset-current">Current</a><a href="#dataset-archive-2026-04-02-pre-points">Snapshot (2026-04-02-pre-points)</a></nav>
-            <a id="dataset-current"></a>
-<section class="dataset">
-  <h2 class="dataset-title">Current</h2>
-  <nav class="subnav" aria-label="Current section navigation"><a href="#current-combined">Combined</a><a href="#current-singles">Singles</a><a href="#current-teams">Teams</a></nav>
+      <p class="meta">Generated: 2026-04-02 18:05:12 Mountain Daylight Time</p>
+            <nav class="nav" aria-label="Dataset navigation"><button class="tab" type="button" data-dataset-key="current">Current</button><button class="tab" type="button" data-dataset-key="archive-2026-04-02-pre-points">Snapshot (2026-04-02-pre-points)</button></nav>
 
-<section class="scope">
-    <a id="current-combined"></a>
-  <h2>Combined</h2>
+<section class="dataset dataset-panel" id="dataset-panel-current" data-dataset-key="current">
+  <h2 class="dataset-title">Current</h2>
+  <nav class="subnav" aria-label="Current section navigation"><button class="subtab" type="button" data-dataset-key="current" data-scope-key="combined">Combined</button><button class="subtab" type="button" data-dataset-key="current" data-scope-key="singles">Singles</button><button class="subtab" type="button" data-dataset-key="current" data-scope-key="teams">Teams</button></nav>
+
+<section class="scope scope-panel" id="scope-panel-current-combined" data-dataset-key="current" data-scope-key="combined">
+    <div class="scope-head">
+        <h2>Combined</h2>
+        <button class="copy-link" type="button" data-dataset-key="current" data-scope-key="combined">Copy link</button>
+    </div>
   <p>Lists parsed: <strong>0</strong> · <a href="reports/current/combined.md">View full markdown report</a></p>
   <div class="grid">
 
@@ -133,9 +140,11 @@
   </div>
 </section>
 
-<section class="scope">
-    <a id="current-singles"></a>
-  <h2>Singles</h2>
+<section class="scope scope-panel" id="scope-panel-current-singles" data-dataset-key="current" data-scope-key="singles">
+    <div class="scope-head">
+        <h2>Singles</h2>
+        <button class="copy-link" type="button" data-dataset-key="current" data-scope-key="singles">Copy link</button>
+    </div>
   <p>Lists parsed: <strong>0</strong> · <a href="reports/current/singles.md">View full markdown report</a></p>
   <div class="grid">
 
@@ -231,9 +240,11 @@
   </div>
 </section>
 
-<section class="scope">
-    <a id="current-teams"></a>
-  <h2>Teams</h2>
+<section class="scope scope-panel" id="scope-panel-current-teams" data-dataset-key="current" data-scope-key="teams">
+    <div class="scope-head">
+        <h2>Teams</h2>
+        <button class="copy-link" type="button" data-dataset-key="current" data-scope-key="teams">Copy link</button>
+    </div>
   <p>Lists parsed: <strong>0</strong> · <a href="reports/current/teams.md">View full markdown report</a></p>
   <div class="grid">
 
@@ -330,14 +341,16 @@
 </section>
 
 </section>
-<a id="dataset-archive-2026-04-02-pre-points"></a>
-<section class="dataset">
-  <h2 class="dataset-title">Snapshot (2026-04-02-pre-points)</h2>
-  <nav class="subnav" aria-label="Snapshot (2026-04-02-pre-points) section navigation"><a href="#archive-2026-04-02-pre-points-combined">Combined</a><a href="#archive-2026-04-02-pre-points-singles">Singles</a><a href="#archive-2026-04-02-pre-points-teams">Teams</a></nav>
 
-<section class="scope">
-    <a id="archive-2026-04-02-pre-points-combined"></a>
-  <h2>Combined</h2>
+<section class="dataset dataset-panel" id="dataset-panel-archive-2026-04-02-pre-points" data-dataset-key="archive-2026-04-02-pre-points">
+  <h2 class="dataset-title">Snapshot (2026-04-02-pre-points)</h2>
+  <nav class="subnav" aria-label="Snapshot (2026-04-02-pre-points) section navigation"><button class="subtab" type="button" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="combined">Combined</button><button class="subtab" type="button" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="singles">Singles</button><button class="subtab" type="button" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="teams">Teams</button></nav>
+
+<section class="scope scope-panel" id="scope-panel-archive-2026-04-02-pre-points-combined" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="combined">
+    <div class="scope-head">
+        <h2>Combined</h2>
+        <button class="copy-link" type="button" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="combined">Copy link</button>
+    </div>
   <p>Lists parsed: <strong>30</strong> · <a href="reports/archive-2026-04-02-pre-points/combined.md">View full markdown report</a></p>
   <div class="grid">
 
@@ -433,9 +446,11 @@
   </div>
 </section>
 
-<section class="scope">
-    <a id="archive-2026-04-02-pre-points-singles"></a>
-  <h2>Singles</h2>
+<section class="scope scope-panel" id="scope-panel-archive-2026-04-02-pre-points-singles" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="singles">
+    <div class="scope-head">
+        <h2>Singles</h2>
+        <button class="copy-link" type="button" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="singles">Copy link</button>
+    </div>
   <p>Lists parsed: <strong>16</strong> · <a href="reports/archive-2026-04-02-pre-points/singles.md">View full markdown report</a></p>
   <div class="grid">
 
@@ -531,9 +546,11 @@
   </div>
 </section>
 
-<section class="scope">
-    <a id="archive-2026-04-02-pre-points-teams"></a>
-  <h2>Teams</h2>
+<section class="scope scope-panel" id="scope-panel-archive-2026-04-02-pre-points-teams" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="teams">
+    <div class="scope-head">
+        <h2>Teams</h2>
+        <button class="copy-link" type="button" data-dataset-key="archive-2026-04-02-pre-points" data-scope-key="teams">Copy link</button>
+    </div>
   <p>Lists parsed: <strong>14</strong> · <a href="reports/archive-2026-04-02-pre-points/teams.md">View full markdown report</a></p>
   <div class="grid">
 
@@ -632,5 +649,140 @@
 </section>
 
     </main>
+        <script>
+            (() => {
+                const firstDatasetKey = 'current';
+                const scopeOrder = ['combined', 'singles', 'teams'];
+                const hashPrefix = '#tab=';
+
+                const parseHash = () => {
+                    const value = window.location.hash || '';
+                    if (!value.startsWith(hashPrefix)) {
+                        return null;
+                    }
+
+                    const payload = value.slice(hashPrefix.length);
+                    const parts = payload.split('|');
+                    if (parts.length !== 2) {
+                        return null;
+                    }
+
+                    return { datasetKey: parts[0], scopeKey: parts[1] };
+                };
+
+                const updateHash = (datasetKey, scopeKey) => {
+                    const next = `${hashPrefix}${datasetKey}|${scopeKey}`;
+                    if (window.location.hash !== next) {
+                        window.location.hash = next;
+                    }
+                };
+
+                const buildHash = (datasetKey, scopeKey) => `${hashPrefix}${datasetKey}|${scopeKey}`;
+
+                const copyLink = async (datasetKey, scopeKey, button) => {
+                    const url = `${window.location.origin}${window.location.pathname}${buildHash(datasetKey, scopeKey)}`;
+
+                    try {
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            await navigator.clipboard.writeText(url);
+                        } else {
+                            window.prompt('Copy link:', url);
+                        }
+
+                        const original = button.textContent;
+                        button.textContent = 'Copied';
+                        button.classList.add('copied');
+                        window.setTimeout(() => {
+                            button.textContent = original;
+                            button.classList.remove('copied');
+                        }, 1200);
+                    } catch (_error) {
+                        window.prompt('Copy link:', url);
+                    }
+                };
+
+                const getDefaultScope = (datasetKey) => {
+                    const candidate = document.querySelector(`.subtab[data-dataset-key="${datasetKey}"]`);
+                    return candidate ? candidate.dataset.scopeKey : scopeOrder[0];
+                };
+
+                const isValidDataset = (datasetKey) => {
+                    return Boolean(document.querySelector(`.dataset-panel[data-dataset-key="${datasetKey}"]`));
+                };
+
+                const isValidScope = (datasetKey, scopeKey) => {
+                    return Boolean(
+                        document.querySelector(
+                            `.scope-panel[data-dataset-key="${datasetKey}"][data-scope-key="${scopeKey}"]`
+                        )
+                    );
+                };
+
+                const setDataset = (datasetKey, skipHash = false) => {
+                    document.querySelectorAll('.tab').forEach((button) => {
+                        button.classList.toggle('is-active', button.dataset.datasetKey === datasetKey);
+                    });
+
+                    document.querySelectorAll('.dataset-panel').forEach((panel) => {
+                        panel.classList.toggle('is-active', panel.dataset.datasetKey === datasetKey);
+                    });
+
+                    const firstScope = getDefaultScope(datasetKey);
+                    setScope(datasetKey, firstScope, skipHash);
+                };
+
+                const setScope = (datasetKey, scopeKey, skipHash = false) => {
+                    document.querySelectorAll('.subtab').forEach((button) => {
+                        const isMatch = button.dataset.datasetKey === datasetKey && button.dataset.scopeKey === scopeKey;
+                        button.classList.toggle('is-active', isMatch);
+                    });
+
+                    document.querySelectorAll('.scope-panel').forEach((panel) => {
+                        const isMatch = panel.dataset.datasetKey === datasetKey && panel.dataset.scopeKey === scopeKey;
+                        panel.classList.toggle('is-active', isMatch);
+                    });
+
+                    if (!skipHash) {
+                        updateHash(datasetKey, scopeKey);
+                    }
+                };
+
+                document.querySelectorAll('.tab').forEach((button) => {
+                    button.addEventListener('click', () => setDataset(button.dataset.datasetKey));
+                });
+
+                document.querySelectorAll('.subtab').forEach((button) => {
+                    button.addEventListener('click', () => setScope(button.dataset.datasetKey, button.dataset.scopeKey));
+                });
+
+                document.querySelectorAll('.copy-link').forEach((button) => {
+                    button.addEventListener('click', () => copyLink(button.dataset.datasetKey, button.dataset.scopeKey, button));
+                });
+
+                const initial = parseHash();
+                if (initial && isValidDataset(initial.datasetKey)) {
+                    const scopeKey = isValidScope(initial.datasetKey, initial.scopeKey)
+                        ? initial.scopeKey
+                        : getDefaultScope(initial.datasetKey);
+                    setDataset(initial.datasetKey, true);
+                    setScope(initial.datasetKey, scopeKey, true);
+                } else {
+                    setDataset(firstDatasetKey);
+                }
+
+                window.addEventListener('hashchange', () => {
+                    const next = parseHash();
+                    if (!next || !isValidDataset(next.datasetKey)) {
+                        return;
+                    }
+
+                    const scopeKey = isValidScope(next.datasetKey, next.scopeKey)
+                        ? next.scopeKey
+                        : getDefaultScope(next.datasetKey);
+                    setDataset(next.datasetKey, true);
+                    setScope(next.datasetKey, scopeKey, true);
+                });
+            })();
+        </script>
   </body>
 </html>
