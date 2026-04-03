@@ -65,7 +65,7 @@ def _scope_section(
     label: str,
     summaries_dir: Path,
     report_base_link: str,
-    anchor_prefix: str,
+    dataset_key: str,
 ) -> str:
     scope_dir = summaries_dir / scope
     list_rows = _read_csv(scope_dir / "list_level_summary.csv")
@@ -116,12 +116,14 @@ def _scope_section(
     result_rows = _result_breakdown_rows(list_rows)
 
     report_link = f"{report_base_link}/{scope}.md"
-    scope_anchor = f"{anchor_prefix}-{scope}"
+    panel_id = f"scope-panel-{dataset_key}-{scope}"
 
     return f"""
-<section class=\"scope\">
-    <a id=\"{escape(scope_anchor)}\"></a>
-  <h2>{escape(label)}</h2>
+<section class=\"scope scope-panel\" id=\"{escape(panel_id)}\" data-dataset-key=\"{escape(dataset_key)}\" data-scope-key=\"{escape(scope)}\">
+    <div class=\"scope-head\">
+        <h2>{escape(label)}</h2>
+        <button class=\"copy-link\" type=\"button\" data-dataset-key=\"{escape(dataset_key)}\" data-scope-key=\"{escape(scope)}\">Copy link</button>
+    </div>
   <p>Lists parsed: <strong>{len(list_rows)}</strong> · <a href=\"{escape(report_link)}\">View full markdown report</a></p>
   <div class=\"grid\">
   {_render_table("Result breakdown", ["Result", "Lists"], result_rows)}
@@ -186,7 +188,10 @@ def _render_dataset_section(
     report_base_link: str,
 ) -> str:
     scope_links = "".join(
-        f'<a href="#{dataset_key}-{scope}">{SCOPE_LABELS[scope]}</a>'
+        (
+            f'<button class="subtab" type="button" '
+            f'data-dataset-key="{dataset_key}" data-scope-key="{scope}">{SCOPE_LABELS[scope]}</button>'
+        )
         for scope in SCOPES
     )
     scope_sections = "".join(
@@ -195,12 +200,12 @@ def _render_dataset_section(
             label=SCOPE_LABELS[scope],
             summaries_dir=summaries_dir,
             report_base_link=report_base_link,
-            anchor_prefix=dataset_key,
+            dataset_key=dataset_key,
         )
         for scope in SCOPES
     )
     return f"""
-<section class=\"dataset\">
+<section class=\"dataset dataset-panel\" id=\"dataset-panel-{escape(dataset_key)}\" data-dataset-key=\"{escape(dataset_key)}\">
   <h2 class=\"dataset-title\">{escape(dataset_label)}</h2>
   <nav class=\"subnav\" aria-label=\"{escape(dataset_label)} section navigation\">{scope_links}</nav>
   {scope_sections}
@@ -219,13 +224,17 @@ def build_web_page() -> None:
     for dataset in datasets:
         _copy_dataset_reports(dataset["key"], dataset["reports_dir"])
 
+    first_dataset_key = str(datasets[0]["key"]) if datasets else "current"
+
     dataset_links = "".join(
-        f'<a href="#dataset-{dataset["key"]}">{escape(str(dataset["label"]))}</a>'
+        (
+            f'<button class="tab" type="button" '
+            f'data-dataset-key="{dataset["key"]}">{escape(str(dataset["label"]))}</button>'
+        )
         for dataset in datasets
     )
     dataset_sections = "".join(
-        f'<a id="dataset-{dataset["key"]}"></a>'
-        + _render_dataset_section(
+        _render_dataset_section(
             dataset_key=str(dataset["key"]),
             dataset_label=str(dataset["label"]),
             summaries_dir=dataset["summaries_dir"],
@@ -248,11 +257,16 @@ def build_web_page() -> None:
       h1 {{ margin: 0 0 .25rem; }}
       .meta {{ color: #9ca3af; margin-bottom: 1.5rem; }}
     .nav {{ position: sticky; top: 0; z-index: 10; display: flex; gap: .75rem; flex-wrap: wrap; margin: 0 0 1.25rem; padding: .5rem 0; background: rgba(17, 24, 39, .82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid #374151; }}
-    .nav a {{ display: inline-block; padding: .35rem .65rem; border: 1px solid #374151; border-radius: 999px; text-decoration: none; }}
+        .tab, .subtab {{ display: inline-block; padding: .35rem .65rem; border: 1px solid #374151; border-radius: 999px; text-decoration: none; background: transparent; color: #93c5fd; cursor: pointer; }}
+        .tab.is-active, .subtab.is-active {{ background: #1f2937; color: #f3f4f6; }}
             .dataset {{ margin: 1.5rem 0 2.25rem; }}
             .dataset-title {{ margin: 0 0 .75rem; }}
             .subnav {{ display: flex; gap: .5rem; flex-wrap: wrap; margin: 0 0 .75rem; }}
-            .subnav a {{ display: inline-block; padding: .25rem .55rem; border: 1px solid #374151; border-radius: 999px; text-decoration: none; }}
+            .dataset-panel, .scope-panel {{ display: none; }}
+            .dataset-panel.is-active, .scope-panel.is-active {{ display: block; }}
+            .scope-head {{ display: flex; align-items: center; gap: .5rem; justify-content: space-between; }}
+            .copy-link {{ border: 1px solid #374151; border-radius: 999px; padding: .25rem .55rem; background: transparent; color: #93c5fd; cursor: pointer; }}
+            .copy-link.copied {{ color: #f3f4f6; background: #1f2937; }}
       .scope {{ margin: 1.5rem 0 2rem; }}
       .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1rem; }}
       .card {{ background: #1f2937; border: 1px solid #374151; border-radius: 10px; padding: .75rem; }}
@@ -269,6 +283,141 @@ def build_web_page() -> None:
             <nav class=\"nav\" aria-label=\"Dataset navigation\">{dataset_links}</nav>
             {dataset_sections}
     </main>
+        <script>
+            (() => {{
+                const firstDatasetKey = {first_dataset_key!r};
+                const scopeOrder = {list(SCOPES)!r};
+                const hashPrefix = '#tab=';
+
+                const parseHash = () => {{
+                    const value = window.location.hash || '';
+                    if (!value.startsWith(hashPrefix)) {{
+                        return null;
+                    }}
+
+                    const payload = value.slice(hashPrefix.length);
+                    const parts = payload.split('|');
+                    if (parts.length !== 2) {{
+                        return null;
+                    }}
+
+                    return {{ datasetKey: parts[0], scopeKey: parts[1] }};
+                }};
+
+                const updateHash = (datasetKey, scopeKey) => {{
+                    const next = `${{hashPrefix}}${{datasetKey}}|${{scopeKey}}`;
+                    if (window.location.hash !== next) {{
+                        window.location.hash = next;
+                    }}
+                }};
+
+                const buildHash = (datasetKey, scopeKey) => `${{hashPrefix}}${{datasetKey}}|${{scopeKey}}`;
+
+                const copyLink = async (datasetKey, scopeKey, button) => {{
+                    const url = `${{window.location.origin}}${{window.location.pathname}}${{buildHash(datasetKey, scopeKey)}}`;
+
+                    try {{
+                        if (navigator.clipboard && navigator.clipboard.writeText) {{
+                            await navigator.clipboard.writeText(url);
+                        }} else {{
+                            window.prompt('Copy link:', url);
+                        }}
+
+                        const original = button.textContent;
+                        button.textContent = 'Copied';
+                        button.classList.add('copied');
+                        window.setTimeout(() => {{
+                            button.textContent = original;
+                            button.classList.remove('copied');
+                        }}, 1200);
+                    }} catch (_error) {{
+                        window.prompt('Copy link:', url);
+                    }}
+                }};
+
+                const getDefaultScope = (datasetKey) => {{
+                    const candidate = document.querySelector(`.subtab[data-dataset-key="${{datasetKey}}"]`);
+                    return candidate ? candidate.dataset.scopeKey : scopeOrder[0];
+                }};
+
+                const isValidDataset = (datasetKey) => {{
+                    return Boolean(document.querySelector(`.dataset-panel[data-dataset-key="${{datasetKey}}"]`));
+                }};
+
+                const isValidScope = (datasetKey, scopeKey) => {{
+                    return Boolean(
+                        document.querySelector(
+                            `.scope-panel[data-dataset-key="${{datasetKey}}"][data-scope-key="${{scopeKey}}"]`
+                        )
+                    );
+                }};
+
+                const setDataset = (datasetKey, skipHash = false) => {{
+                    document.querySelectorAll('.tab').forEach((button) => {{
+                        button.classList.toggle('is-active', button.dataset.datasetKey === datasetKey);
+                    }});
+
+                    document.querySelectorAll('.dataset-panel').forEach((panel) => {{
+                        panel.classList.toggle('is-active', panel.dataset.datasetKey === datasetKey);
+                    }});
+
+                    const firstScope = getDefaultScope(datasetKey);
+                    setScope(datasetKey, firstScope, skipHash);
+                }};
+
+                const setScope = (datasetKey, scopeKey, skipHash = false) => {{
+                    document.querySelectorAll('.subtab').forEach((button) => {{
+                        const isMatch = button.dataset.datasetKey === datasetKey && button.dataset.scopeKey === scopeKey;
+                        button.classList.toggle('is-active', isMatch);
+                    }});
+
+                    document.querySelectorAll('.scope-panel').forEach((panel) => {{
+                        const isMatch = panel.dataset.datasetKey === datasetKey && panel.dataset.scopeKey === scopeKey;
+                        panel.classList.toggle('is-active', isMatch);
+                    }});
+
+                    if (!skipHash) {{
+                        updateHash(datasetKey, scopeKey);
+                    }}
+                }};
+
+                document.querySelectorAll('.tab').forEach((button) => {{
+                    button.addEventListener('click', () => setDataset(button.dataset.datasetKey));
+                }});
+
+                document.querySelectorAll('.subtab').forEach((button) => {{
+                    button.addEventListener('click', () => setScope(button.dataset.datasetKey, button.dataset.scopeKey));
+                }});
+
+                document.querySelectorAll('.copy-link').forEach((button) => {{
+                    button.addEventListener('click', () => copyLink(button.dataset.datasetKey, button.dataset.scopeKey, button));
+                }});
+
+                const initial = parseHash();
+                if (initial && isValidDataset(initial.datasetKey)) {{
+                    const scopeKey = isValidScope(initial.datasetKey, initial.scopeKey)
+                        ? initial.scopeKey
+                        : getDefaultScope(initial.datasetKey);
+                    setDataset(initial.datasetKey, true);
+                    setScope(initial.datasetKey, scopeKey, true);
+                }} else {{
+                    setDataset(firstDatasetKey);
+                }}
+
+                window.addEventListener('hashchange', () => {{
+                    const next = parseHash();
+                    if (!next || !isValidDataset(next.datasetKey)) {{
+                        return;
+                    }}
+
+                    const scopeKey = isValidScope(next.datasetKey, next.scopeKey)
+                        ? next.scopeKey
+                        : getDefaultScope(next.datasetKey);
+                    setDataset(next.datasetKey, true);
+                    setScope(next.datasetKey, scopeKey, true);
+                }});
+            }})();
+        </script>
   </body>
 </html>
 """
