@@ -2,12 +2,20 @@ from __future__ import annotations
 
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import TypeAlias
 
 from .constants import UNKNOWN
 
-MetricCounter: TypeAlias = Counter[str]
-UnitEntry: TypeAlias = tuple[str, int]
+MetricCounter = Counter[str]
+
+
+@dataclass
+class UnitData:
+    name: str
+    points: int
+    models: int = 1
+    regiment: str = UNKNOWN
+    reinforced: bool = False
+    notes: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -30,5 +38,5 @@ class ListData:
     result_bucket: str = UNKNOWN
     subfaction: str = UNKNOWN
     manifestation_lore: str = UNKNOWN
-    units: list[UnitEntry] = field(default_factory=list)
+    units: list[UnitData] = field(default_factory=list)
     traits: list[str] = field(default_factory=list)

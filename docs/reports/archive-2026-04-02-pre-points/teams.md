@@ -2,7 +2,7 @@
 
 - Lists parsed: 14
 - Total unit entries: 143
-- Total inferred models: 792
+- Total inferred models: 782
 
 ## Top units by entries
 - Deathshrieker Rocket Battery: 21
@@ -20,8 +20,8 @@
 - Deathshrieker Rocket Battery: 13/14 lists (92.9%)
 - Infernal Cohort with Hashutite Spears: 12/14 lists (85.7%)
 - Urak Taar, the First Daemonsmith: 11/14 lists (78.6%)
-- Ashen Elder: 10/14 lists (71.4%)
 - Bull Centaurs: 10/14 lists (71.4%)
+- Ashen Elder: 10/14 lists (71.4%)
 - Tormentor Bombard: 9/14 lists (64.3%)
 - Dominator Engine with Bane Maces: 7/14 lists (50.0%)
 - Infernal Razers with Blunderbusses: 5/14 lists (35.7%)
@@ -31,7 +31,7 @@
 ## Top units by model count
 - Infernal Cohort with Hashutite Spears: 330
 - Bull Centaurs: 102
-- Infernal Razers with Blunderbusses: 100
+- Infernal Razers with Blunderbusses: 90
 - Infernal Cohort with Hashutite Blades: 90
 - Hobgrotz Vandalz: 70
 - Deathshrieker Rocket Battery: 21

@@ -2,7 +2,7 @@
 
 - Lists parsed: 30
 - Total unit entries: 302
-- Total inferred models: 1838
+- Total inferred models: 1828
 
 ## Top units by entries
 - Infernal Cohort with Hashutite Spears: 45
@@ -30,7 +30,7 @@
 
 ## Top units by model count
 - Infernal Cohort with Hashutite Spears: 700
-- Infernal Razers with Blunderbusses: 300
+- Infernal Razers with Blunderbusses: 290
 - Infernal Cohort with Hashutite Blades: 250
 - Bull Centaurs: 198
 - Hobgrotz Vandalz: 150

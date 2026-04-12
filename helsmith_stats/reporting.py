@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from .constants import REPORT_SECTION_LIMIT
-from .models import ListData, MetricCounter, ScopeMetrics
+from .models import ListData, MetricCounter, ScopeMetrics, UnitData
 
 
 def append_counter_section(
@@ -81,5 +81,53 @@ def build_report(
     report_lines.append("## Assumptions")
     report_lines.extend([f"- {line}" for line in assumptions])
     report_lines.append("")
+
+    return "\n".join(report_lines)
+
+
+def _unit_line(unit: UnitData) -> str:
+    parts = [f"{unit.name} - {unit.points} pts - {unit.models} models"]
+    if unit.reinforced:
+        parts.append("reinforced")
+    if unit.notes:
+        parts.append("notes: " + ", ".join(unit.notes))
+    return " - ".join(parts)
+
+
+def build_lists_report(scope_name: str, lists_for_scope: list[ListData]) -> str:
+    report_lines = [
+        f"# Helsmith lists - {scope_name}",
+        "",
+        f"- Lists parsed: {len(lists_for_scope)}",
+        "",
+    ]
+
+    if not lists_for_scope:
+        report_lines.append("No lists parsed.")
+        report_lines.append("")
+        return "\n".join(report_lines)
+
+    for army_list in lists_for_scope:
+        report_lines.extend(
+            [
+                f"## {army_list.name}",
+                "",
+                f"- Source: {army_list.source}",
+                f"- Result: {army_list.result_bucket}",
+                f"- Subfaction: {army_list.subfaction}",
+                f"- Manifestation lore: {army_list.manifestation_lore}",
+                f"- Unit entries: {len(army_list.units)}",
+                "",
+            ]
+        )
+
+        current_regiment = None
+        for unit in army_list.units:
+            if unit.regiment != current_regiment:
+                current_regiment = unit.regiment
+                report_lines.append(f"### {current_regiment}")
+            report_lines.append(f"- {_unit_line(unit)}")
+
+        report_lines.append("")
 
     return "\n".join(report_lines)

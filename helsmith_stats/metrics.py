@@ -7,7 +7,7 @@ from .constants import (
     UNIT_MODEL_BASE_SIZE,
     WARMACHINE_TRAITS,
 )
-from .models import ListData, ScopeMetrics, UnitEntry
+from .models import ListData, ScopeMetrics, UnitData
 
 
 def infer_models(unit_name: str, points: int) -> int:
@@ -17,8 +17,8 @@ def infer_models(unit_name: str, points: int) -> int:
     return POINT_INFERENCES.get((unit_name, points), base_size)
 
 
-def total_models(units: list[UnitEntry]) -> int:
-    return sum(infer_models(unit_name, points) for unit_name, points in units)
+def total_models(units: list[UnitData]) -> int:
+    return sum(unit.models for unit in units)
 
 
 def compute_unplayed_units(played_units: set[str]) -> list[tuple[str, int]]:
@@ -40,10 +40,10 @@ def collect_scope_metrics(lists_for_scope: list[ListData]) -> ScopeMetrics:
         metrics.manifestation_lores[army_list.manifestation_lore] += 1
 
         units_in_this_list = set()
-        for unit_name, points in army_list.units:
-            metrics.unit_entries[unit_name] += 1
-            units_in_this_list.add(unit_name)
-            metrics.model_counts[unit_name] += infer_models(unit_name, points)
+        for unit in army_list.units:
+            metrics.unit_entries[unit.name] += 1
+            units_in_this_list.add(unit.name)
+            metrics.model_counts[unit.name] += unit.models
 
         for unit_name in units_in_this_list:
             metrics.unit_presence_lists[unit_name] += 1
