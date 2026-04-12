@@ -35,5 +35,8 @@ def test_build_lists_report_includes_unit_details() -> None:
     assert "## List A" in report
     assert "### General's Regiment" in report
     assert "### Regiment 1" in report
-    assert "Urak Taar, the First Daemonsmith - 350 pts - 1 models - notes: General" in report
+    assert (
+        "Urak Taar, the First Daemonsmith - 350 pts - 1 models - notes: General"
+        in report
+    )
     assert "Bull Centaurs - 380 pts - 6 models - reinforced" in report
