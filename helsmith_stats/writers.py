@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import csv
+import json
+from dataclasses import asdict
 from pathlib import Path
 
 from .constants import REPORTS_DIR, SUMMARIES_DIR
 from .metrics import collect_scope_metrics, total_models
 from .models import ListData, MetricCounter, ScopeMetrics
-from .reporting import build_report
+from .reporting import build_lists_report, build_report
 
 
 def write_counter_csv(
@@ -50,6 +52,7 @@ def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
                 "manifestation_lore",
                 "unit_entries",
                 "models",
+                "units",
             ],
         )
         writer.writeheader()
@@ -63,19 +66,28 @@ def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
                     "manifestation_lore": army_list.manifestation_lore,
                     "unit_entries": len(army_list.units),
                     "models": total_models(army_list.units),
+                    "units": json.dumps(
+                        [asdict(unit) for unit in army_list.units],
+                        ensure_ascii=False,
+                    ),
                 }
             )
 
 
-def write_scope_outputs(
-    scope_slug: str, scope_name: str, lists_for_scope: list[ListData]
+def write_scope_outputs_to_dirs(
+    scope_slug: str,
+    scope_name: str,
+    lists_for_scope: list[ListData],
+    summaries_dir: Path,
+    reports_dir: Path,
 ) -> None:
-    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    scope_dir = SUMMARIES_DIR / scope_slug
+    reports_dir.mkdir(parents=True, exist_ok=True)
+    scope_dir = summaries_dir / scope_slug
     scope_dir.mkdir(parents=True, exist_ok=True)
 
     metrics: ScopeMetrics = collect_scope_metrics(lists_for_scope)
     report_text = build_report(scope_name, lists_for_scope, metrics)
+    lists_report_text = build_lists_report(scope_name, lists_for_scope)
 
     write_counter_csv(
         scope_dir / "unit_entry_counts.csv",
@@ -124,4 +136,19 @@ def write_scope_outputs(
     )
     write_list_summary(scope_dir / "list_level_summary.csv", lists_for_scope)
 
-    (REPORTS_DIR / f"{scope_slug}.md").write_text(report_text + "\n", encoding="utf-8")
+    (reports_dir / f"{scope_slug}.md").write_text(report_text + "\n", encoding="utf-8")
+    (reports_dir / f"{scope_slug}-lists.md").write_text(
+        lists_report_text + "\n", encoding="utf-8"
+    )
+
+
+def write_scope_outputs(
+    scope_slug: str, scope_name: str, lists_for_scope: list[ListData]
+) -> None:
+    write_scope_outputs_to_dirs(
+        scope_slug,
+        scope_name,
+        lists_for_scope,
+        SUMMARIES_DIR,
+        REPORTS_DIR,
+    )

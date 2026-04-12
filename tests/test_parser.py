@@ -38,11 +38,20 @@ Created with Warhammer Age of Sigmar: The App
     assert singles.result_bucket == "4-1"
     assert singles.subfaction == "Taar's Grand Forgehost"
     assert singles.manifestation_lore == "Forbidden Power"
-    assert ("Deathshrieker Rocket Battery", 140) in singles.units
-    assert (
-        "Scourge of Ghyran Infernal Cohort with Hashutite Blades",
-        220,
-    ) in singles.units
+    deathshrieker = next(
+        unit for unit in singles.units if unit.name == "Deathshrieker Rocket Battery"
+    )
+    assert deathshrieker.points == 140
+    assert deathshrieker.regiment == "General's Regiment"
+
+    cohort = next(
+        unit
+        for unit in singles.units
+        if unit.name == "Scourge of Ghyran Infernal Cohort with Hashutite Blades"
+    )
+    assert cohort.points == 220
+    assert cohort.reinforced is True
+    assert cohort.notes == ["Ruthless Overseer"]
     assert "Ruthless Overseer" in singles.traits
 
     teams = parsed[1]
@@ -50,4 +59,6 @@ Created with Warhammer Age of Sigmar: The App
     assert teams.result_bucket == "5-0"
     assert teams.subfaction == "Industrial Polluters"
     assert teams.manifestation_lore == "Aetherwrought Machineries"
-    assert ("Anointed Sentinels", 300) in teams.units
+    sentinels = next(unit for unit in teams.units if unit.name == "Anointed Sentinels")
+    assert sentinels.points == 300
+    assert sentinels.models == 6
