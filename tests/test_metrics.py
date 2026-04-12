@@ -6,6 +6,8 @@ def test_infer_models_handles_reinforced_and_default_sizes() -> None:
     assert infer_models("Bull Centaurs", 380) == 6
     assert infer_models("Bull Centaurs", 190) == 3
     assert infer_models("Anointed Sentinels", 300) == 6
+    assert infer_models("Infernal Cohort with Hashutite Spears", 200) == 20
+    assert infer_models("Infernal Razers with Blunderbusses", 220) == 10
     assert infer_models("Deathshrieker Rocket Battery", 140) == 1
 
 

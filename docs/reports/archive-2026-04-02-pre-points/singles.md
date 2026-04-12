@@ -2,7 +2,7 @@
 
 - Lists parsed: 16
 - Total unit entries: 159
-- Total inferred models: 1046
+- Total inferred models: 936
 
 ## Top units by entries
 - Infernal Cohort with Hashutite Spears: 25
@@ -30,15 +30,15 @@
 
 ## Top units by model count
 - Infernal Cohort with Hashutite Spears: 370
-- Infernal Razers with Blunderbusses: 200
 - Infernal Cohort with Hashutite Blades: 160
+- Infernal Razers with Blunderbusses: 100
 - Bull Centaurs: 96
 - Hobgrotz Vandalz: 80
 - Deathshrieker Rocket Battery: 20
 - Scourge of Ghyran Infernal Cohort with Hashutite Blades: 20
-- Infernal Razers with Flamehurlers: 20
 - Urak Taar, the First Daemonsmith: 14
 - Ashen Elder: 14
+- Anointed Sentinels: 12
 
 ## Unplayed units
 - None

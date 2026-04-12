@@ -4,7 +4,7 @@
 
 Small repo for parsing Helsmiths of Hashut event lists and generating readable summaries.
 
-- Last run date: 2026-04-12 14:17:27 Mountain Daylight Time
+- Last run date: 2026-04-12 17:48:08 Mountain Daylight Time
 - Python version: 3.11
 
 ## What lives where
@@ -58,6 +58,7 @@ This command archives the current [Helsmiths 5-0s.md](Helsmiths%205-0s.md), [rep
 ## Web dashboard + hosting
 
 - Running `python analyze_helsmith_lists.py` also rebuilds [docs/index.html](docs/index.html).
+- Stats table row count is configurable via `HELSMITH_STATS_TABLE_ROWS` (default: `12`).
 - The dashboard shows **Current** plus up to the 3 newest archived snapshots from [history](history).
 - Local preview: open [docs/index.html](docs/index.html) in a browser.
 - GitHub Pages deploy is handled by [.github/workflows/pages.yml](.github/workflows/pages.yml).

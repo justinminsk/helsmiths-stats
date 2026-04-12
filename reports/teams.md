@@ -2,7 +2,7 @@
 
 - Lists parsed: 4
 - Total unit entries: 46
-- Total inferred models: 231
+- Total inferred models: 241
 
 ## Top units by entries
 - Infernal Cohort with Hashutite Blades: 6
@@ -17,21 +17,21 @@
 - Infernal Razers with Blunderbusses: 2
 
 ## Top units by list presence
-- Infernal Cohort with Hashutite Spears: 4/4 lists (100.0%)
 - Deathshrieker Rocket Battery: 4/4 lists (100.0%)
-- Urak Taar, the First Daemonsmith: 4/4 lists (100.0%)
 - Ashen Elder: 4/4 lists (100.0%)
+- Infernal Cohort with Hashutite Spears: 4/4 lists (100.0%)
 - Tormentor Bombard: 4/4 lists (100.0%)
+- Urak Taar, the First Daemonsmith: 4/4 lists (100.0%)
 - Infernal Cohort with Hashutite Blades: 3/4 lists (75.0%)
-- Dominator Engine with Bane Maces: 3/4 lists (75.0%)
 - Scourge of Ghyran War Despot: 3/4 lists (75.0%)
+- Dominator Engine with Bane Maces: 3/4 lists (75.0%)
 - Bull Centaurs: 2/4 lists (50.0%)
 - Infernal Razers with Blunderbusses: 2/4 lists (50.0%)
 
 ## Top units by model count
+- Infernal Cohort with Hashutite Spears: 100
 - Infernal Cohort with Hashutite Blades: 70
-- Infernal Cohort with Hashutite Spears: 70
-- Infernal Razers with Blunderbusses: 40
+- Infernal Razers with Blunderbusses: 20
 - Bull Centaurs: 12
 - Hobgrotz Vandalz: 10
 - Deathshrieker Rocket Battery: 6
@@ -43,7 +43,7 @@
 ## Unplayed units
 - Anointed Sentinels (unit size 3)
 - Daemonsmith (unit size 1)
-- Infernal Razers with Flamehurlers (unit size 10)
+- Infernal Razers with Flamehurlers (unit size 5)
 - Scourge of Ghyran Infernal Cohort with Hashutite Blades (unit size 10)
 - War Despot (unit size 1)
 

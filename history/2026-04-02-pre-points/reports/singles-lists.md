@@ -85,7 +85,7 @@
 - War Despot - 90 pts - 1 models - notes: An Eye for Weakness
 - Infernal Cohort with Hashutite Blades - 200 pts - 20 models - reinforced
 - Infernal Cohort with Hashutite Blades - 200 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 
 ## All your hats are belong to us 1960/2000 pts
 
@@ -99,7 +99,7 @@
 - Urak Taar, the First Daemonsmith - 350 pts - 1 models - notes: General
 - Dominator Engine with Bane Maces - 160 pts - 1 models - notes: Overdrive Switch
 - Infernal Cohort with Hashutite Spears - 220 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 - Scourge of Ghyran Infernal Cohort with Hashutite Blades - 220 pts - 20 models - reinforced
 ### Regiment 1
 - Scourge of Ghyran War Despot - 140 pts - 1 models - notes: Servile Automaton, Scroll of Petrification
@@ -143,7 +143,7 @@
 - Bull Centaurs - 380 pts - 6 models - reinforced
 - Bull Centaurs - 380 pts - 6 models - reinforced
 - Dominator Engine with Bane Maces - 160 pts - 1 models
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 ### Regiment 1
 - Daemonsmith on Infernal Taurus - 290 pts - 1 models - notes: Breath of Contempt, An Eye for Weakness, Scroll of Petrification
 - Dominator Engine with Immolation Cannons - 190 pts - 1 models
@@ -198,7 +198,7 @@
 
 ### General's Regiment
 - Urak Taar, the First Daemonsmith - 350 pts - 1 models - notes: General
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 - Deathshrieker Rocket Battery - 140 pts - 1 models
 - Deathshrieker Rocket Battery - 140 pts - 1 models
 - Dominator Engine with Bane Maces - 160 pts - 1 models
@@ -253,9 +253,9 @@
 - Dominator Engine with Immolation Cannons - 190 pts - 1 models
 ### Regiment 2
 - Scourge of Ghyran War Despot - 140 pts - 1 models - notes: Ruthless Overseer, Talisman of Obsidian
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
-- Infernal Razers with Flamehurlers - 200 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
+- Infernal Razers with Flamehurlers - 200 pts - 10 models - reinforced
 
 ## **Love will Taurus apart 2000/2000 pts**
 
@@ -269,8 +269,8 @@
 - Ashen Elder - 120 pts - 1 models - notes: General, An Eye for Weakness
 - Infernal Cohort with Hashutite Blades - 200 pts - 20 models - reinforced
 - Infernal Cohort with Hashutite Blades - 200 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 ### Regiment 1
 - Daemonsmith on Infernal Taurus - 290 pts - 1 models - notes: Greed Pistons, Scroll of Petrification
 - Anointed Sentinels - 300 pts - 6 models - reinforced
@@ -313,8 +313,8 @@
 - Ashen Elder - 120 pts - 1 models - notes: General, An Eye for Weakness
 - Infernal Cohort with Hashutite Blades - 200 pts - 20 models - reinforced
 - Infernal Cohort with Hashutite Blades - 200 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 ### Regiment 1
 - Daemonsmith on Infernal Taurus - 290 pts - 1 models - notes: Greed Pistons, Scroll of Petrification
 - Anointed Sentinels - 300 pts - 6 models - reinforced
