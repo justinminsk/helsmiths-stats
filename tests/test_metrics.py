@@ -1,5 +1,5 @@
 from helsmith_stats.metrics import collect_scope_metrics, infer_models, total_models
-from helsmith_stats.models import ListData
+from helsmith_stats.models import ListData, UnitData
 
 
 def test_infer_models_handles_reinforced_and_default_sizes() -> None:
@@ -15,9 +15,14 @@ def test_collect_scope_metrics_counts_presence_and_traits() -> None:
             name="List 1",
             source="Singles",
             units=[
-                ("Bull Centaurs", 380),
-                ("Deathshrieker Rocket Battery", 140),
-                ("Infernal Cohort with Hashutite Spears", 220),
+                UnitData(name="Bull Centaurs", points=380, models=6),
+                UnitData(name="Deathshrieker Rocket Battery", points=140, models=1),
+                UnitData(
+                    name="Infernal Cohort with Hashutite Spears",
+                    points=220,
+                    models=20,
+                    reinforced=True,
+                ),
             ],
             traits=[
                 "Scroll of Petrification",
@@ -31,8 +36,8 @@ def test_collect_scope_metrics_counts_presence_and_traits() -> None:
             name="List 2",
             source="Singles",
             units=[
-                ("Bull Centaurs", 190),
-                ("Anointed Sentinels", 150),
+                UnitData(name="Bull Centaurs", points=190, models=3),
+                UnitData(name="Anointed Sentinels", points=150, models=3),
             ],
             traits=["An Eye for Weakness"],
             subfaction="Taar's Grand Forgehost",

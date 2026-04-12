@@ -5,6 +5,7 @@
 Small repo for parsing Helsmiths of Hashut event lists and generating readable summaries.
 
 - Last run date: 2026-04-12 14:17:27 Mountain Daylight Time
+- Python version: 3.11
 
 ## What lives where
 
