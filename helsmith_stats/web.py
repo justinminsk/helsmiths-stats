@@ -36,7 +36,7 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(file))
 
 
-def _top_rows(path: Path, limit: int = 5) -> list[dict[str, str]]:
+def _top_rows(path: Path, limit: int) -> list[dict[str, str]]:
     return _read_csv(path)[:limit]
 
 
@@ -125,21 +125,6 @@ def _stats_summary_text(
         return "No summary insights available for this scope yet."
 
     return " ".join(summary_parts)
-
-
-def _list_level_rows(list_rows: list[dict[str, str]]) -> list[list[str]]:
-    return [
-        [
-            row.get("source", ""),
-            row.get("name", ""),
-            row.get("result", ""),
-            row.get("subfaction", ""),
-            row.get("manifestation_lore", ""),
-            row.get("unit_entries", ""),
-            row.get("models", ""),
-        ]
-        for row in list_rows
-    ]
 
 
 def _row_regiment_count(row: dict[str, str]) -> int:

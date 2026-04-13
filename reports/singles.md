@@ -16,15 +16,15 @@
 - Tormentor Bombard: 1
 
 ## Top units by list presence
-- Deathshrieker Rocket Battery: 1/1 lists (100.0%)
 - Scourge of Ghyran War Despot: 1/1 lists (100.0%)
-- Ashen Elder: 1/1 lists (100.0%)
-- Dominator Engine with Bane Maces: 1/1 lists (100.0%)
-- Infernal Cohort with Hashutite Spears: 1/1 lists (100.0%)
 - Tormentor Bombard: 1/1 lists (100.0%)
-- Urak Taar, the First Daemonsmith: 1/1 lists (100.0%)
+- Ashen Elder: 1/1 lists (100.0%)
+- Deathshrieker Rocket Battery: 1/1 lists (100.0%)
 - Daemonsmith: 1/1 lists (100.0%)
+- Urak Taar, the First Daemonsmith: 1/1 lists (100.0%)
+- Dominator Engine with Bane Maces: 1/1 lists (100.0%)
 - Dominator Engine with Immolation Cannons: 1/1 lists (100.0%)
+- Infernal Cohort with Hashutite Spears: 1/1 lists (100.0%)
 
 ## Top units by model count
 - Infernal Cohort with Hashutite Spears: 40
