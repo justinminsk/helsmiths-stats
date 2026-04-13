@@ -12,7 +12,7 @@
 
 ### General's Regiment
 - Urak Taar, the First Daemonsmith - 340 pts - 1 models - notes: General
-- Infernal Cohort with Hashutite Spears - 200 pts - 10 models - reinforced
+- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
 - Infernal Cohort with Hashutite Spears - 100 pts - 10 models
 - Infernal Cohort with Hashutite Spears - 100 pts - 10 models
 - Scourge of Ghyran War Despot - 130 pts - 1 models - notes: Ruthless Overseer

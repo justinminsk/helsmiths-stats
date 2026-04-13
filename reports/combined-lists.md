@@ -12,7 +12,7 @@
 
 ### General's Regiment
 - Urak Taar, the First Daemonsmith - 340 pts - 1 models - notes: General
-- Infernal Cohort with Hashutite Spears - 200 pts - 10 models - reinforced
+- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
 - Infernal Cohort with Hashutite Spears - 100 pts - 10 models
 - Infernal Cohort with Hashutite Spears - 100 pts - 10 models
 - Scourge of Ghyran War Despot - 130 pts - 1 models - notes: Ruthless Overseer
@@ -39,14 +39,14 @@
 - Urak Taar, the First Daemonsmith - 340 pts - 1 models - notes: General
 - Infernal Cohort with Hashutite Blades - 90 pts - 10 models
 - Infernal Cohort with Hashutite Blades - 90 pts - 10 models
-- Infernal Cohort with Hashutite Spears - 200 pts - 10 models - reinforced
+- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
 ### Regiment 1
 - Daemonsmith on Infernal Taurus - 290 pts - 1 models - notes: Overdrive Switch, An Eye for Weakness, Scroll of Petrification
 - Bull Centaurs - 380 pts - 6 models - reinforced
 ### Regiment 2
 - Ashen Elder - 120 pts - 1 models
 - Deathshrieker Rocket Battery - 140 pts - 1 models
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 - Tormentor Bombard - 130 pts - 1 models
 
 ## Renoir did nothing wrong 2000/2000 pts
@@ -61,8 +61,8 @@
 - Urak Taar, the First Daemonsmith - 340 pts - 1 models - notes: General
 - Infernal Cohort with Hashutite Blades - 90 pts - 10 models
 - Infernal Cohort with Hashutite Blades - 90 pts - 10 models
-- Infernal Cohort with Hashutite Spears - 200 pts - 10 models - reinforced
-- Infernal Cohort with Hashutite Spears - 200 pts - 10 models - reinforced
+- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
+- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
 ### Regiment 1
 - Ashen Elder - 120 pts - 1 models
 - Dominator Engine with Bane Maces - 160 pts - 1 models
@@ -94,7 +94,7 @@
 - Scourge of Ghyran War Despot - 140 pts - 1 models - notes: An Eye for Weakness
 - Dominator Engine with Bane Maces - 160 pts - 1 models - notes: Greed Pistons
 - Infernal Cohort with Hashutite Spears - 220 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced - notes: *no name**
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced - notes: *no name**
 
 ## List 5
 

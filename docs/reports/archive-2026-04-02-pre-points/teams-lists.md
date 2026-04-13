@@ -14,7 +14,7 @@
 - Urak Taar, the First Daemonsmith - 350 pts - 1 models - notes: General
 - Bull Centaurs - 380 pts - 6 models - reinforced
 - Deathshrieker Rocket Battery - 140 pts - 1 models
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 - Tormentor Bombard - 130 pts - 1 models
 ### Regiment 1
 - Ashen Elder - 120 pts - 1 models - notes: Servile Automaton, Scroll of Petrification
@@ -110,7 +110,7 @@
 - Scourge of Ghyran War Despot - 140 pts - 1 models
 - Bull Centaurs - 380 pts - 6 models - reinforced
 - Dominator Engine with Bane Maces - 160 pts - 1 models
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 ### Regiment 2
 - Ashen Elder - 120 pts - 1 models
 - Deathshrieker Rocket Battery - 140 pts - 1 models
@@ -154,7 +154,7 @@
 - Bull Centaurs - 380 pts - 6 models - reinforced
 - Deathshrieker Rocket Battery - 140 pts - 1 models - notes: Overdrive Switch
 - Deathshrieker Rocket Battery - 140 pts - 1 models
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 ### Regiment 1
 - Daemonsmith - 110 pts - 1 models - notes: An Eye for Weakness, Scroll of Petrification
 - Infernal Cohort with Hashutite Blades - 200 pts - 20 models - reinforced
@@ -195,7 +195,7 @@
 ### Regiment 2
 - Scourge of Ghyran War Despot - 140 pts - 1 models - notes: Scroll of Petrification, An Eye for Weakness
 - Infernal Cohort with Hashutite Spears - 220 pts - 20 models - reinforced
-- Infernal Razers with Blunderbusses - 220 pts - 10 models
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 - Dominator Engine with Bane Maces - 160 pts - 1 models - notes: Breath of Contempt
 ### Regiment 3
 - Ashen Elder - 120 pts - 1 models
@@ -274,7 +274,7 @@
 
 ### General's Regiment
 - Urak Taar, the First Daemonsmith - 350 pts - 1 models - notes: General
-- Infernal Razers with Blunderbusses - 220 pts - 20 models - reinforced
+- Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 - Deathshrieker Rocket Battery - 140 pts - 1 models
 - Deathshrieker Rocket Battery - 140 pts - 1 models
 - Dominator Engine with Bane Maces - 160 pts - 1 models
