@@ -18,15 +18,15 @@
 
 ## Top units by list presence
 - Urak Taar, the First Daemonsmith: 4/4 lists (100.0%)
-- Deathshrieker Rocket Battery: 3/4 lists (75.0%)
 - Dominator Engine with Immolation Cannons: 3/4 lists (75.0%)
 - Tormentor Bombard: 3/4 lists (75.0%)
+- Deathshrieker Rocket Battery: 3/4 lists (75.0%)
 - Infernal Cohort with Hashutite Spears: 3/4 lists (75.0%)
-- Ashen Elder: 2/4 lists (50.0%)
 - Daemonsmith: 2/4 lists (50.0%)
+- Ashen Elder: 2/4 lists (50.0%)
 - Scourge of Ghyran War Despot: 2/4 lists (50.0%)
+- Hobgrotz Vandalz: 2/4 lists (50.0%)
 - Daemonsmith on Infernal Taurus: 2/4 lists (50.0%)
-- Infernal Razers with Blunderbusses: 2/4 lists (50.0%)
 
 ## Top units by model count
 - Infernal Cohort with Hashutite Spears: 90

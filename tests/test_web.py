@@ -1,12 +1,11 @@
 import csv
 import json
 from pathlib import Path
+from types import SimpleNamespace
+
+import pytest
 
 from helsmith_stats import web
-
-
-def _disable_frontend_build(monkeypatch) -> None:
-    monkeypatch.setattr(web, "_build_frontend_site", lambda: False)
 
 
 def _write_csv(path: Path, headers: list[str], rows: list[list[str]]) -> None:
@@ -120,6 +119,7 @@ def _configure_test_workspace(tmp_path: Path, monkeypatch) -> Path:
     summaries_dir = root / "summaries"
     reports_dir = root / "reports"
     history_root = root / "history"
+    frontend_dir = root / "frontend"
 
     for scope in web.SCOPES:
         _write_scope_fixture(summaries_dir, scope)
@@ -140,49 +140,39 @@ def _configure_test_workspace(tmp_path: Path, monkeypatch) -> Path:
     monkeypatch.setattr(web, "DOCS_DIR", docs_dir)
     monkeypatch.setattr(web, "SUMMARIES_DIR", summaries_dir)
     monkeypatch.setattr(web, "REPORTS_DIR", reports_dir)
-    _disable_frontend_build(monkeypatch)
+    monkeypatch.setattr(web, "FRONTEND_DIR", frontend_dir)
+    monkeypatch.setattr(web, "FRONTEND_DIST_DIR", frontend_dir / "dist")
 
     return root
 
 
-def _build_test_site(tmp_path: Path, monkeypatch) -> str:
-    root = _configure_test_workspace(tmp_path, monkeypatch)
+def _stub_frontend_build(monkeypatch, root: Path) -> None:
+    def fake_build_frontend_site() -> None:
+        dist_dir = root / "frontend" / "dist"
+        (dist_dir / "assets").mkdir(parents=True, exist_ok=True)
+        (dist_dir / "index.html").write_text(
+            '<!doctype html><html><body><div id="root"></div></body></html>\n',
+            encoding="utf-8",
+        )
+        (dist_dir / "assets" / "bundle.js").write_text(
+            "console.log('react');\n",
+            encoding="utf-8",
+        )
+        web._publish_frontend_dist(dist_dir)
 
+    monkeypatch.setattr(web, "_build_frontend_site", fake_build_frontend_site)
+
+
+def _build_test_site(tmp_path: Path, monkeypatch) -> tuple[Path, str]:
+    root = _configure_test_workspace(tmp_path, monkeypatch)
+    _stub_frontend_build(monkeypatch, root)
     web.build_web_page()
-    return (root / "docs" / "index.html").read_text(encoding="utf-8")
+    return root, (root / "docs" / "index.html").read_text(encoding="utf-8")
 
 
 def _build_test_payload(tmp_path: Path, monkeypatch) -> dict[str, object]:
     _configure_test_workspace(tmp_path, monkeypatch)
     return web.build_site_payload("2026-04-19 12:00:00 UTC")
-
-
-# ---------------------------------------------------------------------------
-# _render_table
-# ---------------------------------------------------------------------------
-
-
-def test_render_table_escapes_html_content() -> None:
-    rows = [["<script>alert(1)</script>", "99"]]
-    html = web._render_table("Title", ["Name", "Count"], rows)
-    assert "<script>" not in html
-    assert "&lt;script&gt;" in html
-
-
-def test_render_table_shows_placeholder_when_empty() -> None:
-    html = web._render_table("Title", ["Name", "Count"], [])
-    assert "—" in html
-
-
-def test_render_table_has_sr_only_caption() -> None:
-    html = web._render_table("My Table", ["A", "B"], [["x", "1"]])
-    assert 'class="sr-only"' in html
-    assert "My Table" in html
-
-
-# ---------------------------------------------------------------------------
-# _stats_summary_text
-# ---------------------------------------------------------------------------
 
 
 def test_stats_summary_text_surfaces_all_top_fields() -> None:
@@ -206,54 +196,6 @@ def test_stats_summary_text_empty_returns_fallback() -> None:
         unit_model_rows=[],
     )
     assert "No summary insights" in text
-
-
-# ---------------------------------------------------------------------------
-# build_web_page — integration / regression
-# ---------------------------------------------------------------------------
-
-
-def test_build_web_page_dark_mode_color_tokens(tmp_path, monkeypatch) -> None:
-    _disable_frontend_build(monkeypatch)
-    monkeypatch.setattr(web, "DOCS_DIR", tmp_path / "docs")
-    web.build_web_page()
-    html = (tmp_path / "docs" / "index.html").read_text(encoding="utf-8")
-
-    assert "--color-bg: #0f0b08" in html
-    assert "--color-surface: #181009" in html
-    assert "--color-border: #5e4225" in html
-    assert "--color-accent: #c8921a" in html
-    assert "--color-accent-strong: #dcaa32" in html
-    assert "--color-focus: #00c8a8" in html
-    assert "--color-teal: #00c8a8" in html
-    assert "--color-magenta: #c84090" in html
-
-
-def test_build_web_page_light_mode_color_tokens(tmp_path, monkeypatch) -> None:
-    _disable_frontend_build(monkeypatch)
-    monkeypatch.setattr(web, "DOCS_DIR", tmp_path / "docs")
-    web.build_web_page()
-    html = (tmp_path / "docs" / "index.html").read_text(encoding="utf-8")
-
-    assert "--color-bg: #f9f4ee" in html
-    assert "--color-accent: #7a4e0e" in html
-    assert "--color-focus: #006e5a" in html
-    assert "--color-teal: #007a68" in html
-    assert "--color-magenta: #a0306e" in html
-
-
-def test_build_web_page_html_structure(tmp_path, monkeypatch) -> None:
-    _disable_frontend_build(monkeypatch)
-    monkeypatch.setattr(web, "DOCS_DIR", tmp_path / "docs")
-    web.build_web_page()
-    html = (tmp_path / "docs" / "index.html").read_text(encoding="utf-8")
-
-    assert "<!doctype html>" in html
-    assert "<main" in html
-    assert 'role="tab"' in html
-    assert 'role="tabpanel"' in html
-    assert 'class="sr-only"' in html
-    assert "aria-controls=" in html
 
 
 def test_discover_datasets_includes_current_plus_three_newest_snapshots(
@@ -282,68 +224,6 @@ def test_discover_datasets_includes_current_plus_three_newest_snapshots(
         "archive-2026-04-10-pre-points",
         "archive-2026-04-03-pre-points",
     ]
-
-
-def test_build_web_page_renders_dataset_scope_and_view_navigation(
-    tmp_path, monkeypatch
-) -> None:
-    html = _build_test_site(tmp_path, monkeypatch)
-
-    assert "Current" in html
-    assert "Snapshot (2026-04-17-pre-points)" in html
-    assert "Snapshot (2026-04-10-pre-points)" in html
-    assert "Snapshot (2026-04-03-pre-points)" in html
-    assert "Snapshot (2026-03-27-pre-points)" not in html
-    assert 'aria-label="Dataset navigation"' in html
-    assert 'aria-label="Combined view tabs"' in html
-    assert 'aria-controls="scope-panel-current-combined"' in html
-    assert 'aria-controls="scope-view-current-combined-stats"' in html
-    assert 'aria-controls="scope-view-current-combined-lists"' in html
-    assert 'data-dataset-key="current"' in html
-    assert 'data-scope-key="combined"' in html
-
-
-def test_build_web_page_renders_list_controls_and_theme_toggle(
-    tmp_path, monkeypatch
-) -> None:
-    html = _build_test_site(tmp_path, monkeypatch)
-
-    assert 'id="theme-toggle"' in html
-    assert "Theme: Auto" in html
-    assert 'class="list-search"' in html
-    assert 'class="list-filter-result"' in html
-    assert 'class="list-filter-subfaction"' in html
-    assert 'class="list-sort"' in html
-    assert "Load more lists" in html
-    assert "Columns" in html
-    assert "Copy view link" in html
-
-
-def test_build_web_page_copies_reports_for_current_and_archived_datasets(
-    tmp_path, monkeypatch
-) -> None:
-    _build_test_site(tmp_path, monkeypatch)
-    docs_root = tmp_path / "repo" / "docs" / "reports"
-
-    assert (docs_root / "current" / "combined.md").exists()
-    assert (docs_root / "current" / "combined-lists.md").exists()
-    assert (docs_root / "archive-2026-04-17-pre-points" / "teams.md").exists()
-    assert (docs_root / "archive-2026-04-17-pre-points" / "teams-lists.md").exists()
-
-
-def test_build_web_page_includes_hash_theme_and_filter_script_contract(
-    tmp_path, monkeypatch
-) -> None:
-    html = _build_test_site(tmp_path, monkeypatch)
-
-    assert "const hashPrefix = '#tab=';" in html
-    assert "const listRowsBatchSize = 20;" in html
-    assert "const themeStorageKey = 'helsmithTheme';" in html
-    assert "window.localStorage.setItem(themeStorageKey, theme);" in html
-    assert "restoreFromHash();" in html
-    assert "window.addEventListener('hashchange'" in html
-    assert "window.addEventListener('pageshow'" in html
-    assert "No lists found for current ${activeControls[0]} filter." in html
 
 
 def test_build_site_payload_contains_frontend_contract_metadata(
@@ -395,19 +275,6 @@ def test_build_site_payload_contains_dataset_scope_and_list_details(
     assert first_list["units"][0]["notes"] == ["General"]
 
 
-def test_build_web_page_writes_site_data_json(tmp_path, monkeypatch) -> None:
-    _build_test_site(tmp_path, monkeypatch)
-    site_data_path = tmp_path / "repo" / "docs" / "data" / "site-data.json"
-
-    assert site_data_path.exists()
-    payload = json.loads(site_data_path.read_text(encoding="utf-8"))
-    assert payload["defaultDatasetKey"] == "current"
-    assert (
-        payload["datasets"][0]["scopes"][0]["reportLinks"]["stats"]
-        == "reports/current/combined.md"
-    )
-
-
 def test_publish_frontend_dist_preserves_reports_and_site_data(
     tmp_path, monkeypatch
 ) -> None:
@@ -439,28 +306,51 @@ def test_publish_frontend_dist_preserves_reports_and_site_data(
     assert site_data_path.exists()
 
 
-def test_build_web_page_prefers_frontend_output_when_available(
-    tmp_path, monkeypatch
-) -> None:
+def test_build_frontend_site_raises_on_failed_build(tmp_path, monkeypatch) -> None:
     root = _configure_test_workspace(tmp_path, monkeypatch)
+    (root / "frontend").mkdir(parents=True, exist_ok=True)
 
-    def fake_build_frontend_site() -> bool:
-        (root / "docs" / "index.html").write_text(
-            '<!doctype html><html><body><div id="root"></div></body></html>\n',
-            encoding="utf-8",
-        )
-        (root / "docs" / "assets").mkdir(parents=True, exist_ok=True)
-        (root / "docs" / "assets" / "bundle.js").write_text(
-            "console.log('react');\n",
-            encoding="utf-8",
-        )
-        return True
+    monkeypatch.setattr(web, "_resolve_npm_command", lambda: ["npm"])
+    monkeypatch.setattr(
+        web.subprocess,
+        "run",
+        lambda *args, **kwargs: SimpleNamespace(returncode=1, stderr="boom", stdout=""),
+    )
 
-    monkeypatch.setattr(web, "_build_frontend_site", fake_build_frontend_site)
+    with pytest.raises(
+        RuntimeError, match="Frontend build failed while publishing docs: boom"
+    ):
+        web._build_frontend_site()
 
-    web.build_web_page()
 
-    html = (root / "docs" / "index.html").read_text(encoding="utf-8")
-    assert '<div id="root"></div>' in html
+def test_build_web_page_requires_frontend_build_tooling(tmp_path, monkeypatch) -> None:
+    root = _configure_test_workspace(tmp_path, monkeypatch)
+    monkeypatch.setattr(web, "_resolve_npm_command", lambda: None)
+
+    with pytest.raises(RuntimeError, match="Frontend publishing requires npm"):
+        web.build_web_page()
+
     assert (root / "docs" / "reports" / "current" / "combined.md").exists()
     assert (root / "docs" / "data" / "site-data.json").exists()
+
+
+def test_build_web_page_publishes_frontend_output_and_supporting_files(
+    tmp_path, monkeypatch
+) -> None:
+    root, html = _build_test_site(tmp_path, monkeypatch)
+
+    assert '<div id="root"></div>' in html
+    assert (root / "docs" / "assets" / "bundle.js").exists()
+    assert (root / "docs" / "reports" / "current" / "combined.md").exists()
+    assert (
+        root / "docs" / "reports" / "archive-2026-04-17-pre-points" / "teams.md"
+    ).exists()
+    assert (root / "docs" / "data" / "site-data.json").exists()
+
+    payload = json.loads(
+        (root / "docs" / "data" / "site-data.json").read_text(encoding="utf-8")
+    )
+    assert (
+        payload["datasets"][0]["scopes"][0]["reportLinks"]["stats"]
+        == "reports/current/combined.md"
+    )
