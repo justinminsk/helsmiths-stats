@@ -1,15 +1,16 @@
 unit_name,lists_with_unit,percent_of_lists
-Tormentor Bombard,5,100.0
-Ashen Elder,5,100.0
-Deathshrieker Rocket Battery,5,100.0
-"Urak Taar, the First Daemonsmith",5,100.0
-Infernal Cohort with Hashutite Spears,5,100.0
-Scourge of Ghyran War Despot,4,80.0
-Dominator Engine with Bane Maces,4,80.0
-Infernal Cohort with Hashutite Blades,3,60.0
-Dominator Engine with Immolation Cannons,2,40.0
-Bull Centaurs,2,40.0
-Infernal Razers with Blunderbusses,2,40.0
-Daemonsmith,1,20.0
-Daemonsmith on Infernal Taurus,1,20.0
-Hobgrotz Vandalz,1,20.0
+"Urak Taar, the First Daemonsmith",10,100.0
+Infernal Cohort with Hashutite Spears,9,90.0
+Deathshrieker Rocket Battery,8,80.0
+Ashen Elder,7,70.0
+Tormentor Bombard,7,70.0
+Bull Centaurs,6,60.0
+Dominator Engine with Bane Maces,5,50.0
+Scourge of Ghyran War Despot,5,50.0
+Infernal Razers with Blunderbusses,5,50.0
+Dominator Engine with Immolation Cannons,4,40.0
+Daemonsmith on Infernal Taurus,4,40.0
+Infernal Cohort with Hashutite Blades,4,40.0
+Hobgrotz Vandalz,3,30.0
+Daemonsmith,2,20.0
+Anointed Sentinels,2,20.0

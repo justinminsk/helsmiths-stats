@@ -26,13 +26,60 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
 
-      - name: Build reports and site
+      - name: Install frontend dependencies
+        run: npm ci --prefix frontend
+
+      - name: Build reports and publish site
         run: python analyze_helsmith_lists.py
+
+      - name: Verify published Pages artifact
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          docs_dir = Path("docs")
+          index_html = (docs_dir / "index.html").read_text(encoding="utf-8")
+          if "/helsmiths-stats/assets/" not in index_html:
+              raise SystemExit("Published site is missing the GitHub Pages asset base path.")
+
+          payload = json.loads((docs_dir / "data" / "site-data.json").read_text(encoding="utf-8"))
+          default_dataset_key = payload["defaultDatasetKey"]
+          archived_datasets = [
+              dataset for dataset in payload["datasets"] if dataset["key"] != default_dataset_key
+          ]
+          if not archived_datasets:
+              raise SystemExit("Expected at least one archived dataset in the published payload.")
+
+          missing_reports: list[str] = []
+          for dataset in archived_datasets:
+              for scope in dataset["scopes"]:
+                  for report_type, report_path in scope["reportLinks"].items():
+                      if not (docs_dir / report_path).exists():
+                          missing_reports.append(
+                              f"{dataset['key']} {scope['key']} {report_type}: {report_path}"
+                          )
+
+          if missing_reports:
+              raise SystemExit(
+                  "Archived snapshot links are missing published report targets:\n"
+                  + "\n".join(missing_reports)
+              )
+
+          print("Verified GitHub Pages asset paths and archived snapshot report links.")
+          PY
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

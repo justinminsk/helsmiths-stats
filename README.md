@@ -4,7 +4,7 @@
 
 Small repo for parsing Helsmiths of Hashut event lists and generating readable summaries.
 
-- Last run date: 2026-04-12 18:00:30 Mountain Daylight Time
+- Last run date: 2026-04-19 11:25:16 Mountain Daylight Time
 - Python version: 3.11
 
 ## What lives where
@@ -57,11 +57,12 @@ This command archives the current [Helsmiths 5-0s.md](Helsmiths%205-0s.md), [rep
 
 ## Web dashboard + hosting
 
-- Running `python analyze_helsmith_lists.py` also rebuilds [docs/index.html](docs/index.html).
+- Running `python analyze_helsmith_lists.py` also rebuilds [docs/index.html](docs/index.html) and republishes the React frontend when Node/npm plus [frontend/package-lock.json](frontend/package-lock.json) dependencies are available.
 - Stats table row count is configurable via `HELSMITH_STATS_TABLE_ROWS` (default: `12`).
 - The dashboard shows **Current** plus up to the 3 newest archived snapshots from [history](history).
 - Local preview: open [docs/index.html](docs/index.html) in a browser.
 - GitHub Pages deploy is handled by [.github/workflows/pages.yml](.github/workflows/pages.yml).
+- The Pages workflow installs both Python and Node, runs `npm ci --prefix frontend`, rebuilds the Python outputs, then verifies the published React asset base path and archived snapshot report links before deploy.
 - In GitHub repo settings, set **Pages** source to **GitHub Actions** (one-time).
 - After push to `main`, your site will be available at:
 	- `https://<your-github-username>.github.io/helsmiths-stats/`
@@ -93,3 +94,6 @@ The same pre-commit checks run in GitHub Actions before tests.
 - The script normalizes a few known naming/export quirks.
 - Model counts are inferred from unit size and point-cost patterns in the source lists.
 - The repo is organized so the root stays focused on the source file, the parser, and this README.
+
+## Statement on Intent
+This is a free, non-monetized hobbyist analysis project with no ads, subscriptions, sponsorships, affiliate links, or paid access. Its workflow is manual rather than automated, and it focuses on derived summaries and aggregate statistics.

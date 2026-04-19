@@ -19,6 +19,9 @@ ENV/
 build/
 dist/
 *.egg-info/
+node_modules/
+coverage/
+frontend/.vite/
 
 # IDE settings
 .vscode/
