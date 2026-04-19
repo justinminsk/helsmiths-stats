@@ -648,3 +648,4 @@
 - Daemonsmith on Infernal Taurus - 290 pts - 1 models - notes: Overdrive Switch, Gauntlets of Punishment, An Eye for Weakness
 - Bull Centaurs - 380 pts - 6 models - reinforced
 - Bull Centaurs - 380 pts - 6 models - reinforced
+

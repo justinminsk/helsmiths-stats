@@ -17,13 +17,13 @@
 - Scourge of Ghyran War Despot: 3
 
 ## Top units by list presence
-- Urak Taar, the First Daemonsmith: 6/6 lists (100.0%)
 - Infernal Cohort with Hashutite Spears: 6/6 lists (100.0%)
+- Urak Taar, the First Daemonsmith: 6/6 lists (100.0%)
 - Deathshrieker Rocket Battery: 5/6 lists (83.3%)
 - Ashen Elder: 5/6 lists (83.3%)
 - Infernal Cohort with Hashutite Blades: 4/6 lists (66.7%)
-- Tormentor Bombard: 4/6 lists (66.7%)
 - Bull Centaurs: 4/6 lists (66.7%)
+- Tormentor Bombard: 4/6 lists (66.7%)
 - Dominator Engine with Bane Maces: 4/6 lists (66.7%)
 - Infernal Razers with Blunderbusses: 3/6 lists (50.0%)
 - Scourge of Ghyran War Despot: 3/6 lists (50.0%)
@@ -74,3 +74,4 @@
 - Alias normalization is applied for known spelling and export differences.
 - Trait categories are mapped by a fixed dictionary and count occurrences across lists.
 - Subfaction is parsed from battle formation, pipe-delimited exports, or Army of Renown lines.
+

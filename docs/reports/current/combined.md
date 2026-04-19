@@ -23,8 +23,8 @@
 - Tormentor Bombard: 7/10 lists (70.0%)
 - Ashen Elder: 7/10 lists (70.0%)
 - Bull Centaurs: 6/10 lists (60.0%)
-- Dominator Engine with Bane Maces: 5/10 lists (50.0%)
 - Scourge of Ghyran War Despot: 5/10 lists (50.0%)
+- Dominator Engine with Bane Maces: 5/10 lists (50.0%)
 - Infernal Razers with Blunderbusses: 5/10 lists (50.0%)
 - Dominator Engine with Immolation Cannons: 4/10 lists (40.0%)
 
@@ -74,3 +74,4 @@
 - Alias normalization is applied for known spelling and export differences.
 - Trait categories are mapped by a fixed dictionary and count occurrences across lists.
 - Subfaction is parsed from battle formation, pipe-delimited exports, or Army of Renown lines.
+

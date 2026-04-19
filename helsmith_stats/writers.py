@@ -46,6 +46,7 @@ def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
             file,
             fieldnames=[
                 "source",
+                "week",
                 "name",
                 "result",
                 "subfaction",
@@ -60,6 +61,7 @@ def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
             writer.writerow(
                 {
                     "source": army_list.source,
+                    "week": army_list.week_label,
                     "name": army_list.name,
                     "result": army_list.result_bucket,
                     "subfaction": army_list.subfaction,

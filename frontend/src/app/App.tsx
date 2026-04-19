@@ -10,6 +10,22 @@ type LoadState =
   | { status: 'ready'; payload: SiteDataPayload; source: 'live' | 'sample' }
   | { status: 'error'; message: string; fallback: SiteDataPayload };
 
+type StatusPanelProps = {
+  title: string;
+  detail: string;
+  tone?: 'neutral' | 'warning';
+};
+
+function StatusPanel({ title, detail, tone = 'neutral' }: StatusPanelProps) {
+  return (
+    <section aria-live="polite" className={`status-panel status-panel--${tone}`} role="status">
+      <p className="status-panel__eyebrow">Dashboard state</p>
+      <h2 className="status-panel__title">{title}</h2>
+      <p className="status-panel__detail">{detail}</p>
+    </section>
+  );
+}
+
 export function App() {
   const [state, setState] = useState<LoadState>({ status: 'loading' });
 
@@ -48,7 +64,10 @@ export function App() {
   if (state.status === 'loading') {
     return (
       <AppShell title="Helsmith Stats" subtitle="Python-backed React dashboard">
-        <p className="status-message">Loading the Python-generated site contract…</p>
+        <StatusPanel
+          detail="Loading the Python-generated site contract, theme tokens, and route defaults."
+          title="Preparing dashboard"
+        />
       </AppShell>
     );
   }
@@ -58,8 +77,10 @@ export function App() {
       <AppShell
         title="Helsmith Stats"
         subtitle="Python-backed React dashboard"
-        banner={`Live contract unavailable. Showing bundled sample data instead. ${state.message}`}
+        banner="Live contract unavailable. Showing bundled sample data instead."
+        bannerTone="warning"
       >
+        <StatusPanel detail={state.message} title="Sample data fallback active" tone="warning" />
         <Dashboard payload={state.fallback} />
       </AppShell>
     );
@@ -69,6 +90,7 @@ export function App() {
     <AppShell
       title="Helsmith Stats"
       subtitle="Python-backed React dashboard"
+      bannerTone={state.source === 'sample' ? 'sample' : 'success'}
       banner={
         state.source === 'sample'
           ? 'Showing bundled sample data.'

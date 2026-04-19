@@ -35,6 +35,7 @@ class ScopeMetrics:
 class ListData:
     name: str = ""
     source: str = UNKNOWN
+    week_label: str = ""
     result_bucket: str = UNKNOWN
     subfaction: str = UNKNOWN
     manifestation_lore: str = UNKNOWN

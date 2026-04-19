@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-19 12:00:00 Mountain Daylight Time",
+  "generatedAt": "2026-04-19 16:42:57 Mountain Daylight Time",
   "defaultDatasetKey": "current",
   "scopeOrder": [
     "combined",
@@ -88,6 +88,329 @@
               "Unknown"
             ]
           },
+          "story": {
+            "coreSignals": [
+              {
+                "label": "Top subfaction",
+                "value": "Taar's Grand Forgehost",
+                "detail": "3 of 10 lists"
+              },
+              {
+                "label": "Top manifestation lore",
+                "value": "Aetherwrought Machineries",
+                "detail": "4 of 10 lists"
+              },
+              {
+                "label": "Most shared unit",
+                "value": "Urak Taar, the First Daemonsmith",
+                "detail": "10 of 10 lists (100.0%)"
+              },
+              {
+                "label": "Most repeated package",
+                "value": "Infernal Cohort with Hashutite Spears + Urak Taar, the First Daemonsmith",
+                "detail": "9 of 10 lists (90.0%)"
+              }
+            ],
+            "sharedUnits": [
+              {
+                "name": "Urak Taar, the First Daemonsmith",
+                "listCount": 10,
+                "share": "100.0%"
+              },
+              {
+                "name": "Infernal Cohort with Hashutite Spears",
+                "listCount": 9,
+                "share": "90.0%"
+              },
+              {
+                "name": "Deathshrieker Rocket Battery",
+                "listCount": 8,
+                "share": "80.0%"
+              },
+              {
+                "name": "Ashen Elder",
+                "listCount": 7,
+                "share": "70.0%"
+              },
+              {
+                "name": "Tormentor Bombard",
+                "listCount": 7,
+                "share": "70.0%"
+              }
+            ],
+            "sharedUnitPairs": [
+              {
+                "units": [
+                  "Infernal Cohort with Hashutite Spears",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 9,
+                "share": "90.0%"
+              },
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Infernal Cohort with Hashutite Spears"
+                ],
+                "listCount": 8,
+                "share": "80.0%"
+              },
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 8,
+                "share": "80.0%"
+              },
+              {
+                "units": [
+                  "Ashen Elder",
+                  "Deathshrieker Rocket Battery"
+                ],
+                "listCount": 7,
+                "share": "70.0%"
+              }
+            ],
+            "weeklyTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Urak Taar, the First Daemonsmith",
+                "currentValue": "100.0%",
+                "deltaLabel": "Flat versus Jan 1-11",
+                "direction": "flat",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "83.3%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-9",
+                    "datasetLabel": "April 6-12",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-10",
+                    "datasetLabel": "April 13-19",
+                    "value": "100.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction share",
+                "label": "Taar's Grand Forgehost",
+                "currentValue": "25.0%",
+                "deltaLabel": "+25.0 pts versus Jan 1-11",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "16.7%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-9",
+                    "datasetLabel": "April 6-12",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-10",
+                    "datasetLabel": "April 13-19",
+                    "value": "25.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore share",
+                "label": "Aetherwrought Machineries",
+                "currentValue": "0.0%",
+                "deltaLabel": "Flat versus Jan 1-11",
+                "direction": "flat",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "16.7%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 16-23",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-9",
+                    "datasetLabel": "April 6-12",
+                    "value": "66.7%"
+                  },
+                  {
+                    "datasetKey": "week-10",
+                    "datasetLabel": "April 13-19",
+                    "value": "0.0%"
+                  }
+                ]
+              }
+            ],
+            "snapshotTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Urak Taar, the First Daemonsmith",
+                "currentValue": "100.0%",
+                "deltaLabel": "+16.7 pts versus Snapshot (2026-04-02-pre-points)",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "83.3%"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "100.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction usage",
+                "label": "Taar's Grand Forgehost",
+                "currentValue": "3",
+                "deltaLabel": "-6 lists versus Snapshot (2026-04-02-pre-points)",
+                "direction": "down",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "9"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "3"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore usage",
+                "label": "Aetherwrought Machineries",
+                "currentValue": "4",
+                "deltaLabel": "-5 lists versus Snapshot (2026-04-02-pre-points)",
+                "direction": "down",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "9"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "4"
+                  }
+                ]
+              }
+            ]
+          },
           "statsTables": [
             {
               "key": "resultBreakdown",
@@ -147,12 +470,12 @@
                   "60.0%"
                 ],
                 [
-                  "Dominator Engine with Bane Maces",
+                  "Scourge of Ghyran War Despot",
                   "5",
                   "50.0%"
                 ],
                 [
-                  "Scourge of Ghyran War Despot",
+                  "Dominator Engine with Bane Maces",
                   "5",
                   "50.0%"
                 ],
@@ -427,6 +750,7 @@
             {
               "index": 0,
               "source": "Singles",
+              "weekLabel": "April 6-12",
               "name": "Pending Review 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -550,6 +874,7 @@
             {
               "index": 1,
               "source": "Singles",
+              "weekLabel": "April 13-19",
               "name": "Liste ludiverse 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -633,6 +958,7 @@
             {
               "index": 2,
               "source": "Singles",
+              "weekLabel": "April 13-19",
               "name": "This ia my list because it is all i managed to have paintet in time..2000/2000 pts",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -724,6 +1050,7 @@
             {
               "index": 3,
               "source": "Singles",
+              "weekLabel": "April 13-19",
               "name": "The Price of Progress 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -847,6 +1174,7 @@
             {
               "index": 4,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "Da ting go skkkkrrrraaa, papakakaka Skivipipopop and a poopooturrrboom Skrra, tutukukututoom, poompoom 2000/2000 pts",
               "result": "5-0",
               "subfaction": "Daemonsmith Cabal",
@@ -946,6 +1274,7 @@
             {
               "index": 5,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "Renoir did nothing wrong 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -1068,6 +1397,7 @@
             {
               "index": 6,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "L3 retour SO_Mōnoco_HoH 1950/2000 pts",
               "result": "4-1",
               "subfaction": "Castigation Battery",
@@ -1171,6 +1501,7 @@
             {
               "index": 7,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "List 8",
               "result": "4-1",
               "subfaction": "Unknown",
@@ -1292,6 +1623,7 @@
             {
               "index": 8,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "Molnar Chaos Dwarves - 2.000 Pti. 1970/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -1375,6 +1707,7 @@
             {
               "index": 9,
               "source": "Teams",
+              "weekLabel": "April 13-19",
               "name": "I am already rock hard baby! 2000/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -1485,6 +1818,314 @@
               "Taar's Grand Forgehost"
             ]
           },
+          "story": {
+            "coreSignals": [
+              {
+                "label": "Top subfaction",
+                "value": "Taar's Grand Forgehost",
+                "detail": "2 of 4 lists"
+              },
+              {
+                "label": "Top manifestation lore",
+                "value": "Forbidden Power",
+                "detail": "2 of 4 lists"
+              },
+              {
+                "label": "Most shared unit",
+                "value": "Urak Taar, the First Daemonsmith",
+                "detail": "4 of 4 lists (100.0%)"
+              },
+              {
+                "label": "Most repeated package",
+                "value": "Deathshrieker Rocket Battery + Dominator Engine with Immolation Cannons",
+                "detail": "3 of 4 lists (75.0%)"
+              }
+            ],
+            "sharedUnits": [
+              {
+                "name": "Urak Taar, the First Daemonsmith",
+                "listCount": 4,
+                "share": "100.0%"
+              },
+              {
+                "name": "Deathshrieker Rocket Battery",
+                "listCount": 3,
+                "share": "75.0%"
+              },
+              {
+                "name": "Dominator Engine with Immolation Cannons",
+                "listCount": 3,
+                "share": "75.0%"
+              },
+              {
+                "name": "Infernal Cohort with Hashutite Spears",
+                "listCount": 3,
+                "share": "75.0%"
+              },
+              {
+                "name": "Tormentor Bombard",
+                "listCount": 3,
+                "share": "75.0%"
+              }
+            ],
+            "sharedUnitPairs": [
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Dominator Engine with Immolation Cannons"
+                ],
+                "listCount": 3,
+                "share": "75.0%"
+              },
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Infernal Cohort with Hashutite Spears"
+                ],
+                "listCount": 3,
+                "share": "75.0%"
+              },
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 3,
+                "share": "75.0%"
+              },
+              {
+                "units": [
+                  "Dominator Engine with Immolation Cannons",
+                  "Infernal Cohort with Hashutite Spears"
+                ],
+                "listCount": 3,
+                "share": "75.0%"
+              }
+            ],
+            "weeklyTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Urak Taar, the First Daemonsmith",
+                "currentValue": "100.0%",
+                "deltaLabel": "Flat versus Jan 1-11",
+                "direction": "flat",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "March 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "April 6-12",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-9",
+                    "datasetLabel": "April 13-19",
+                    "value": "100.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction share",
+                "label": "Taar's Grand Forgehost",
+                "currentValue": "33.3%",
+                "deltaLabel": "+33.3 pts versus Jan 1-11",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "March 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "April 6-12",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-9",
+                    "datasetLabel": "April 13-19",
+                    "value": "33.3%"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore share",
+                "label": "Forbidden Power",
+                "currentValue": "66.7%",
+                "deltaLabel": "+66.7 pts versus Jan 1-11",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "March 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 16-23",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 23-29",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "April 6-12",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-9",
+                    "datasetLabel": "April 13-19",
+                    "value": "66.7%"
+                  }
+                ]
+              }
+            ],
+            "snapshotTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Urak Taar, the First Daemonsmith",
+                "currentValue": "100.0%",
+                "deltaLabel": "+12.5 pts versus Snapshot (2026-04-02-pre-points)",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "87.5%"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "100.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction usage",
+                "label": "Taar's Grand Forgehost",
+                "currentValue": "2",
+                "deltaLabel": "-3 lists versus Snapshot (2026-04-02-pre-points)",
+                "direction": "down",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "5"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "2"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore usage",
+                "label": "Forbidden Power",
+                "currentValue": "2",
+                "deltaLabel": "-1 list versus Snapshot (2026-04-02-pre-points)",
+                "direction": "down",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "3"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "2"
+                  }
+                ]
+              }
+            ]
+          },
           "statsTables": [
             {
               "key": "resultBreakdown",
@@ -1515,17 +2156,7 @@
                   "100.0%"
                 ],
                 [
-                  "Dominator Engine with Immolation Cannons",
-                  "3",
-                  "75.0%"
-                ],
-                [
                   "Tormentor Bombard",
-                  "3",
-                  "75.0%"
-                ],
-                [
-                  "Deathshrieker Rocket Battery",
                   "3",
                   "75.0%"
                 ],
@@ -1535,12 +2166,17 @@
                   "75.0%"
                 ],
                 [
-                  "Daemonsmith",
-                  "2",
-                  "50.0%"
+                  "Deathshrieker Rocket Battery",
+                  "3",
+                  "75.0%"
                 ],
                 [
-                  "Ashen Elder",
+                  "Dominator Engine with Immolation Cannons",
+                  "3",
+                  "75.0%"
+                ],
+                [
+                  "Daemonsmith",
                   "2",
                   "50.0%"
                 ],
@@ -1550,12 +2186,17 @@
                   "50.0%"
                 ],
                 [
-                  "Hobgrotz Vandalz",
+                  "Ashen Elder",
                   "2",
                   "50.0%"
                 ],
                 [
-                  "Daemonsmith on Infernal Taurus",
+                  "Infernal Razers with Blunderbusses",
+                  "2",
+                  "50.0%"
+                ],
+                [
+                  "Hobgrotz Vandalz",
                   "2",
                   "50.0%"
                 ],
@@ -1565,7 +2206,7 @@
                   "50.0%"
                 ],
                 [
-                  "Infernal Razers with Blunderbusses",
+                  "Daemonsmith on Infernal Taurus",
                   "2",
                   "50.0%"
                 ]
@@ -1808,6 +2449,7 @@
             {
               "index": 0,
               "source": "Singles",
+              "weekLabel": "April 6-12",
               "name": "Pending Review 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -1931,6 +2573,7 @@
             {
               "index": 1,
               "source": "Singles",
+              "weekLabel": "April 13-19",
               "name": "Liste ludiverse 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -2014,6 +2657,7 @@
             {
               "index": 2,
               "source": "Singles",
+              "weekLabel": "April 13-19",
               "name": "This ia my list because it is all i managed to have paintet in time..2000/2000 pts",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -2105,6 +2749,7 @@
             {
               "index": 3,
               "source": "Singles",
+              "weekLabel": "April 13-19",
               "name": "The Price of Progress 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -2236,7 +2881,7 @@
             "stats": "reports/current/teams.md",
             "lists": "reports/current/teams-lists.md"
           },
-          "statsSummary": "Most common result is 4-1 (5 lists). Top unit presence is Urak Taar, the First Daemonsmith in 6 lists (100.0%). Most common subfaction is The Bullfather's Horns (2 lists). Highest model count unit is Infernal Cohort with Hashutite Spears (130 models).",
+          "statsSummary": "Most common result is 4-1 (5 lists). Top unit presence is Infernal Cohort with Hashutite Spears in 6 lists (100.0%). Most common subfaction is The Bullfather's Horns (2 lists). Highest model count unit is Infernal Cohort with Hashutite Spears (130 models).",
           "filters": {
             "results": [
               "4-1",
@@ -2248,6 +2893,299 @@
               "Taar's Grand Forgehost",
               "The Bullfather's Horns",
               "Unknown"
+            ]
+          },
+          "story": {
+            "coreSignals": [
+              {
+                "label": "Top subfaction",
+                "value": "The Bullfather's Horns",
+                "detail": "2 of 6 lists"
+              },
+              {
+                "label": "Top manifestation lore",
+                "value": "Aetherwrought Machineries",
+                "detail": "3 of 6 lists"
+              },
+              {
+                "label": "Most shared unit",
+                "value": "Infernal Cohort with Hashutite Spears",
+                "detail": "6 of 6 lists (100.0%)"
+              },
+              {
+                "label": "Most repeated package",
+                "value": "Infernal Cohort with Hashutite Spears + Urak Taar, the First Daemonsmith",
+                "detail": "6 of 6 lists (100.0%)"
+              }
+            ],
+            "sharedUnits": [
+              {
+                "name": "Infernal Cohort with Hashutite Spears",
+                "listCount": 6,
+                "share": "100.0%"
+              },
+              {
+                "name": "Urak Taar, the First Daemonsmith",
+                "listCount": 6,
+                "share": "100.0%"
+              },
+              {
+                "name": "Ashen Elder",
+                "listCount": 5,
+                "share": "83.3%"
+              },
+              {
+                "name": "Deathshrieker Rocket Battery",
+                "listCount": 5,
+                "share": "83.3%"
+              },
+              {
+                "name": "Bull Centaurs",
+                "listCount": 4,
+                "share": "66.7%"
+              }
+            ],
+            "sharedUnitPairs": [
+              {
+                "units": [
+                  "Infernal Cohort with Hashutite Spears",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 6,
+                "share": "100.0%"
+              },
+              {
+                "units": [
+                  "Ashen Elder",
+                  "Deathshrieker Rocket Battery"
+                ],
+                "listCount": 5,
+                "share": "83.3%"
+              },
+              {
+                "units": [
+                  "Ashen Elder",
+                  "Infernal Cohort with Hashutite Spears"
+                ],
+                "listCount": 5,
+                "share": "83.3%"
+              },
+              {
+                "units": [
+                  "Ashen Elder",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 5,
+                "share": "83.3%"
+              }
+            ],
+            "weeklyTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Infernal Cohort with Hashutite Spears",
+                "currentValue": "100.0%",
+                "deltaLabel": "Flat versus Jan 1-11",
+                "direction": "flat",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Mar 2-8",
+                    "value": "60.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "Mar 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "April 6-12",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "April 13-19",
+                    "value": "100.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction share",
+                "label": "The Bullfather's Horns",
+                "currentValue": "100.0%",
+                "deltaLabel": "+100.0 pts versus Jan 1-11",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Mar 2-8",
+                    "value": "20.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "Mar 16-23",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "April 6-12",
+                    "value": "20.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "April 13-19",
+                    "value": "100.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore share",
+                "label": "Aetherwrought Machineries",
+                "currentValue": "0.0%",
+                "deltaLabel": "Flat versus Jan 1-11",
+                "direction": "flat",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Mar 2-8",
+                    "value": "20.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "Mar 16-23",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "April 6-12",
+                    "value": "60.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "April 13-19",
+                    "value": "0.0%"
+                  }
+                ]
+              }
+            ],
+            "snapshotTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Infernal Cohort with Hashutite Spears",
+                "currentValue": "100.0%",
+                "deltaLabel": "+14.3 pts versus Snapshot (2026-04-02-pre-points)",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "85.7%"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "100.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction usage",
+                "label": "The Bullfather's Horns",
+                "currentValue": "2",
+                "deltaLabel": "+1 list versus Snapshot (2026-04-02-pre-points)",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "1"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "2"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore usage",
+                "label": "Aetherwrought Machineries",
+                "currentValue": "3",
+                "deltaLabel": "Flat versus Snapshot (2026-04-02-pre-points)",
+                "direction": "flat",
+                "points": [
+                  {
+                    "datasetKey": "archive-2026-04-02-pre-points",
+                    "datasetLabel": "Snapshot (2026-04-02-pre-points)",
+                    "value": "3"
+                  },
+                  {
+                    "datasetKey": "current",
+                    "datasetLabel": "Current",
+                    "value": "3"
+                  }
+                ]
+              }
             ]
           },
           "statsTables": [
@@ -2279,12 +3217,12 @@
               ],
               "rows": [
                 [
-                  "Urak Taar, the First Daemonsmith",
+                  "Infernal Cohort with Hashutite Spears",
                   "6",
                   "100.0%"
                 ],
                 [
-                  "Infernal Cohort with Hashutite Spears",
+                  "Urak Taar, the First Daemonsmith",
                   "6",
                   "100.0%"
                 ],
@@ -2304,12 +3242,12 @@
                   "66.7%"
                 ],
                 [
-                  "Tormentor Bombard",
+                  "Bull Centaurs",
                   "4",
                   "66.7%"
                 ],
                 [
-                  "Bull Centaurs",
+                  "Tormentor Bombard",
                   "4",
                   "66.7%"
                 ],
@@ -2589,6 +3527,7 @@
             {
               "index": 0,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "Da ting go skkkkrrrraaa, papakakaka Skivipipopop and a poopooturrrboom Skrra, tutukukututoom, poompoom 2000/2000 pts",
               "result": "5-0",
               "subfaction": "Daemonsmith Cabal",
@@ -2688,6 +3627,7 @@
             {
               "index": 1,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "Renoir did nothing wrong 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -2810,6 +3750,7 @@
             {
               "index": 2,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "L3 retour SO_Mōnoco_HoH 1950/2000 pts",
               "result": "4-1",
               "subfaction": "Castigation Battery",
@@ -2913,6 +3854,7 @@
             {
               "index": 3,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "List 8",
               "result": "4-1",
               "subfaction": "Unknown",
@@ -3034,6 +3976,7 @@
             {
               "index": 4,
               "source": "Teams",
+              "weekLabel": "April 6-12",
               "name": "Molnar Chaos Dwarves - 2.000 Pti. 1970/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -3117,6 +4060,7 @@
             {
               "index": 5,
               "source": "Teams",
+              "weekLabel": "April 13-19",
               "name": "I am already rock hard baby! 2000/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -3239,6 +4183,241 @@
               "The Bullfather's Horns",
               "Ziggurat Stampede"
             ]
+          },
+          "story": {
+            "coreSignals": [
+              {
+                "label": "Top subfaction",
+                "value": "Taar's Grand Forgehost",
+                "detail": "9 of 30 lists"
+              },
+              {
+                "label": "Top manifestation lore",
+                "value": "Forbidden Power",
+                "detail": "10 of 30 lists"
+              },
+              {
+                "label": "Most shared unit",
+                "value": "Deathshrieker Rocket Battery",
+                "detail": "26 of 30 lists (86.7%)"
+              },
+              {
+                "label": "Most repeated package",
+                "value": "Deathshrieker Rocket Battery + Infernal Cohort with Hashutite Spears",
+                "detail": "24 of 30 lists (80.0%)"
+              }
+            ],
+            "sharedUnits": [
+              {
+                "name": "Deathshrieker Rocket Battery",
+                "listCount": 26,
+                "share": "86.7%"
+              },
+              {
+                "name": "Urak Taar, the First Daemonsmith",
+                "listCount": 25,
+                "share": "83.3%"
+              },
+              {
+                "name": "Infernal Cohort with Hashutite Spears",
+                "listCount": 24,
+                "share": "80.0%"
+              },
+              {
+                "name": "Ashen Elder",
+                "listCount": 23,
+                "share": "76.7%"
+              },
+              {
+                "name": "Bull Centaurs",
+                "listCount": 21,
+                "share": "70.0%"
+              }
+            ],
+            "sharedUnitPairs": [
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Infernal Cohort with Hashutite Spears"
+                ],
+                "listCount": 24,
+                "share": "80.0%"
+              },
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 24,
+                "share": "80.0%"
+              },
+              {
+                "units": [
+                  "Infernal Cohort with Hashutite Spears",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 23,
+                "share": "76.7%"
+              },
+              {
+                "units": [
+                  "Ashen Elder",
+                  "Deathshrieker Rocket Battery"
+                ],
+                "listCount": 21,
+                "share": "70.0%"
+              }
+            ],
+            "weeklyTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Deathshrieker Rocket Battery",
+                "currentValue": "50.0%",
+                "deltaLabel": "-50.0 pts versus Jan 1-11",
+                "direction": "down",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "83.3%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction share",
+                "label": "Taar's Grand Forgehost",
+                "currentValue": "50.0%",
+                "deltaLabel": "+50.0 pts versus Jan 1-11",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "16.7%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore share",
+                "label": "Forbidden Power",
+                "currentValue": "0.0%",
+                "deltaLabel": "-50.0 pts versus Jan 1-11",
+                "direction": "down",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 16-23",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-8",
+                    "datasetLabel": "March 23-29",
+                    "value": "0.0%"
+                  }
+                ]
+              }
+            ],
+            "snapshotTrends": []
           },
           "statsTables": [
             {
@@ -3602,6 +4781,7 @@
             {
               "index": 0,
               "source": "Singles",
+              "weekLabel": "Jan 1-11",
               "name": "Nani del caos - urak taar 1990/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -3693,6 +4873,7 @@
             {
               "index": 1,
               "source": "Singles",
+              "weekLabel": "Jan 19-24",
               "name": "**38% win rate because bull centaurs are sold out 1990/2000 pts**",
               "result": "5-0",
               "subfaction": "Industrial Polluters",
@@ -3792,6 +4973,7 @@
             {
               "index": 2,
               "source": "Singles",
+              "weekLabel": "Jan 19-24",
               "name": "Hashut did nothing wrong, the Ancestor Gods clearly betrayed the wisest and most humble of their kind, and forced him to act 1950/2000 pts",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -3882,6 +5064,7 @@
             {
               "index": 3,
               "source": "Singles",
+              "weekLabel": "Jan 19-24",
               "name": "Built on slave labour, bad attitudes, and extremely aggressive project management.",
               "result": "4-1",
               "subfaction": "Industrial Polluters",
@@ -3991,6 +5174,7 @@
             {
               "index": 4,
               "source": "Singles",
+              "weekLabel": "Feb 2-8",
               "name": "All your hats are belong to us 1960/2000 pts",
               "result": "4-1",
               "subfaction": "Daemonsmith Cabal",
@@ -4083,6 +5267,7 @@
             {
               "index": 5,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "Legion 1970/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -4190,6 +5375,7 @@
             {
               "index": 6,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "I am the Bullgod 2000/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -4265,6 +5451,7 @@
             {
               "index": 7,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "FUCK ICE",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -4354,6 +5541,7 @@
             {
               "index": 8,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "**Best list Ever 2000/2000 pts**",
               "result": "5-0",
               "subfaction": "Daemonsmith Cabal",
@@ -4446,6 +5634,7 @@
             {
               "index": 9,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "ILLIMITED REND ===",
               "result": "5-0",
               "subfaction": "Taar's Grand Forgehost",
@@ -4552,6 +5741,7 @@
             {
               "index": 10,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "Midwest runs the best events. No other region compares. 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Daemonsmith Cabal",
@@ -4651,6 +5841,7 @@
             {
               "index": 11,
               "source": "Singles",
+              "weekLabel": "March 2-8",
               "name": "SHE HASHU ON MY ZARR UNTIL I ROCKET 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -4765,6 +5956,7 @@
             {
               "index": 12,
               "source": "Singles",
+              "weekLabel": "March 2-8",
               "name": "**Love will Taurus apart 2000/2000 pts**",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -4856,6 +6048,7 @@
             {
               "index": 13,
               "source": "Singles",
+              "weekLabel": "March 16-23",
               "name": "Renoir did nothing wrong 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -4970,6 +6163,7 @@
             {
               "index": 14,
               "source": "Singles",
+              "weekLabel": "March 23-29",
               "name": "Love will Taurus apart 2000/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -5061,6 +6255,7 @@
             {
               "index": 15,
               "source": "Singles",
+              "weekLabel": "March 23-29",
               "name": "1 Legion 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -5176,6 +6371,7 @@
             {
               "index": 16,
               "source": "Teams",
+              "weekLabel": "Jan 1-11",
               "name": "HOH 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Industrial Polluters",
@@ -5282,6 +6478,7 @@
             {
               "index": 17,
               "source": "Teams",
+              "weekLabel": "Jan 12-18",
               "name": "Supositorios a distancia 2000/2000 pts",
               "result": "5-0",
               "subfaction": "Taar's Grand Forgehost",
@@ -5404,6 +6601,7 @@
             {
               "index": 18,
               "source": "Teams",
+              "weekLabel": "Jan 12-18",
               "name": "AoR 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -5519,6 +6717,7 @@
             {
               "index": 19,
               "source": "Teams",
+              "weekLabel": "Jan 19-24",
               "name": "Marc-Antoine 'Lucifel' Chapelle 163811038",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -5609,6 +6808,7 @@
             {
               "index": 20,
               "source": "Teams",
+              "weekLabel": "Jan 19-24",
               "name": "Espeto - polluters 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Industrial Polluters",
@@ -5714,6 +6914,7 @@
             {
               "index": 21,
               "source": "Teams",
+              "weekLabel": "Jan 19-24",
               "name": "**Supositorios a distancia 2000/2000 pts**",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -5836,6 +7037,7 @@
             {
               "index": 22,
               "source": "Teams",
+              "weekLabel": "Feb 2-8",
               "name": "Fendeur-de-cuvette - 96140247",
               "result": "4-1",
               "subfaction": "Castigation Battery",
@@ -5928,6 +7130,7 @@
             {
               "index": 23,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "Estampida en Talavera 2000/2000 pts",
               "result": "5-0",
               "subfaction": "Ziggurat Stampede",
@@ -6003,6 +7206,7 @@
             {
               "index": 24,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "List 25",
               "result": "5-0",
               "subfaction": "Domination Force",
@@ -6109,6 +7313,7 @@
             {
               "index": 25,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "Da ting go skkkkrrrraaa, papakakaka Skivipipopop and a poopooturrrboom Skrra, tutukukututoom, poompoom 2000/2000 pts",
               "result": "5-0",
               "subfaction": "Industrial Polluters",
@@ -6208,6 +7413,7 @@
             {
               "index": 26,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "Vivan los hashutmines!!! 2000/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -6298,6 +7504,7 @@
             {
               "index": 27,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "Boom 1980/2000 pts",
               "result": "4-1",
               "subfaction": "Castigation Battery",
@@ -6390,6 +7597,7 @@
             {
               "index": 28,
               "source": "Teams",
+              "weekLabel": "Mar 16-23",
               "name": "=== QUI TRAIE LA VACHE PRENDS LA ROQUETTE AU CUL ===",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -6496,6 +7704,7 @@
             {
               "index": 29,
               "source": "Teams",
+              "weekLabel": "Mar 16-23",
               "name": "145324260",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -6600,6 +7809,226 @@
               "Taar's Grand Forgehost",
               "The Bullfather's Horns"
             ]
+          },
+          "story": {
+            "coreSignals": [
+              {
+                "label": "Top subfaction",
+                "value": "Taar's Grand Forgehost",
+                "detail": "5 of 16 lists"
+              },
+              {
+                "label": "Top manifestation lore",
+                "value": "Aetherwrought Machineries",
+                "detail": "6 of 16 lists"
+              },
+              {
+                "label": "Most shared unit",
+                "value": "Urak Taar, the First Daemonsmith",
+                "detail": "14 of 16 lists (87.5%)"
+              },
+              {
+                "label": "Most repeated package",
+                "value": "Deathshrieker Rocket Battery + Urak Taar, the First Daemonsmith",
+                "detail": "13 of 16 lists (81.2%)"
+              }
+            ],
+            "sharedUnits": [
+              {
+                "name": "Urak Taar, the First Daemonsmith",
+                "listCount": 14,
+                "share": "87.5%"
+              },
+              {
+                "name": "Ashen Elder",
+                "listCount": 13,
+                "share": "81.2%"
+              },
+              {
+                "name": "Deathshrieker Rocket Battery",
+                "listCount": 13,
+                "share": "81.2%"
+              },
+              {
+                "name": "Infernal Cohort with Hashutite Spears",
+                "listCount": 12,
+                "share": "75.0%"
+              },
+              {
+                "name": "Bull Centaurs",
+                "listCount": 11,
+                "share": "68.8%"
+              }
+            ],
+            "sharedUnitPairs": [
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 13,
+                "share": "81.2%"
+              },
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Infernal Cohort with Hashutite Spears"
+                ],
+                "listCount": 12,
+                "share": "75.0%"
+              },
+              {
+                "units": [
+                  "Infernal Cohort with Hashutite Spears",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 12,
+                "share": "75.0%"
+              },
+              {
+                "units": [
+                  "Ashen Elder",
+                  "Deathshrieker Rocket Battery"
+                ],
+                "listCount": 11,
+                "share": "68.8%"
+              }
+            ],
+            "weeklyTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Urak Taar, the First Daemonsmith",
+                "currentValue": "50.0%",
+                "deltaLabel": "-50.0 pts versus Jan 1-11",
+                "direction": "down",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "March 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction share",
+                "label": "Taar's Grand Forgehost",
+                "currentValue": "50.0%",
+                "deltaLabel": "+50.0 pts versus Jan 1-11",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "March 2-8",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 16-23",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore share",
+                "label": "Aetherwrought Machineries",
+                "currentValue": "50.0%",
+                "deltaLabel": "+50.0 pts versus Jan 1-11",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 16-22",
+                    "value": "16.7%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "March 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "March 16-23",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-7",
+                    "datasetLabel": "March 23-29",
+                    "value": "50.0%"
+                  }
+                ]
+              }
+            ],
+            "snapshotTrends": []
           },
           "statsTables": [
             {
@@ -6947,6 +8376,7 @@
             {
               "index": 0,
               "source": "Singles",
+              "weekLabel": "Jan 1-11",
               "name": "Nani del caos - urak taar 1990/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -7038,6 +8468,7 @@
             {
               "index": 1,
               "source": "Singles",
+              "weekLabel": "Jan 19-24",
               "name": "**38% win rate because bull centaurs are sold out 1990/2000 pts**",
               "result": "5-0",
               "subfaction": "Industrial Polluters",
@@ -7137,6 +8568,7 @@
             {
               "index": 2,
               "source": "Singles",
+              "weekLabel": "Jan 19-24",
               "name": "Hashut did nothing wrong, the Ancestor Gods clearly betrayed the wisest and most humble of their kind, and forced him to act 1950/2000 pts",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -7227,6 +8659,7 @@
             {
               "index": 3,
               "source": "Singles",
+              "weekLabel": "Jan 19-24",
               "name": "Built on slave labour, bad attitudes, and extremely aggressive project management.",
               "result": "4-1",
               "subfaction": "Industrial Polluters",
@@ -7336,6 +8769,7 @@
             {
               "index": 4,
               "source": "Singles",
+              "weekLabel": "Feb 2-8",
               "name": "All your hats are belong to us 1960/2000 pts",
               "result": "4-1",
               "subfaction": "Daemonsmith Cabal",
@@ -7428,6 +8862,7 @@
             {
               "index": 5,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "Legion 1970/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -7535,6 +8970,7 @@
             {
               "index": 6,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "I am the Bullgod 2000/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -7610,6 +9046,7 @@
             {
               "index": 7,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "FUCK ICE",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -7699,6 +9136,7 @@
             {
               "index": 8,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "**Best list Ever 2000/2000 pts**",
               "result": "5-0",
               "subfaction": "Daemonsmith Cabal",
@@ -7791,6 +9229,7 @@
             {
               "index": 9,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "ILLIMITED REND ===",
               "result": "5-0",
               "subfaction": "Taar's Grand Forgehost",
@@ -7897,6 +9336,7 @@
             {
               "index": 10,
               "source": "Singles",
+              "weekLabel": "Feb 16-22",
               "name": "Midwest runs the best events. No other region compares. 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Daemonsmith Cabal",
@@ -7996,6 +9436,7 @@
             {
               "index": 11,
               "source": "Singles",
+              "weekLabel": "March 2-8",
               "name": "SHE HASHU ON MY ZARR UNTIL I ROCKET 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -8110,6 +9551,7 @@
             {
               "index": 12,
               "source": "Singles",
+              "weekLabel": "March 2-8",
               "name": "**Love will Taurus apart 2000/2000 pts**",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -8201,6 +9643,7 @@
             {
               "index": 13,
               "source": "Singles",
+              "weekLabel": "March 16-23",
               "name": "Renoir did nothing wrong 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -8315,6 +9758,7 @@
             {
               "index": 14,
               "source": "Singles",
+              "weekLabel": "March 23-29",
               "name": "Love will Taurus apart 2000/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -8406,6 +9850,7 @@
             {
               "index": 15,
               "source": "Singles",
+              "weekLabel": "March 23-29",
               "name": "1 Legion 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -8543,6 +9988,211 @@
               "The Bullfather's Horns",
               "Ziggurat Stampede"
             ]
+          },
+          "story": {
+            "coreSignals": [
+              {
+                "label": "Top subfaction",
+                "value": "Taar's Grand Forgehost",
+                "detail": "4 of 14 lists"
+              },
+              {
+                "label": "Top manifestation lore",
+                "value": "Forbidden Power",
+                "detail": "7 of 14 lists"
+              },
+              {
+                "label": "Most shared unit",
+                "value": "Deathshrieker Rocket Battery",
+                "detail": "13 of 14 lists (92.9%)"
+              },
+              {
+                "label": "Most repeated package",
+                "value": "Deathshrieker Rocket Battery + Infernal Cohort with Hashutite Spears",
+                "detail": "12 of 14 lists (85.7%)"
+              }
+            ],
+            "sharedUnits": [
+              {
+                "name": "Deathshrieker Rocket Battery",
+                "listCount": 13,
+                "share": "92.9%"
+              },
+              {
+                "name": "Infernal Cohort with Hashutite Spears",
+                "listCount": 12,
+                "share": "85.7%"
+              },
+              {
+                "name": "Urak Taar, the First Daemonsmith",
+                "listCount": 11,
+                "share": "78.6%"
+              },
+              {
+                "name": "Ashen Elder",
+                "listCount": 10,
+                "share": "71.4%"
+              },
+              {
+                "name": "Bull Centaurs",
+                "listCount": 10,
+                "share": "71.4%"
+              }
+            ],
+            "sharedUnitPairs": [
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Infernal Cohort with Hashutite Spears"
+                ],
+                "listCount": 12,
+                "share": "85.7%"
+              },
+              {
+                "units": [
+                  "Deathshrieker Rocket Battery",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 11,
+                "share": "78.6%"
+              },
+              {
+                "units": [
+                  "Infernal Cohort with Hashutite Spears",
+                  "Urak Taar, the First Daemonsmith"
+                ],
+                "listCount": 11,
+                "share": "78.6%"
+              },
+              {
+                "units": [
+                  "Ashen Elder",
+                  "Deathshrieker Rocket Battery"
+                ],
+                "listCount": 10,
+                "share": "71.4%"
+              }
+            ],
+            "weeklyTrends": [
+              {
+                "metric": "Unit presence",
+                "label": "Deathshrieker Rocket Battery",
+                "currentValue": "100.0%",
+                "deltaLabel": "Flat versus Jan 1-11",
+                "direction": "flat",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Mar 2-8",
+                    "value": "80.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "Mar 16-23",
+                    "value": "100.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Subfaction share",
+                "label": "Taar's Grand Forgehost",
+                "currentValue": "50.0%",
+                "deltaLabel": "+50.0 pts versus Jan 1-11",
+                "direction": "up",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Mar 2-8",
+                    "value": "0.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "Mar 16-23",
+                    "value": "50.0%"
+                  }
+                ]
+              },
+              {
+                "metric": "Lore share",
+                "label": "Forbidden Power",
+                "currentValue": "50.0%",
+                "deltaLabel": "-50.0 pts versus Jan 1-11",
+                "direction": "down",
+                "points": [
+                  {
+                    "datasetKey": "week-1",
+                    "datasetLabel": "Jan 1-11",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-2",
+                    "datasetLabel": "Jan 12-18",
+                    "value": "50.0%"
+                  },
+                  {
+                    "datasetKey": "week-3",
+                    "datasetLabel": "Jan 19-24",
+                    "value": "33.3%"
+                  },
+                  {
+                    "datasetKey": "week-4",
+                    "datasetLabel": "Feb 2-8",
+                    "value": "100.0%"
+                  },
+                  {
+                    "datasetKey": "week-5",
+                    "datasetLabel": "Mar 2-8",
+                    "value": "40.0%"
+                  },
+                  {
+                    "datasetKey": "week-6",
+                    "datasetLabel": "Mar 16-23",
+                    "value": "50.0%"
+                  }
+                ]
+              }
+            ],
+            "snapshotTrends": []
           },
           "statsTables": [
             {
@@ -8899,6 +10549,7 @@
             {
               "index": 0,
               "source": "Teams",
+              "weekLabel": "Jan 1-11",
               "name": "HOH 1990/2000 pts",
               "result": "4-1",
               "subfaction": "Industrial Polluters",
@@ -9005,6 +10656,7 @@
             {
               "index": 1,
               "source": "Teams",
+              "weekLabel": "Jan 12-18",
               "name": "Supositorios a distancia 2000/2000 pts",
               "result": "5-0",
               "subfaction": "Taar's Grand Forgehost",
@@ -9127,6 +10779,7 @@
             {
               "index": 2,
               "source": "Teams",
+              "weekLabel": "Jan 12-18",
               "name": "AoR 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -9242,6 +10895,7 @@
             {
               "index": 3,
               "source": "Teams",
+              "weekLabel": "Jan 19-24",
               "name": "Marc-Antoine 'Lucifel' Chapelle 163811038",
               "result": "4-1",
               "subfaction": "Domination Force",
@@ -9332,6 +10986,7 @@
             {
               "index": 4,
               "source": "Teams",
+              "weekLabel": "Jan 19-24",
               "name": "Espeto - polluters 2000/2000 pts",
               "result": "4-1",
               "subfaction": "Industrial Polluters",
@@ -9437,6 +11092,7 @@
             {
               "index": 5,
               "source": "Teams",
+              "weekLabel": "Jan 19-24",
               "name": "**Supositorios a distancia 2000/2000 pts**",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -9559,6 +11215,7 @@
             {
               "index": 6,
               "source": "Teams",
+              "weekLabel": "Feb 2-8",
               "name": "Fendeur-de-cuvette - 96140247",
               "result": "4-1",
               "subfaction": "Castigation Battery",
@@ -9651,6 +11308,7 @@
             {
               "index": 7,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "Estampida en Talavera 2000/2000 pts",
               "result": "5-0",
               "subfaction": "Ziggurat Stampede",
@@ -9726,6 +11384,7 @@
             {
               "index": 8,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "List 25",
               "result": "5-0",
               "subfaction": "Domination Force",
@@ -9832,6 +11491,7 @@
             {
               "index": 9,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "Da ting go skkkkrrrraaa, papakakaka Skivipipopop and a poopooturrrboom Skrra, tutukukututoom, poompoom 2000/2000 pts",
               "result": "5-0",
               "subfaction": "Industrial Polluters",
@@ -9931,6 +11591,7 @@
             {
               "index": 10,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "Vivan los hashutmines!!! 2000/2000 pts",
               "result": "4-1",
               "subfaction": "The Bullfather's Horns",
@@ -10021,6 +11682,7 @@
             {
               "index": 11,
               "source": "Teams",
+              "weekLabel": "Mar 2-8",
               "name": "Boom 1980/2000 pts",
               "result": "4-1",
               "subfaction": "Castigation Battery",
@@ -10113,6 +11775,7 @@
             {
               "index": 12,
               "source": "Teams",
+              "weekLabel": "Mar 16-23",
               "name": "=== QUI TRAIE LA VACHE PRENDS LA ROQUETTE AU CUL ===",
               "result": "4-1",
               "subfaction": "Taar's Grand Forgehost",
@@ -10219,6 +11882,7 @@
             {
               "index": 13,
               "source": "Teams",
+              "weekLabel": "Mar 16-23",
               "name": "145324260",
               "result": "4-1",
               "subfaction": "Domination Force",

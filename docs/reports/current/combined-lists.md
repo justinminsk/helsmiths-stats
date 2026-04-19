@@ -223,3 +223,4 @@
 - Anointed Sentinels - 260 pts - 3 models - reinforced
 - Infernal Cohort with Hashutite Blades - 180 pts - 10 models - reinforced
 - Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
+
