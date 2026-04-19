@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-19 16:42:57 Mountain Daylight Time",
+  "generatedAt": "2026-04-19 16:50:27 Mountain Daylight Time",
   "defaultDatasetKey": "current",
   "scopeOrder": [
     "combined",
@@ -183,51 +183,61 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "83.3%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-9",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-10",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "100.0%"
                   }
                 ]
@@ -242,51 +252,61 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "16.7%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-9",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-10",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "25.0%"
                   }
                 ]
@@ -301,51 +321,61 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "16.7%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-9",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "66.7%"
                   },
                   {
                     "datasetKey": "week-10",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "0.0%"
                   }
                 ]
@@ -455,12 +485,12 @@
                   "80.0%"
                 ],
                 [
-                  "Tormentor Bombard",
+                  "Ashen Elder",
                   "7",
                   "70.0%"
                 ],
                 [
-                  "Ashen Elder",
+                  "Tormentor Bombard",
                   "7",
                   "70.0%"
                 ],
@@ -1913,46 +1943,55 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-9",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "100.0%"
                   }
                 ]
@@ -1967,46 +2006,55 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-9",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "33.3%"
                   }
                 ]
@@ -2021,46 +2069,55 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-9",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "66.7%"
                   }
                 ]
@@ -2156,11 +2213,6 @@
                   "100.0%"
                 ],
                 [
-                  "Tormentor Bombard",
-                  "3",
-                  "75.0%"
-                ],
-                [
                   "Infernal Cohort with Hashutite Spears",
                   "3",
                   "75.0%"
@@ -2171,9 +2223,19 @@
                   "75.0%"
                 ],
                 [
+                  "Tormentor Bombard",
+                  "3",
+                  "75.0%"
+                ],
+                [
                   "Dominator Engine with Immolation Cannons",
                   "3",
                   "75.0%"
+                ],
+                [
+                  "Ashen Elder",
+                  "2",
+                  "50.0%"
                 ],
                 [
                   "Daemonsmith",
@@ -2186,17 +2248,12 @@
                   "50.0%"
                 ],
                 [
-                  "Ashen Elder",
-                  "2",
-                  "50.0%"
-                ],
-                [
                   "Infernal Razers with Blunderbusses",
                   "2",
                   "50.0%"
                 ],
                 [
-                  "Hobgrotz Vandalz",
+                  "Daemonsmith on Infernal Taurus",
                   "2",
                   "50.0%"
                 ],
@@ -2206,7 +2263,7 @@
                   "50.0%"
                 ],
                 [
-                  "Daemonsmith on Infernal Taurus",
+                  "Hobgrotz Vandalz",
                   "2",
                   "50.0%"
                 ]
@@ -2990,41 +3047,49 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Mar 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "60.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "Mar 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "100.0%"
                   }
                 ]
@@ -3039,41 +3104,49 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Mar 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "20.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "Mar 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "20.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "100.0%"
                   }
                 ]
@@ -3088,41 +3161,49 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Mar 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "20.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "Mar 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "April 6-12",
+                    "eraLabel": "Post-points era",
                     "value": "60.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "April 13-19",
+                    "eraLabel": "Post-points era",
                     "value": "0.0%"
                   }
                 ]
@@ -3227,12 +3308,12 @@
                   "100.0%"
                 ],
                 [
-                  "Deathshrieker Rocket Battery",
+                  "Ashen Elder",
                   "5",
                   "83.3%"
                 ],
                 [
-                  "Ashen Elder",
+                  "Deathshrieker Rocket Battery",
                   "5",
                   "83.3%"
                 ],
@@ -3242,12 +3323,12 @@
                   "66.7%"
                 ],
                 [
-                  "Bull Centaurs",
+                  "Tormentor Bombard",
                   "4",
                   "66.7%"
                 ],
                 [
-                  "Tormentor Bombard",
+                  "Bull Centaurs",
                   "4",
                   "66.7%"
                 ],
@@ -4279,41 +4360,49 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "83.3%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   }
                 ]
@@ -4328,41 +4417,49 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "16.7%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   }
                 ]
@@ -4377,41 +4474,49 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-8",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   }
                 ]
@@ -7905,36 +8010,43 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   }
                 ]
@@ -7949,36 +8061,43 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   }
                 ]
@@ -7993,36 +8112,43 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 16-22",
+                    "eraLabel": "Pre-points era",
                     "value": "16.7%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "March 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "March 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-7",
                     "datasetLabel": "March 23-29",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   }
                 ]
@@ -8064,12 +8190,12 @@
                   "87.5%"
                 ],
                 [
-                  "Deathshrieker Rocket Battery",
+                  "Ashen Elder",
                   "13",
                   "81.2%"
                 ],
                 [
-                  "Ashen Elder",
+                  "Deathshrieker Rocket Battery",
                   "13",
                   "81.2%"
                 ],
@@ -10084,31 +10210,37 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Mar 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "80.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "Mar 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   }
                 ]
@@ -10123,31 +10255,37 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Mar 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "0.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "Mar 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   }
                 ]
@@ -10162,31 +10300,37 @@
                   {
                     "datasetKey": "week-1",
                     "datasetLabel": "Jan 1-11",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-2",
                     "datasetLabel": "Jan 12-18",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   },
                   {
                     "datasetKey": "week-3",
                     "datasetLabel": "Jan 19-24",
+                    "eraLabel": "Pre-points era",
                     "value": "33.3%"
                   },
                   {
                     "datasetKey": "week-4",
                     "datasetLabel": "Feb 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "100.0%"
                   },
                   {
                     "datasetKey": "week-5",
                     "datasetLabel": "Mar 2-8",
+                    "eraLabel": "Pre-points era",
                     "value": "40.0%"
                   },
                   {
                     "datasetKey": "week-6",
                     "datasetLabel": "Mar 16-23",
+                    "eraLabel": "Pre-points era",
                     "value": "50.0%"
                   }
                 ]
@@ -10263,12 +10407,12 @@
                   "35.7%"
                 ],
                 [
-                  "Scourge of Ghyran War Despot",
+                  "Infernal Cohort with Hashutite Blades",
                   "5",
                   "35.7%"
                 ],
                 [
-                  "Infernal Cohort with Hashutite Blades",
+                  "Scourge of Ghyran War Despot",
                   "5",
                   "35.7%"
                 ],

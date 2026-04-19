@@ -696,7 +696,7 @@ function StatsTrendSparkline({ trend }: StatsTrendSparklineProps) {
         ))}
       </div>
 
-      <div className="stats-trend-chart__detail" role="status">
+      <div className="stats-trend-chart__detail">
         <p className="stats-trend-chart__detail-label">{compactDatasetLabel(activePoint.datasetLabel)}</p>
         <p className="stats-trend-chart__detail-value">{activePoint.value}</p>
         <p className="stats-trend-chart__detail-meta">{activePoint.eraLabel || 'Visible checkpoint'}</p>

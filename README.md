@@ -4,7 +4,7 @@
 
 Small repo for parsing Helsmiths of Hashut event lists and generating readable summaries.
 
-- Last run date: 2026-04-19 16:43:00 Mountain Daylight Time
+- Last run date: 2026-04-19 16:50:30 Mountain Daylight Time
 - Python version: 3.11
 
 ## What lives where

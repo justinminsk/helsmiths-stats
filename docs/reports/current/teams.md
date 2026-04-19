@@ -19,11 +19,11 @@
 ## Top units by list presence
 - Infernal Cohort with Hashutite Spears: 6/6 lists (100.0%)
 - Urak Taar, the First Daemonsmith: 6/6 lists (100.0%)
-- Deathshrieker Rocket Battery: 5/6 lists (83.3%)
 - Ashen Elder: 5/6 lists (83.3%)
+- Deathshrieker Rocket Battery: 5/6 lists (83.3%)
 - Infernal Cohort with Hashutite Blades: 4/6 lists (66.7%)
-- Bull Centaurs: 4/6 lists (66.7%)
 - Tormentor Bombard: 4/6 lists (66.7%)
+- Bull Centaurs: 4/6 lists (66.7%)
 - Dominator Engine with Bane Maces: 4/6 lists (66.7%)
 - Infernal Razers with Blunderbusses: 3/6 lists (50.0%)
 - Scourge of Ghyran War Despot: 3/6 lists (50.0%)
