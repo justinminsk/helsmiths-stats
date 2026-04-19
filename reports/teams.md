@@ -17,8 +17,8 @@
 - Scourge of Ghyran War Despot: 3
 
 ## Top units by list presence
-- Infernal Cohort with Hashutite Spears: 6/6 lists (100.0%)
 - Urak Taar, the First Daemonsmith: 6/6 lists (100.0%)
+- Infernal Cohort with Hashutite Spears: 6/6 lists (100.0%)
 - Deathshrieker Rocket Battery: 5/6 lists (83.3%)
 - Ashen Elder: 5/6 lists (83.3%)
 - Infernal Cohort with Hashutite Blades: 4/6 lists (66.7%)

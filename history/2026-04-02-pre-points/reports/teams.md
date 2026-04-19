@@ -25,8 +25,8 @@
 - Tormentor Bombard: 9/14 lists (64.3%)
 - Dominator Engine with Bane Maces: 7/14 lists (50.0%)
 - Infernal Razers with Blunderbusses: 5/14 lists (35.7%)
-- Infernal Cohort with Hashutite Blades: 5/14 lists (35.7%)
 - Scourge of Ghyran War Despot: 5/14 lists (35.7%)
+- Infernal Cohort with Hashutite Blades: 5/14 lists (35.7%)
 
 ## Top units by model count
 - Infernal Cohort with Hashutite Spears: 330

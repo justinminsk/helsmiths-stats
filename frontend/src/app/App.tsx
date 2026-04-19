@@ -47,7 +47,7 @@ export function App() {
 
   if (state.status === 'loading') {
     return (
-      <AppShell title="Helsmith Stats" subtitle="React dashboard migration in progress">
+      <AppShell title="Helsmith Stats" subtitle="Python-backed React dashboard">
         <p className="status-message">Loading the Python-generated site contract…</p>
       </AppShell>
     );
@@ -57,7 +57,7 @@ export function App() {
     return (
       <AppShell
         title="Helsmith Stats"
-        subtitle="React dashboard migration in progress"
+        subtitle="Python-backed React dashboard"
         banner={`Live contract unavailable. Showing bundled sample data instead. ${state.message}`}
       >
         <Dashboard payload={state.fallback} />
@@ -68,7 +68,7 @@ export function App() {
   return (
     <AppShell
       title="Helsmith Stats"
-      subtitle="React dashboard migration in progress"
+      subtitle="Python-backed React dashboard"
       banner={
         state.source === 'sample'
           ? 'Showing bundled sample data.'

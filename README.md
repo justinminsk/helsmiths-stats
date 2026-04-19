@@ -1,10 +1,10 @@
 # Helsmith stats
 
-[![Python tests](https://github.com/justinminsk/helsmiths-stats/actions/workflows/tests.yml/badge.svg)](https://github.com/justinminsk/helsmiths-stats/actions/workflows/tests.yml)
+[![CI](https://github.com/justinminsk/helsmiths-stats/actions/workflows/tests.yml/badge.svg)](https://github.com/justinminsk/helsmiths-stats/actions/workflows/tests.yml)
 
 Small repo for parsing Helsmiths of Hashut event lists and generating readable summaries.
 
-- Last run date: 2026-04-19 11:25:16 Mountain Daylight Time
+- Last run date: 2026-04-19 12:00:03 Mountain Daylight Time
 - Python version: 3.11
 
 ## What lives where
@@ -38,9 +38,12 @@ Each scope folder under [summaries](summaries) contains:
 ## Workflow
 
 1. Update [Helsmiths 5-0s.md](Helsmiths%205-0s.md)
-2. Run the parser:
+2. Install dependencies:
+	- `python -m pip install -r requirements-dev.txt`
+	- `npm ci --prefix frontend`
+3. Rebuild the reports, summaries, and published site:
 	- `python analyze_helsmith_lists.py`
-3. Read the outputs in [reports](reports) and [summaries](summaries)
+4. Read the outputs in [reports](reports), [summaries](summaries), and [docs](docs)
 
 ## Historical snapshots
 
@@ -57,10 +60,16 @@ This command archives the current [Helsmiths 5-0s.md](Helsmiths%205-0s.md), [rep
 
 ## Web dashboard + hosting
 
-- Running `python analyze_helsmith_lists.py` also rebuilds [docs/index.html](docs/index.html) and republishes the React frontend when Node/npm plus [frontend/package-lock.json](frontend/package-lock.json) dependencies are available.
+- Running `python analyze_helsmith_lists.py` rebuilds [docs/index.html](docs/index.html), republishes the React frontend, and refreshes [docs/data/site-data.json](docs/data/site-data.json).
 - Stats table row count is configurable via `HELSMITH_STATS_TABLE_ROWS` (default: `12`).
 - The dashboard shows **Current** plus up to the 3 newest archived snapshots from [history](history).
-- Local preview: open [docs/index.html](docs/index.html) in a browser.
+- Local built-site preview:
+	- `python analyze_helsmith_lists.py`
+	- `python preview_site.py`
+	- open `http://127.0.0.1:8000/helsmiths-stats/`
+- Frontend-only development server:
+	- `npm --prefix frontend run dev`
+	- when the generated contract is unavailable, the app falls back to bundled sample data for UI work
 - GitHub Pages deploy is handled by [.github/workflows/pages.yml](.github/workflows/pages.yml).
 - The Pages workflow installs both Python and Node, runs `npm ci --prefix frontend`, rebuilds the Python outputs, then verifies the published React asset base path and archived snapshot report links before deploy.
 - In GitHub repo settings, set **Pages** source to **GitHub Actions** (one-time).
@@ -77,6 +86,14 @@ This command archives the current [Helsmiths 5-0s.md](Helsmiths%205-0s.md), [rep
 	- `pre-commit run --all-files`
 
 The same pre-commit checks run in GitHub Actions before tests.
+
+## Local CI checks
+
+- `pre-commit run --all-files`
+- `python -m pytest -q`
+- `npm --prefix frontend run lint`
+- `npm --prefix frontend run test`
+- `npm --prefix frontend run build`
 
 ## Python modules
 
