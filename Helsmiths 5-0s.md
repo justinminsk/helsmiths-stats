@@ -49,6 +49,122 @@ Tormentor Bombard (130)
 Created with Warhammer Age of Sigmar: The App
 App: 1.29.0 | Data: 412
 
+### April 13-19
+
+##### 4-1
+
+**Liste ludiverse 1990/2000 pts**
+
+Helsmiths of Hashut
+Domination Force
+General's Handbook 2025-26
+Drops: 2
+Spell Lore - Lore of Infernal Power
+Prayer Lore - Prayers of the Scorched Sect
+Manifestation Lore - Forbidden Power (20 Points)
+
+Battle Tactic Cards: Intercept and Recover, Restless Energy
+
+General's Regiment
+Urak Taar, the First Daemonsmith (350)
+• General
+Bull Centaurs (380)
+• Reinforced
+Bull Centaurs (380)
+• Reinforced
+Infernal Razers with Blunderbusses (220)
+• Reinforced
+
+Regiment 1
+Daemonsmith on Infernal Taurus (290)
+• Overdrive Switch
+• An Eye for Weakness
+• Scroll of Petrification
+Anointed Sentinels (150)
+Hobgrotz Vandalz (70)
+Tormentor Bombard (130)
+
+
+Created with Warhammer Age of Sigmar: The App
+App: 1.28.1 | Data: 410
+
+**This ia my list because it is all i managed to have paintet in time..2000/2000 pts**
+
+
+Helsmiths of Hashut
+Domination Force
+General's Handbook 2025-26
+Drops: 2
+Spell Lore - Lore of Infernal Power
+
+
+Manifestation Lore - Forbidden Power (20 Points)
+
+
+Battle Tactic Cards: Master The Paths, Intercept and Recover
+
+
+General's Regiment
+Urak Taar, the First Daemonsmith (340)
+• General
+Hobgrotz Vandalz (140)
+• Reinforced
+Infernal Cohort with Hashutite Spears (200)
+• Reinforced
+Infernal Cohort with Hashutite Spears (100)
+Infernal Razers with Blunderbusses (220)
+• Reinforced
+
+
+Regiment 1
+Daemonsmith on Infernal Taurus (290)
+• Greed Pistons
+• An Eye for Weakness
+• Scroll of Petrification
+Bull Centaurs (380)
+• Reinforced
+Deathshrieker Rocket Battery (140)
+Dominator Engine with Immolation Cannons (170)
+
+
+Created with Warhammer Age of Sigmar: The App App: 1.30.0 | Data: 412
+
+**The Price of Progress 1990/2000 pts**
+-----
+Helsmiths of Hashut | Taar's Grand Forgehost
+Army of Renown
+General's Handbook 2025-26
+Drops: 3
+Spell Lore - Taar's Grand Forgehost Spell Lore
+Prayer Lore - Taar's Grand Forgehost Prayer Lore
+Manifestation Lore - Primal Energy (10 Points)
+Battle Tactics Cards: Intercept and Recover and Master The Paths
+-----
+General's Regiment
+Urak Taar, the First Daemonsmith (340)
+• General
+Dominator Engine with Immolation Cannons (170)
+Dominator Engine with Immolation Cannons (170)
+Dominator Engine with Immolation Cannons (170)
+Dominator Engine with Immolation Cannons (170)
+---
+Regiment 1
+Ashen Elder (120)
+Infernal Cohort with Hashutite Spears (100)
+Infernal Cohort with Hashutite Spears (100)
+Scourge of Ghyran War Despot (130)
+• Talisman of Obsidian
+---
+Regiment 2
+Daemonsmith (100)
+• Ruthless Oversser
+Deathshrieker Rocket Battery (140)
+Deathshrieker Rocket Battery (140)
+Tormentor Bombard (130)
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.30.0 (1) | Data: v417
+
 # **Teams**
 
 ### April 6-12
@@ -206,3 +322,78 @@ Regiment 3
 
 Wounds: 128
 2000/2000 Pts
+
+### April 13-19
+
+##### 4-1
+
+**Molnar Chaos Dwarves - 2.000 Pti. 1970/2000 pts**
+
+Helsmiths of Hashut
+The Bullfather's Horns
+General's Handbook 2025-26
+Drops: 2
+Spell Lore - Lore of Infernal Power
+Manifestation Lore - Aetherwrought Machineries
+
+Battle Tactic Cards: Intercept and Recover, Master The Paths
+
+General's Regiment
+Urak Taar, the First Daemonsmith (340)
+• General
+Bull Centaurs (380)
+• Reinforced
+Bull Centaurs (380)
+• Reinforced
+Infernal Cohort with Hashutite Spears (100)
+
+Regiment 1
+Daemonsmith on Infernal Taurus (290)
+• Overdrive Switch
+• An Eye for Weakness
+• Scroll of Petrification
+Dominator Engine with Bane Maces (160)
+Dominator Engine with Bane Maces (160)
+Dominator Engine with Bane Maces (160)
+
+
+Created with Warhammer Age of Sigmar: The App
+App: 1.29.0 | Data: 412
+
+**I am already rock hard baby! 2000/2000 pts**
+
+Helsmiths of Hashut
+The Bullfather's Horns
+General's Handbook 2025-26
+Drops: 2
+Spell Lore - Lore of Infernal Power
+Prayer Lore - Prayers of the Scorched Sect
+Manifestation Lore - Forbidden Power (20 Points)
+
+Battle Tactic Cards: Intercept and Recover, Master The Paths
+
+General's Regiment
+Urak Taar, the First Daemonsmith (340)
+• General
+Bull Centaurs (380)
+• Reinforced
+Deathshrieker Rocket Battery (140)
+Deathshrieker Rocket Battery (140)
+-Overdrive switch
+Infernal Razers with Blunderbusses (220)
+• Reinforced
+
+Regiment 1
+Ashen Elder (120)
+-eye for weakness
+-scroll of petrification
+Anointed Sentinels (260)
+• Reinforced
+Infernal Cohort with Hashutite Blades (180)
+• Reinforced
+Infernal Cohort with Hashutite Spears (200)
+• Reinforced
+
+
+Created with Warhammer Age of Sigmar: The App
+App: 1.29.0 | Data: 412

@@ -1,4 +1,160 @@
+import csv
+import json
+from pathlib import Path
+
 from helsmith_stats import web
+
+
+def _disable_frontend_build(monkeypatch) -> None:
+    monkeypatch.setattr(web, "_build_frontend_site", lambda: False)
+
+
+def _write_csv(path: Path, headers: list[str], rows: list[list[str]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow(headers)
+        writer.writerows(rows)
+
+
+def _write_scope_fixture(base_dir: Path, scope: str) -> None:
+    scope_dir = base_dir / scope
+    _write_csv(
+        scope_dir / "list_level_summary.csv",
+        [
+            "source",
+            "name",
+            "result",
+            "subfaction",
+            "manifestation_lore",
+            "unit_entries",
+            "models",
+            "units",
+        ],
+        [
+            [
+                "Singles",
+                f"{scope.title()} List A",
+                "5-0",
+                "Taar's Grand Forgehost",
+                "Forbidden Power",
+                "3",
+                "10",
+                '[{"regiment":"General\'s Regiment","name":"Bull Centaurs","points":380,"models":6,"reinforced":true,"notes":["General"]}]',
+            ],
+            [
+                "Teams",
+                f"{scope.title()} List B",
+                "4-1",
+                "Industrial Polluters",
+                "Aetherwrought Machineries",
+                "2",
+                "7",
+                '[{"regiment":"Regiment 1","name":"Deathshrieker Rocket Battery","points":140,"models":1,"reinforced":false,"notes":[]}]',
+            ],
+        ],
+    )
+    _write_csv(
+        scope_dir / "unit_presence_percent.csv",
+        ["unit_name", "lists_with_unit", "percent_of_lists"],
+        [["Bull Centaurs", "1", "50.0"]],
+    )
+    _write_csv(
+        scope_dir / "subfaction_counts.csv",
+        ["subfaction", "list_count"],
+        [["Taar's Grand Forgehost", "1"]],
+    )
+    _write_csv(
+        scope_dir / "manifestation_lore_counts.csv",
+        ["manifestation_lore", "list_count"],
+        [["Forbidden Power", "1"]],
+    )
+    _write_csv(
+        scope_dir / "artifact_counts.csv",
+        ["artifact", "count"],
+        [["Scroll of Petrification", "1"]],
+    )
+    _write_csv(
+        scope_dir / "command_trait_counts.csv",
+        ["command_trait", "count"],
+        [["An Eye for Weakness", "1"]],
+    )
+    _write_csv(
+        scope_dir / "warmachine_trait_counts.csv",
+        ["warmachine_trait", "count"],
+        [["Overdrive Switch", "1"]],
+    )
+    _write_csv(
+        scope_dir / "unit_entry_counts.csv",
+        ["unit_name", "unit_entries"],
+        [["Bull Centaurs", "1"]],
+    )
+    _write_csv(
+        scope_dir / "unit_model_counts.csv",
+        ["unit_name", "model_count"],
+        [["Bull Centaurs", "6"]],
+    )
+    _write_csv(
+        scope_dir / "unplayed_units.csv",
+        ["unit_name", "unit_size"],
+        [["Anointed Sentinels", "3"]],
+    )
+
+
+def _write_reports_fixture(base_dir: Path) -> None:
+    base_dir.mkdir(parents=True, exist_ok=True)
+    for scope in web.SCOPES:
+        (base_dir / f"{scope}.md").write_text(
+            f"# {scope} report\n",
+            encoding="utf-8",
+        )
+        (base_dir / f"{scope}-lists.md").write_text(
+            f"# {scope} lists report\n",
+            encoding="utf-8",
+        )
+
+
+def _configure_test_workspace(tmp_path: Path, monkeypatch) -> Path:
+    root = tmp_path / "repo"
+    docs_dir = root / "docs"
+    summaries_dir = root / "summaries"
+    reports_dir = root / "reports"
+    history_root = root / "history"
+
+    for scope in web.SCOPES:
+        _write_scope_fixture(summaries_dir, scope)
+    _write_reports_fixture(reports_dir)
+
+    for snapshot_name in (
+        "2026-04-17-pre-points",
+        "2026-04-10-pre-points",
+        "2026-04-03-pre-points",
+        "2026-03-27-pre-points",
+    ):
+        snapshot_dir = history_root / snapshot_name
+        for scope in web.SCOPES:
+            _write_scope_fixture(snapshot_dir / "summaries", scope)
+        _write_reports_fixture(snapshot_dir / "reports")
+
+    monkeypatch.setattr(web, "ROOT", root)
+    monkeypatch.setattr(web, "DOCS_DIR", docs_dir)
+    monkeypatch.setattr(web, "SUMMARIES_DIR", summaries_dir)
+    monkeypatch.setattr(web, "REPORTS_DIR", reports_dir)
+    _disable_frontend_build(monkeypatch)
+
+    return root
+
+
+def _build_test_site(tmp_path: Path, monkeypatch) -> str:
+    root = _configure_test_workspace(tmp_path, monkeypatch)
+
+    web.build_web_page()
+    return (root / "docs" / "index.html").read_text(encoding="utf-8")
+
+
+def _build_test_payload(tmp_path: Path, monkeypatch) -> dict[str, object]:
+    _configure_test_workspace(tmp_path, monkeypatch)
+    return web.build_site_payload("2026-04-19 12:00:00 UTC")
 
 
 # ---------------------------------------------------------------------------
@@ -58,6 +214,7 @@ def test_stats_summary_text_empty_returns_fallback() -> None:
 
 
 def test_build_web_page_dark_mode_color_tokens(tmp_path, monkeypatch) -> None:
+    _disable_frontend_build(monkeypatch)
     monkeypatch.setattr(web, "DOCS_DIR", tmp_path / "docs")
     web.build_web_page()
     html = (tmp_path / "docs" / "index.html").read_text(encoding="utf-8")
@@ -73,6 +230,7 @@ def test_build_web_page_dark_mode_color_tokens(tmp_path, monkeypatch) -> None:
 
 
 def test_build_web_page_light_mode_color_tokens(tmp_path, monkeypatch) -> None:
+    _disable_frontend_build(monkeypatch)
     monkeypatch.setattr(web, "DOCS_DIR", tmp_path / "docs")
     web.build_web_page()
     html = (tmp_path / "docs" / "index.html").read_text(encoding="utf-8")
@@ -85,6 +243,7 @@ def test_build_web_page_light_mode_color_tokens(tmp_path, monkeypatch) -> None:
 
 
 def test_build_web_page_html_structure(tmp_path, monkeypatch) -> None:
+    _disable_frontend_build(monkeypatch)
     monkeypatch.setattr(web, "DOCS_DIR", tmp_path / "docs")
     web.build_web_page()
     html = (tmp_path / "docs" / "index.html").read_text(encoding="utf-8")
@@ -95,3 +254,213 @@ def test_build_web_page_html_structure(tmp_path, monkeypatch) -> None:
     assert 'role="tabpanel"' in html
     assert 'class="sr-only"' in html
     assert "aria-controls=" in html
+
+
+def test_discover_datasets_includes_current_plus_three_newest_snapshots(
+    tmp_path, monkeypatch
+) -> None:
+    root = tmp_path / "repo"
+    history_root = root / "history"
+    history_root.mkdir(parents=True)
+    for name in (
+        "2026-04-17-pre-points",
+        "2026-04-10-pre-points",
+        "2026-04-03-pre-points",
+        "2026-03-27-pre-points",
+    ):
+        (history_root / name).mkdir()
+
+    monkeypatch.setattr(web, "ROOT", root)
+    monkeypatch.setattr(web, "SUMMARIES_DIR", root / "summaries")
+    monkeypatch.setattr(web, "REPORTS_DIR", root / "reports")
+
+    datasets = web._discover_datasets()
+
+    assert [dataset["key"] for dataset in datasets] == [
+        "current",
+        "archive-2026-04-17-pre-points",
+        "archive-2026-04-10-pre-points",
+        "archive-2026-04-03-pre-points",
+    ]
+
+
+def test_build_web_page_renders_dataset_scope_and_view_navigation(
+    tmp_path, monkeypatch
+) -> None:
+    html = _build_test_site(tmp_path, monkeypatch)
+
+    assert "Current" in html
+    assert "Snapshot (2026-04-17-pre-points)" in html
+    assert "Snapshot (2026-04-10-pre-points)" in html
+    assert "Snapshot (2026-04-03-pre-points)" in html
+    assert "Snapshot (2026-03-27-pre-points)" not in html
+    assert 'aria-label="Dataset navigation"' in html
+    assert 'aria-label="Combined view tabs"' in html
+    assert 'aria-controls="scope-panel-current-combined"' in html
+    assert 'aria-controls="scope-view-current-combined-stats"' in html
+    assert 'aria-controls="scope-view-current-combined-lists"' in html
+    assert 'data-dataset-key="current"' in html
+    assert 'data-scope-key="combined"' in html
+
+
+def test_build_web_page_renders_list_controls_and_theme_toggle(
+    tmp_path, monkeypatch
+) -> None:
+    html = _build_test_site(tmp_path, monkeypatch)
+
+    assert 'id="theme-toggle"' in html
+    assert "Theme: Auto" in html
+    assert 'class="list-search"' in html
+    assert 'class="list-filter-result"' in html
+    assert 'class="list-filter-subfaction"' in html
+    assert 'class="list-sort"' in html
+    assert "Load more lists" in html
+    assert "Columns" in html
+    assert "Copy view link" in html
+
+
+def test_build_web_page_copies_reports_for_current_and_archived_datasets(
+    tmp_path, monkeypatch
+) -> None:
+    _build_test_site(tmp_path, monkeypatch)
+    docs_root = tmp_path / "repo" / "docs" / "reports"
+
+    assert (docs_root / "current" / "combined.md").exists()
+    assert (docs_root / "current" / "combined-lists.md").exists()
+    assert (docs_root / "archive-2026-04-17-pre-points" / "teams.md").exists()
+    assert (docs_root / "archive-2026-04-17-pre-points" / "teams-lists.md").exists()
+
+
+def test_build_web_page_includes_hash_theme_and_filter_script_contract(
+    tmp_path, monkeypatch
+) -> None:
+    html = _build_test_site(tmp_path, monkeypatch)
+
+    assert "const hashPrefix = '#tab=';" in html
+    assert "const listRowsBatchSize = 20;" in html
+    assert "const themeStorageKey = 'helsmithTheme';" in html
+    assert "window.localStorage.setItem(themeStorageKey, theme);" in html
+    assert "restoreFromHash();" in html
+    assert "window.addEventListener('hashchange'" in html
+    assert "window.addEventListener('pageshow'" in html
+    assert "No lists found for current ${activeControls[0]} filter." in html
+
+
+def test_build_site_payload_contains_frontend_contract_metadata(
+    tmp_path, monkeypatch
+) -> None:
+    payload = _build_test_payload(tmp_path, monkeypatch)
+
+    assert payload["generatedAt"] == "2026-04-19 12:00:00 UTC"
+    assert payload["defaultDatasetKey"] == "current"
+    assert payload["scopeOrder"] == ["combined", "singles", "teams"]
+    assert payload["scopeLabels"] == web.SCOPE_LABELS
+    assert payload["uiConfig"] == web.UI_CONFIG
+    assert payload["themeTokens"] == web.THEME_TOKENS
+
+
+def test_build_site_payload_contains_dataset_scope_and_list_details(
+    tmp_path, monkeypatch
+) -> None:
+    payload = _build_test_payload(tmp_path, monkeypatch)
+
+    assert len(payload["datasets"]) == 4
+    current_dataset = payload["datasets"][0]
+    assert current_dataset["key"] == "current"
+    assert current_dataset["label"] == "Current"
+    assert current_dataset["reportBasePath"] == "reports/current"
+
+    combined_scope = current_dataset["scopes"][0]
+    assert combined_scope["key"] == "combined"
+    assert combined_scope["label"] == "Combined"
+    assert combined_scope["datasetKey"] == "current"
+    assert combined_scope["reportLinks"] == {
+        "stats": "reports/current/combined.md",
+        "lists": "reports/current/combined-lists.md",
+    }
+    assert combined_scope["filters"] == {
+        "results": ["4-1", "5-0"],
+        "subfactions": ["Industrial Polluters", "Taar's Grand Forgehost"],
+    }
+    assert combined_scope["statsTables"][0]["key"] == "resultBreakdown"
+    assert combined_scope["statsTables"][0]["rows"] == [["4-1", "1"], ["5-0", "1"]]
+
+    first_list = combined_scope["lists"][0]
+    assert first_list["name"] == "Combined List A"
+    assert first_list["regiments"] == 1
+    assert first_list["unitEntries"] == 3
+    assert first_list["models"] == 10
+    assert first_list["units"][0]["name"] == "Bull Centaurs"
+    assert first_list["units"][0]["reinforced"] is True
+    assert first_list["units"][0]["notes"] == ["General"]
+
+
+def test_build_web_page_writes_site_data_json(tmp_path, monkeypatch) -> None:
+    _build_test_site(tmp_path, monkeypatch)
+    site_data_path = tmp_path / "repo" / "docs" / "data" / "site-data.json"
+
+    assert site_data_path.exists()
+    payload = json.loads(site_data_path.read_text(encoding="utf-8"))
+    assert payload["defaultDatasetKey"] == "current"
+    assert (
+        payload["datasets"][0]["scopes"][0]["reportLinks"]["stats"]
+        == "reports/current/combined.md"
+    )
+
+
+def test_publish_frontend_dist_preserves_reports_and_site_data(
+    tmp_path, monkeypatch
+) -> None:
+    docs_dir = tmp_path / "docs"
+    reports_path = docs_dir / "reports" / "current" / "combined.md"
+    site_data_path = docs_dir / "data" / "site-data.json"
+    dist_dir = tmp_path / "frontend" / "dist"
+
+    reports_path.parent.mkdir(parents=True, exist_ok=True)
+    reports_path.write_text("# report\n", encoding="utf-8")
+    site_data_path.parent.mkdir(parents=True, exist_ok=True)
+    site_data_path.write_text('{"ok": true}\n', encoding="utf-8")
+    dist_dir.mkdir(parents=True, exist_ok=True)
+    (dist_dir / "index.html").write_text(
+        "<html><body><div id='root'></div></body></html>\n", encoding="utf-8"
+    )
+    (dist_dir / "assets").mkdir(parents=True, exist_ok=True)
+    (dist_dir / "assets" / "app.js").write_text(
+        "console.log('frontend');\n", encoding="utf-8"
+    )
+
+    monkeypatch.setattr(web, "DOCS_DIR", docs_dir)
+
+    web._publish_frontend_dist(dist_dir)
+
+    assert (docs_dir / "index.html").exists()
+    assert (docs_dir / "assets" / "app.js").exists()
+    assert reports_path.exists()
+    assert site_data_path.exists()
+
+
+def test_build_web_page_prefers_frontend_output_when_available(
+    tmp_path, monkeypatch
+) -> None:
+    root = _configure_test_workspace(tmp_path, monkeypatch)
+
+    def fake_build_frontend_site() -> bool:
+        (root / "docs" / "index.html").write_text(
+            '<!doctype html><html><body><div id="root"></div></body></html>\n',
+            encoding="utf-8",
+        )
+        (root / "docs" / "assets").mkdir(parents=True, exist_ok=True)
+        (root / "docs" / "assets" / "bundle.js").write_text(
+            "console.log('react');\n",
+            encoding="utf-8",
+        )
+        return True
+
+    monkeypatch.setattr(web, "_build_frontend_site", fake_build_frontend_site)
+
+    web.build_web_page()
+
+    html = (root / "docs" / "index.html").read_text(encoding="utf-8")
+    assert '<div id="root"></div>' in html
+    assert (root / "docs" / "reports" / "current" / "combined.md").exists()
+    assert (root / "docs" / "data" / "site-data.json").exists()
