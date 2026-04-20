@@ -9,6 +9,7 @@ from .constants import REPORTS_DIR, SUMMARIES_DIR
 from .metrics import collect_scope_metrics, total_models
 from .models import ListData, MetricCounter, ScopeMetrics
 from .reporting import build_lists_report, build_report
+from .weeks import sort_lists_by_week
 
 
 def write_counter_csv(
@@ -41,6 +42,7 @@ def write_unplayed_csv(path: Path, unplayed_units: list[tuple[str, int]]) -> Non
 
 
 def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
+    ordered_lists = sort_lists_by_week(lists_for_scope)
     with path.open("w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(
             file,
@@ -57,7 +59,7 @@ def write_list_summary(path: Path, lists_for_scope: list[ListData]) -> None:
             ],
         )
         writer.writeheader()
-        for army_list in lists_for_scope:
+        for army_list in ordered_lists:
             writer.writerow(
                 {
                     "source": army_list.source,

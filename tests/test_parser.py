@@ -66,3 +66,26 @@ Created with Warhammer Age of Sigmar: The App
     sentinels = next(unit for unit in teams.units if unit.name == "Anointed Sentinels")
     assert sentinels.points == 300
     assert sentinels.models == 6
+
+
+def test_parse_lists_uses_faction_line_as_subfaction_fallback() -> None:
+    markdown = """
+# **Teams**
+### April 6-12
+##### 4-1
+
+**no name**
+Grand Alliance: Chaos
+Faction: Taar's Grand Forgehost
+Battle Formation:
+Manifestation Lore: Aetherwrought Machineries
+Regiment 1
+1 x Urak Taar, the First Daemonsmith (340 points)
+Created with Warhammer Age of Sigmar: The App
+"""
+
+    parsed = parse_lists(markdown)
+
+    assert len(parsed) == 1
+    assert parsed[0].subfaction == "Taar's Grand Forgehost"
+    assert parsed[0].manifestation_lore == "Aetherwrought Machineries"

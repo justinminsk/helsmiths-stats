@@ -195,10 +195,18 @@ def parse_lists(text: str) -> list[ListData]:
             continue
 
         if line.startswith("Battle Formation:"):
-            current_list.subfaction = normalize_subfaction(line.split(":", 1)[1])
+            parsed_subfaction = normalize_subfaction(line.split(":", 1)[1])
+            if parsed_subfaction != UNKNOWN:
+                current_list.subfaction = parsed_subfaction
             continue
 
         if line.startswith("Faction:"):
+            parsed_subfaction = normalize_subfaction(line.split(":", 1)[1])
+            if (
+                parsed_subfaction not in {UNKNOWN, "Helsmiths of Hashut"}
+                and current_list.subfaction == UNKNOWN
+            ):
+                current_list.subfaction = parsed_subfaction
             continue
 
         regiment_name = _normalize_regiment_name(line)

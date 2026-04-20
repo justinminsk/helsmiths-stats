@@ -20,8 +20,8 @@
 - Urak Taar, the First Daemonsmith: 10/10 lists (100.0%)
 - Infernal Cohort with Hashutite Spears: 9/10 lists (90.0%)
 - Deathshrieker Rocket Battery: 8/10 lists (80.0%)
-- Ashen Elder: 7/10 lists (70.0%)
 - Tormentor Bombard: 7/10 lists (70.0%)
+- Ashen Elder: 7/10 lists (70.0%)
 - Bull Centaurs: 6/10 lists (60.0%)
 - Scourge of Ghyran War Despot: 5/10 lists (50.0%)
 - Dominator Engine with Bane Maces: 5/10 lists (50.0%)
@@ -46,12 +46,11 @@
 - War Despot (unit size 1)
 
 ## Subfaction counts
-- Taar's Grand Forgehost: 3
+- Taar's Grand Forgehost: 4
 - Domination Force: 2
 - The Bullfather's Horns: 2
 - Daemonsmith Cabal: 1
 - Castigation Battery: 1
-- Unknown: 1
 
 ## Manifestation lore counts
 - Aetherwrought Machineries: 4

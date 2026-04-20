@@ -63,9 +63,9 @@ export function App() {
 
   if (state.status === 'loading') {
     return (
-      <AppShell title="Helsmith Stats" subtitle="Python-backed React dashboard">
+      <AppShell title="Helsmith Stats" subtitle="Play rates of winning lists">
         <StatusPanel
-          detail="Loading the Python-generated site contract, theme tokens, and route defaults."
+          detail="Loading the latest Helsmith list data and summary views."
           title="Preparing dashboard"
         />
       </AppShell>
@@ -76,8 +76,8 @@ export function App() {
     return (
       <AppShell
         title="Helsmith Stats"
-        subtitle="Python-backed React dashboard"
-        banner="Live contract unavailable. Showing bundled sample data instead."
+        subtitle="Play rates of winning lists"
+        banner="Latest data unavailable. Showing bundled sample data instead."
         bannerTone="warning"
       >
         <StatusPanel detail={state.message} title="Sample data fallback active" tone="warning" />
@@ -89,12 +89,12 @@ export function App() {
   return (
     <AppShell
       title="Helsmith Stats"
-      subtitle="Python-backed React dashboard"
+      subtitle="Play rates of winning lists"
       bannerTone={state.source === 'sample' ? 'sample' : 'success'}
       banner={
         state.source === 'sample'
           ? 'Showing bundled sample data.'
-          : 'Loaded the Python-generated site contract successfully.'
+          : 'Loaded Helsmith list data successfully.'
       }
     >
       <Dashboard payload={state.payload} />

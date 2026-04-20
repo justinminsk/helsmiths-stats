@@ -4,7 +4,6 @@ import type {
   ScopeStorySignal,
   ScopeStorySharedUnit,
   ScopeStorySharedUnitPair,
-  ScopeStoryTrend,
   StatsTable,
 } from '../../models/siteData';
 
@@ -14,10 +13,14 @@ type ScopeStatsViewProps = {
   tabId: string;
 };
 
+const suppressedStatsTableKeys = new Set(['topModelCounts']);
+
 export function ScopeStatsView({ datasetKey, scope, tabId }: ScopeStatsViewProps) {
-  const groupedTables = groupStatsTables(scope.statsTables);
-  const hasStatsTables = scope.statsTables.length > 0;
-  const resultBreakdownTable = getStatsTable(scope.statsTables, 'resultBreakdown');
+  const visibleStatsTables = scope.statsTables.filter((table) => !suppressedStatsTableKeys.has(table.key));
+  const detailTables = visibleStatsTables.filter((table) => table.key !== 'resultBreakdown');
+  const groupedTables = groupStatsTables(detailTables);
+  const hasStatsTables = visibleStatsTables.length > 0;
+  const resultBreakdownTable = getStatsTable(visibleStatsTables, 'resultBreakdown');
   const statsHighlights = buildStatsHighlights(scope);
   const hasStorySignals = Boolean(
     scope.story &&
@@ -25,9 +28,6 @@ export function ScopeStatsView({ datasetKey, scope, tabId }: ScopeStatsViewProps
         scope.story.sharedUnits.length > 0 ||
         scope.story.sharedUnitPairs.length > 0)
   );
-  const trendMode = scope.story?.weeklyTrends?.length ? 'weekly' : scope.story?.snapshotTrends.length ? 'snapshot' : null;
-  const visibleTrends = trendMode === 'weekly' ? scope.story?.weeklyTrends ?? [] : scope.story?.snapshotTrends ?? [];
-  const hasSnapshotTrends = visibleTrends.length > 0;
 
   return (
     <section
@@ -41,17 +41,19 @@ export function ScopeStatsView({ datasetKey, scope, tabId }: ScopeStatsViewProps
           <p className="view-kicker">Stats overview</p>
           <h4 className="view-title">Summary patterns</h4>
         </div>
-        <p className="view-link-row">
-          <a className="scope-link" href={scope.reportLinks.stats}>
-            Open markdown report
-          </a>
-        </p>
+        {scope.reportLinks.stats ? (
+          <p className="view-link-row">
+            <a className="scope-link" href={scope.reportLinks.stats}>
+              Open markdown report
+            </a>
+          </p>
+        ) : null}
       </header>
 
       <section className="stats-summary-card">
         <div>
           <p className="subsection-kicker">Scope summary</p>
-          <h5 className="subsection-title">{scope.statsTables.length} summary blocks ready</h5>
+          <h5 className="subsection-title">{visibleStatsTables.length} summary blocks ready</h5>
         </div>
         <p className="stats-summary">Summary: {scope.statsSummary}</p>
       </section>
@@ -63,7 +65,7 @@ export function ScopeStatsView({ datasetKey, scope, tabId }: ScopeStatsViewProps
               <p className="subsection-kicker">Key takeaways</p>
               <h5 className="subsection-title">Fast read before the full breakdowns</h5>
             </div>
-            <p className="subsection-meta">Lead with the strongest outcomes, then drop into rankings and detailed tables below.</p>
+            <p className="subsection-meta">Lead with the strongest roster signals first, then drop into rankings and detailed tables below.</p>
           </header>
 
           <div className="stats-highlights-layout">
@@ -99,26 +101,6 @@ export function ScopeStatsView({ datasetKey, scope, tabId }: ScopeStatsViewProps
             {scope.story?.coreSignals.length ? <StatsStorySignalsCard signals={scope.story.coreSignals} /> : null}
             {scope.story?.sharedUnits.length ? <StatsSharedUnitsCard units={scope.story.sharedUnits} /> : null}
             {scope.story?.sharedUnitPairs.length ? <StatsSharedPairsCard pairs={scope.story.sharedUnitPairs} /> : null}
-          </div>
-        </section>
-      ) : null}
-
-      {hasSnapshotTrends ? (
-        <section className="stats-grid-section">
-          <header className="subsection-header">
-            <div>
-              <p className="subsection-kicker">{trendMode === 'weekly' ? 'Week to week' : 'Over time'}</p>
-              <h5 className="subsection-title">{trendMode === 'weekly' ? 'How the winner profile shifts each week' : 'How the winner profile evolves'}</h5>
-            </div>
-            <p className="subsection-meta">
-              {trendMode === 'weekly'
-                ? 'Use the source-file week buckets to track whether each winning signal is accelerating, flattening, or slipping week by week.'
-                : 'Read the whole arc for each current leader so you can see where momentum held, flattened, or reversed across the timeline.'}
-            </p>
-          </header>
-
-          <div className="stats-grid stats-grid--story">
-            <StatsSnapshotTrendsCard mode={trendMode ?? 'snapshot'} trends={visibleTrends} />
           </div>
         </section>
       ) : null}
@@ -236,11 +218,6 @@ type StatsSharedPairsCardProps = {
   pairs: ScopeStorySharedUnitPair[];
 };
 
-type StatsSnapshotTrendsCardProps = {
-  trends: ScopeStoryTrend[];
-  mode: 'weekly' | 'snapshot';
-};
-
 function groupStatsTables(tables: StatsTable[]): GroupedStatsTables {
   return tables.reduce<GroupedStatsTables>(
     (grouped, table) => {
@@ -291,23 +268,10 @@ function getStatsTable(tables: StatsTable[], key: string) {
 
 function buildStatsHighlights(scope: ScopePayload): StatsHighlight[] {
   const highlights: StatsHighlight[] = [];
-  const resultBreakdown = getStatsTable(scope.statsTables, 'resultBreakdown');
   const topUnitPresence = getStatsTable(scope.statsTables, 'topUnitPresence') ?? getStatsTable(scope.statsTables, 'topUnitsByPresence');
   const topUnitEntries = getStatsTable(scope.statsTables, 'topUnitEntries');
   const manifestationLores = getStatsTable(scope.statsTables, 'manifestationLores') ?? getStatsTable(scope.statsTables, 'manifestationLoreCounts');
   const topSubfactions = getStatsTable(scope.statsTables, 'topSubfactions');
-
-  const resultLeader = resultBreakdown?.rows[0];
-  if (resultLeader) {
-    const count = resultLeader[1] ?? '0';
-    const ratio = scope.listCount > 0 ? `${((Number(count) / scope.listCount) * 100).toFixed(1)}% of lists` : `${count} lists`;
-    highlights.push({
-      eyebrow: 'Most common result',
-      title: resultLeader[0] ?? 'Unknown result',
-      value: count,
-      detail: ratio,
-    });
-  }
 
   const presenceLeader = topUnitPresence?.rows[0];
   if (presenceLeader) {
@@ -543,234 +507,6 @@ function StatsSharedPairsCard({ pairs }: StatsSharedPairsCardProps) {
   );
 }
 
-function StatsSnapshotTrendsCard({ trends, mode }: StatsSnapshotTrendsCardProps) {
-  return (
-    <section className="stats-card stats-card--ranking stats-card--trend">
-      <header className="stats-card__header">
-        <h4 className="stats-card__title">{mode === 'weekly' ? 'Weekly winner trendlines' : 'Winner trendlines'}</h4>
-        <p className="stats-card__meta">{mode === 'weekly' ? 'Current leaders across each visible week' : 'Current leaders across every visible checkpoint'}</p>
-      </header>
-
-      <ul className="stats-trend-list" aria-label={mode === 'weekly' ? 'Weekly trends' : 'Snapshot trends'}>
-        {trends.map((trend) => {
-          const summary = summarizeTrend(trend);
-
-          return (
-            <li className={`stats-trend-item stats-trend-item--${trend.direction}`} key={`${trend.metric}-${trend.label}`}>
-              <div className="stats-trend-item__header">
-                <div>
-                  <p className="stats-trend-item__eyebrow">{trend.metric}</p>
-                  <h5 className="stats-trend-item__title">{trend.label}</h5>
-                </div>
-                <div className="stats-trend-item__value-group">
-                  <p className="stats-trend-item__value">{trend.currentValue}</p>
-                  <p className="stats-trend-item__value-caption">Current</p>
-                </div>
-              </div>
-
-              <p className="stats-trend-item__summary">{summary.narrative}</p>
-
-              <dl className="stats-trend-metrics">
-                <div className="stats-trend-metric">
-                  <dt className="stats-trend-metric__label">Start</dt>
-                  <dd className="stats-trend-metric__value">{summary.startValue}</dd>
-                  <p className="stats-trend-metric__detail">{summary.startLabel}</p>
-                </div>
-                <div className="stats-trend-metric">
-                  <dt className="stats-trend-metric__label">Peak</dt>
-                  <dd className="stats-trend-metric__value">{summary.peakValue}</dd>
-                  <p className="stats-trend-metric__detail">{summary.peakLabel}</p>
-                </div>
-                <div className="stats-trend-metric">
-                  <dt className="stats-trend-metric__label">Net change</dt>
-                  <dd className="stats-trend-metric__value">{trend.deltaLabel}</dd>
-                  <p className="stats-trend-metric__detail">{summary.momentum}</p>
-                </div>
-              </dl>
-
-              <StatsTrendSparkline trend={trend} />
-            </li>
-          );
-        })}
-      </ul>
-    </section>
-  );
-}
-
-type StatsTrendSparklineProps = {
-  trend: ScopeStoryTrend;
-};
-
-function StatsTrendSparkline({ trend }: StatsTrendSparklineProps) {
-  const points = trend.points
-    .map((point, index) => ({
-      ...point,
-      index,
-      magnitude: getStatMagnitude(point.value),
-    }))
-    .filter((point): point is typeof point & { magnitude: number } => point.magnitude !== null);
-
-  const [activeDatasetKey, setActiveDatasetKey] = useState<string>(points[points.length - 1]?.datasetKey ?? '');
-
-  useEffect(() => {
-    setActiveDatasetKey(points[points.length - 1]?.datasetKey ?? '');
-  }, [trend]);
-
-  if (points.length < 2) {
-    return null;
-  }
-
-  const width = 320;
-  const height = 88;
-  const paddingX = 12;
-  const paddingY = 12;
-  const minMagnitude = Math.min(...points.map((point) => point.magnitude));
-  const maxMagnitude = Math.max(...points.map((point) => point.magnitude));
-  const range = maxMagnitude - minMagnitude;
-  const chartPoints = points.map((point, index) => {
-    const x = paddingX + (index * (width - paddingX * 2)) / Math.max(points.length - 1, 1);
-    const normalized = range === 0 ? 0.5 : (point.magnitude - minMagnitude) / range;
-    const y = height - paddingY - normalized * (height - paddingY * 2);
-    return {
-      ...point,
-      x,
-      y,
-      xPercent: (x / width) * 100,
-      yPercent: (y / height) * 100,
-    };
-  });
-  const polylinePoints = chartPoints.map((point) => `${point.x},${point.y}`).join(' ');
-  const eraSegments = buildTrendEraSegments(chartPoints, width, paddingX);
-  const activePoint = chartPoints.find((point) => point.datasetKey === activeDatasetKey) ?? chartPoints[chartPoints.length - 1];
-  const visibleAxisIndices = getVisibleTrendAxisIndices(chartPoints.length);
-
-  return (
-    <div className="stats-trend-chart">
-      {eraSegments.length > 1 ? (
-        <div className="stats-trend-era-strip" aria-hidden="true">
-          {eraSegments.map((segment) => (
-            <span className="stats-trend-era-chip" key={`${trend.label}-${segment.label}`}>{segment.label}</span>
-          ))}
-        </div>
-      ) : null}
-
-      <div className="stats-trend-chart__frame">
-        <svg aria-hidden="true" className="stats-trend-chart__svg" viewBox={`0 0 ${width} ${height}`}>
-          {eraSegments.map((segment, index) => (
-            <rect
-              className={`stats-trend-chart__era-band${index % 2 === 1 ? ' stats-trend-chart__era-band--alternate' : ''}`}
-              height={height - paddingY}
-              key={`${trend.label}-${segment.label}`}
-              width={segment.width}
-              x={segment.x}
-              y={0}
-            />
-          ))}
-          {eraSegments.slice(1).map((segment) => (
-            <line
-              className="stats-trend-chart__divider"
-              key={`${trend.label}-${segment.label}-divider`}
-              x1={segment.x}
-              x2={segment.x}
-              y1={paddingY / 2}
-              y2={height - paddingY}
-            />
-          ))}
-          <line className="stats-trend-chart__guide" x1={paddingX} x2={width - paddingX} y1={height - paddingY} y2={height - paddingY} />
-          <polyline className="stats-trend-chart__line" points={polylinePoints} />
-        </svg>
-
-        {chartPoints.map((point) => (
-          <button
-            aria-label={`${compactDatasetLabel(point.datasetLabel)} ${point.value}${point.eraLabel ? ` ${point.eraLabel}` : ''}`}
-            className={`stats-trend-chart__hotspot${point.datasetKey === activePoint.datasetKey ? ' stats-trend-chart__hotspot--active' : ''}`}
-            key={`${trend.label}-${point.datasetKey}`}
-            onBlur={() => setActiveDatasetKey(chartPoints[chartPoints.length - 1]?.datasetKey ?? point.datasetKey)}
-            onFocus={() => setActiveDatasetKey(point.datasetKey)}
-            onMouseEnter={() => setActiveDatasetKey(point.datasetKey)}
-            style={{ left: `${point.xPercent}%`, top: `${point.yPercent}%` }}
-            type="button"
-          >
-            <span className="sr-only">{compactDatasetLabel(point.datasetLabel)}</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="stats-trend-chart__detail">
-        <p className="stats-trend-chart__detail-label">{compactDatasetLabel(activePoint.datasetLabel)}</p>
-        <p className="stats-trend-chart__detail-value">{activePoint.value}</p>
-        <p className="stats-trend-chart__detail-meta">{activePoint.eraLabel || 'Visible checkpoint'}</p>
-      </div>
-
-      <div className="stats-trend-axis" aria-hidden="true">
-        {chartPoints
-          .filter((point) => visibleAxisIndices.has(point.index))
-          .map((point) => (
-            <div className="stats-trend-axis__tick" key={`${trend.label}-${point.datasetKey}-axis`} style={{ left: `${point.xPercent}%` }}>
-              <span className="stats-trend-axis__label">{compactDatasetLabel(point.datasetLabel)}</span>
-              <span className="stats-trend-axis__value">{point.value}</span>
-            </div>
-          ))}
-      </div>
-    </div>
-  );
-}
-
-function buildTrendEraSegments(
-  points: Array<{ x: number; eraLabel?: string }>,
-  width: number,
-  paddingX: number
-) {
-  const segments: Array<{ label: string; x: number; width: number }> = [];
-
-  for (let index = 0; index < points.length; index += 1) {
-    const point = points[index];
-    const label = point.eraLabel?.trim() || 'Timeline';
-    const previous = segments[segments.length - 1];
-
-    if (!previous || previous.label !== label) {
-      segments.push({ label, x: point.x, width: 0 });
-    }
-  }
-
-  return segments.map((segment, index) => {
-    const segmentPoints = points.filter((point) => (point.eraLabel?.trim() || 'Timeline') === segment.label);
-    const firstPoint = segmentPoints[0];
-    const lastPoint = segmentPoints[segmentPoints.length - 1];
-    const previousSegment = index > 0 ? segments[index - 1] : null;
-    const nextSegment = index < segments.length - 1 ? segments[index + 1] : null;
-    const startX = previousSegment ? (previousSegment.x + firstPoint.x) / 2 : paddingX;
-    const endX = nextSegment ? (lastPoint.x + nextSegment.x) / 2 : width - paddingX;
-
-    return {
-      label: segment.label,
-      x: startX,
-      width: Math.max(endX - startX, 0),
-    };
-  });
-}
-
-function getVisibleTrendAxisIndices(count: number) {
-  const indices = new Set<number>();
-  if (count <= 4) {
-    for (let index = 0; index < count; index += 1) {
-      indices.add(index);
-    }
-    return indices;
-  }
-
-  indices.add(0);
-  indices.add(count - 1);
-
-  const interiorTargets = 3;
-  for (let step = 1; step <= interiorTargets; step += 1) {
-    const index = Math.round((step * (count - 1)) / (interiorTargets + 1));
-    indices.add(index);
-  }
-
-  return indices;
-}
-
 function StatsWatchlistCard({ table }: StatsTableCardProps) {
   return (
     <section className="stats-card stats-card--watchlist">
@@ -963,65 +699,4 @@ function getStatMagnitude(value: string): number | null {
 
   const numericMatch = value.match(/-?\d+(?:\.\d+)?/);
   return numericMatch ? Number(numericMatch[0]) : null;
-}
-
-function summarizeTrend(trend: ScopeStoryTrend) {
-  const firstPoint = trend.points[0];
-  const lastPoint = trend.points[trend.points.length - 1];
-  const pointsWithMagnitude = trend.points
-    .map((point, index) => ({
-      ...point,
-      index,
-      magnitude: getStatMagnitude(point.value),
-    }))
-    .filter((point): point is typeof point & { magnitude: number } => point.magnitude !== null);
-
-  const peakPoint =
-    pointsWithMagnitude.reduce<(typeof pointsWithMagnitude)[number] | null>((peak, point) => {
-      if (!peak || point.magnitude > peak.magnitude) {
-        return point;
-      }
-      return peak;
-    }, null) ?? null;
-
-  let rises = 0;
-  let drops = 0;
-  for (let index = 1; index < pointsWithMagnitude.length; index += 1) {
-    const previous = pointsWithMagnitude[index - 1];
-    const current = pointsWithMagnitude[index];
-    if (current.magnitude > previous.magnitude) {
-      rises += 1;
-    } else if (current.magnitude < previous.magnitude) {
-      drops += 1;
-    }
-  }
-
-  let momentum = 'Held flat across the visible checkpoints.';
-  if (rises > 0 && drops === 0) {
-    momentum = 'Climbed without a visible drop.';
-  } else if (drops > 0 && rises === 0) {
-    momentum = 'Slid without a rebound.';
-  } else if (rises > 0 && drops > 0) {
-    momentum = 'Shifted in both directions before landing here.';
-  }
-
-  const startLabel = compactDatasetLabel(firstPoint?.datasetLabel ?? 'Current');
-  const peakLabel = peakPoint ? compactDatasetLabel(peakPoint.datasetLabel) : startLabel;
-  const startValue = firstPoint?.value ?? trend.currentValue;
-  const peakValue = peakPoint?.value ?? trend.currentValue;
-  const lastLabel = compactDatasetLabel(lastPoint?.datasetLabel ?? 'Current');
-  const narrative = `Started at ${startValue} in ${startLabel} and sits at ${trend.currentValue} in ${lastLabel}.`;
-
-  return {
-    startLabel,
-    startValue,
-    peakLabel,
-    peakValue,
-    momentum,
-    narrative,
-  };
-}
-
-function compactDatasetLabel(label: string) {
-  return label.startsWith('Snapshot (') ? label.slice(10, -1) : label;
 }

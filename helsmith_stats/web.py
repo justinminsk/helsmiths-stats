@@ -9,9 +9,9 @@ from collections import Counter
 from datetime import datetime
 from itertools import combinations
 from pathlib import Path
-import re
 
 from .constants import DOCS_DIR, REPORTS_DIR, ROOT, SUMMARIES_DIR
+from .weeks import week_label_identity, week_label_sort_key
 
 SCOPES = ("combined", "singles", "teams")
 MAX_ARCHIVED_SNAPSHOTS = 3
@@ -238,7 +238,9 @@ def _serialize_list_payload(row: dict[str, str], list_index: int) -> dict[str, o
     }
 
 
-def _build_shared_units(list_payload: list[dict[str, object]]) -> list[dict[str, object]]:
+def _build_shared_units(
+    list_payload: list[dict[str, object]],
+) -> list[dict[str, object]]:
     if not list_payload:
         return []
 
@@ -254,9 +256,7 @@ def _build_shared_units(list_payload: list[dict[str, object]]) -> list[dict[str,
 
     minimum_count = 2 if len(list_payload) >= 2 else 1
     shared_rows = [
-        (name, count)
-        for name, count in unit_counts.items()
-        if count >= minimum_count
+        (name, count) for name, count in unit_counts.items() if count >= minimum_count
     ]
     if not shared_rows:
         shared_rows = unit_counts.most_common(SHARED_UNIT_ROWS_DEFAULT)
@@ -291,9 +291,7 @@ def _build_shared_unit_pairs(
         for pair in combinations(unit_names, 2):
             pair_counts[pair] += 1
 
-    shared_pairs = [
-        (pair, count) for pair, count in pair_counts.items() if count >= 2
-    ]
+    shared_pairs = [(pair, count) for pair, count in pair_counts.items() if count >= 2]
     shared_pairs.sort(key=lambda item: (-item[1], item[0]))
 
     return [
@@ -402,54 +400,6 @@ def _format_delta_label(delta: float, kind: str, baseline_label: str) -> str:
     return f"{delta:+.0f} {unit_label} versus {baseline_label}"
 
 
-def _week_label_parts(label: str) -> tuple[int, int, int] | None:
-    match = re.match(
-        r"^([A-Za-z]+)\s+(\d{1,2})(?:\s*[-–]\s*(\d{1,2}))?$",
-        label.strip(),
-    )
-    if not match:
-        return None
-
-    month_token = match.group(1).lower()[:3]
-    month_lookup = {
-        "jan": 1,
-        "feb": 2,
-        "mar": 3,
-        "apr": 4,
-        "may": 5,
-        "jun": 6,
-        "jul": 7,
-        "aug": 8,
-        "sep": 9,
-        "oct": 10,
-        "nov": 11,
-        "dec": 12,
-    }
-    month = month_lookup.get(month_token)
-    if month is None:
-        return None
-
-    start_day = int(match.group(2))
-    end_day = int(match.group(3) or match.group(2))
-    return month, start_day, end_day
-
-
-def _week_label_identity(label: str) -> str:
-    parts = _week_label_parts(label)
-    if parts is None:
-        return label.strip().lower()
-    month, start_day, end_day = parts
-    return f"{month:02d}-{start_day:02d}-{end_day:02d}"
-
-
-def _week_label_sort_key(label: str) -> tuple[int, int, int, str]:
-    parts = _week_label_parts(label)
-    if parts is None:
-        return (99, 99, 99, label.lower())
-    month, start_day, end_day = parts
-    return (month, start_day, end_day, label.lower())
-
-
 def _weekly_era_label(dataset_key: str) -> str:
     return "Post-points era" if dataset_key == "current" else "Pre-points era"
 
@@ -484,7 +434,9 @@ def _build_snapshot_trends(
         points: list[dict[str, str]] = []
         for dataset in reversed(timeline):
             scope_payload = dataset["scope"]
-            scope_payload_dict = scope_payload if isinstance(scope_payload, dict) else {}
+            scope_payload_dict = (
+                scope_payload if isinstance(scope_payload, dict) else {}
+            )
             table = _find_stats_table(scope_payload_dict, table_key)
             value = "0%" if kind == "percent" else "0"
             if table:
@@ -615,14 +567,14 @@ def _build_weekly_trends(
             era_label=_weekly_era_label(str(timeline_scope.get("datasetKey", ""))),
         ):
             week_label = str(group.get("datasetLabel", "")).strip()
-            week_identity = _week_label_identity(week_label)
+            week_identity = week_label_identity(week_label)
             if not week_label or week_identity in seen_week_labels:
                 continue
             seen_week_labels.add(week_identity)
             weekly_groups.append(group)
 
     weekly_groups.sort(
-        key=lambda group: _week_label_sort_key(str(group.get("datasetLabel", "")))
+        key=lambda group: week_label_sort_key(str(group.get("datasetLabel", "")))
     )
     for index, group in enumerate(weekly_groups, start=1):
         group["datasetKey"] = f"week-{index}"

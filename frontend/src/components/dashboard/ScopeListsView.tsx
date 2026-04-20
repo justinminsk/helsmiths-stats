@@ -1,4 +1,10 @@
-import type { ListColumn, ListColumnKey, ListSortKey } from '../../lib/dashboard/lists';
+import {
+  getListWeekOptions,
+  listColumns,
+  type ListColumn,
+  type ListColumnKey,
+  type ListSortKey,
+} from '../../lib/dashboard/lists';
 import type { ScopePayload, SiteList } from '../../models/siteData';
 
 type WinnerOverviewStat = {
@@ -25,6 +31,7 @@ type ScopeListsViewProps = {
     totalColumnCount: number;
     visibleColumns: Record<ListColumnKey, boolean>;
     visibleColumnCount: number;
+    weekFilter: string;
   };
   controlActions: {
     onColumnToggle: (columnKey: ListColumnKey) => void;
@@ -33,6 +40,7 @@ type ScopeListsViewProps = {
     onSearchChange: (value: string) => void;
     onSortChange: (value: ListSortKey) => void;
     onSubfactionFilterChange: (value: string) => void;
+    onWeekFilterChange: (value: string) => void;
   };
   datasetKey: string;
   results: {
@@ -65,6 +73,7 @@ export function ScopeListsView({
     totalColumnCount,
     visibleColumns,
     visibleColumnCount,
+    weekFilter,
   } = controls;
   const {
     activeColumns,
@@ -81,11 +90,12 @@ export function ScopeListsView({
     onSearchChange,
     onSortChange,
     onSubfactionFilterChange,
+    onWeekFilterChange,
   } = controlActions;
   const hasResults = totalMatchingLists > 0;
+  const weekOptions = getListWeekOptions(scope.lists);
   const winnerOverviewStats = buildWinnerOverviewStats(visibleLists);
   const resultTierCounts = buildResultTierCounts(visibleLists);
-  const winnerCards = buildWinnerGlanceCards(visibleLists);
   const hasTierComparison = resultTierCounts.length > 1;
 
   return (
@@ -101,11 +111,13 @@ export function ScopeListsView({
           <h4 className="view-title">Compare individual lists</h4>
           <p className="view-description">Filter the current scope, inspect composition, and keep the markdown list report close by.</p>
         </div>
-        <p className="view-link-row">
-          <a className="scope-link" href={scope.reportLinks.lists}>
-            Open markdown report
-          </a>
-        </p>
+        {scope.reportLinks.lists ? (
+          <p className="view-link-row">
+            <a className="scope-link" href={scope.reportLinks.lists}>
+              Open markdown report
+            </a>
+          </p>
+        ) : null}
       </header>
 
       <section className="lists-tools-panel">
@@ -131,6 +143,18 @@ export function ScopeListsView({
               type="search"
               value={search}
             />
+          </label>
+
+          <label className="field">
+            <span>Week</span>
+            <select className="field-control" onChange={(event) => onWeekFilterChange(event.target.value)} value={weekFilter}>
+              <option value="">All weeks</option>
+              {weekOptions.map((week) => (
+                <option key={week} value={week}>
+                  {week}
+                </option>
+              ))}
+            </select>
           </label>
 
           <label className="field">
@@ -165,6 +189,8 @@ export function ScopeListsView({
             <span>Sort</span>
             <select className="field-control" onChange={(event) => onSortChange(event.target.value as ListSortKey)} value={sortKey}>
               <option value="default">Original order</option>
+              {weekOptions.length > 0 ? <option value="week-desc">Week (latest first)</option> : null}
+              {weekOptions.length > 0 ? <option value="week-asc">Week (earliest first)</option> : null}
               <option value="regiments-desc">Regiments (high to low)</option>
               <option value="regiments-asc">Regiments (low to high)</option>
               <option value="models-desc">Models (high to low)</option>
@@ -181,7 +207,7 @@ export function ScopeListsView({
               {Object.entries(visibleColumns).map(([columnKey, visible]) => (
                 <label className="column-toggle" key={columnKey}>
                   <input checked={visible} onChange={() => onColumnToggle(columnKey as ListColumnKey)} type="checkbox" />
-                  <span>{activeColumns.find((column) => column.key === columnKey)?.label ?? columnKey}</span>
+                  <span>{listColumns.find((column) => column.key === columnKey)?.label ?? columnKey}</span>
                 </label>
               ))}
             </div>
@@ -218,90 +244,45 @@ export function ScopeListsView({
                 <h5 className="subsection-title">Scan the current winner pool</h5>
               </div>
               <p className="subsection-meta">
-                All lists here are winners. Use record tiers as a supporting lens, not the main story.
+                All lists here are winners. Lead with recurring units, subfactions, and lores, then use record tiers as a supporting lens.
               </p>
             </header>
 
             <div className="winners-overview-layout">
-              <div className="winner-overview-stat-grid">
+              <div className="stats-highlight-grid winner-overview-stat-grid">
                 {winnerOverviewStats.map((stat) => (
-                  <article className="winner-overview-stat" key={`${stat.eyebrow}-${stat.title}`}>
-                    <p className="winner-overview-stat__eyebrow">{stat.eyebrow}</p>
-                    <h5 className="winner-overview-stat__value">{stat.value}</h5>
-                    <p className="winner-overview-stat__title">{stat.title}</p>
-                    <p className="winner-overview-stat__detail">{stat.detail}</p>
+                  <article className="stats-highlight-card winner-overview-stat" key={`${stat.eyebrow}-${stat.title}`}>
+                    <p className="stats-highlight-card__eyebrow winner-overview-stat__eyebrow">{stat.eyebrow}</p>
+                    <h5 className="stats-highlight-card__value winner-overview-stat__value">{stat.value}</h5>
+                    <p className="stats-highlight-card__title winner-overview-stat__title">{stat.title}</p>
+                    <p className="stats-highlight-card__detail winner-overview-stat__detail">{stat.detail}</p>
                   </article>
                 ))}
               </div>
+            </div>
 
-              <section className="winner-result-tier-panel" aria-label="Winning record tiers">
-                <header className="winner-result-tier-panel__header">
-                  <p className="winner-result-tier-panel__eyebrow">Record tiers</p>
-                  <h5 className="winner-result-tier-panel__title">How the current winner pool is split</h5>
-                </header>
-
-                <div className="winner-result-tier-strip">
-                  {resultTierCounts.map((tier) => (
-                    <article
-                      className={`winner-result-tier-pill winner-result-tier-pill--${tier.tone}`}
-                      key={`${tier.result}-${tier.count}`}
-                    >
-                      <p className="winner-result-tier-pill__result">{tier.result}</p>
-                      <p className="winner-result-tier-pill__count">{tier.count} list{tier.count === 1 ? '' : 's'}</p>
-                    </article>
-                  ))}
+            <section className="winner-result-tier-panel" aria-label="Winning record tiers">
+              <header className="subsection-header subsection-header--compact winner-result-tier-panel__header">
+                <div>
+                  <p className="subsection-kicker winner-result-tier-panel__eyebrow">Record tiers</p>
+                  <h5 className="subsection-title winner-result-tier-panel__title">Supporting result split</h5>
                 </div>
-
-                <p className="winner-result-tier-panel__note">
+                <p className="subsection-meta winner-result-tier-panel__note">
                   {hasTierComparison
                     ? 'Keep 5-0 vs 4-1 as a small comparison, not the main story.'
                     : 'The current filtered pool is concentrated in one record tier.'}
                 </p>
-              </section>
-            </div>
+              </header>
 
-            <div className="winner-glance-grid">
-              {winnerCards.map(({ definingUnits, list }) => (
-                <article className="winner-glance-card" key={`winner-glance-${scope.key}-${list.index}`}>
-                  <header className="winner-glance-card__header">
-                    <div className="winner-glance-card__copy">
-                      <h6 className="winner-glance-card__title">{list.name}</h6>
-                      <p className="winner-glance-card__meta">{list.source}</p>
-                    </div>
-                    <span className={`winner-glance-card__result winner-glance-card__result--${getResultTone(list.result)}`}>
-                      {list.result}
-                    </span>
-                  </header>
-
-                  <p className="winner-glance-card__identity">
-                    {list.subfaction} · {list.manifestationLore}
-                  </p>
-
-                  <dl className="winner-glance-card__metrics">
-                    <div>
-                      <dt>Regiments</dt>
-                      <dd>{list.regiments}</dd>
-                    </div>
-                    <div>
-                      <dt>Entries</dt>
-                      <dd>{list.unitEntries}</dd>
-                    </div>
-                    <div>
-                      <dt>Models</dt>
-                      <dd>{list.models}</dd>
-                    </div>
-                  </dl>
-
-                  <div className="winner-glance-card__units" aria-label={`Defining units for ${list.name}`}>
-                    {definingUnits.map((unit) => (
-                      <span className="winner-unit-chip" key={`${list.index}-${unit}`}>
-                        {unit}
-                      </span>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
+              <div className="winner-result-tier-strip">
+                {resultTierCounts.map((tier) => (
+                  <article className={`winner-result-tier-pill winner-result-tier-pill--${tier.tone}`} key={`${tier.result}-${tier.count}`}>
+                    <p className="winner-result-tier-pill__result">{tier.result}</p>
+                    <p className="winner-result-tier-pill__count">{tier.count} list{tier.count === 1 ? '' : 's'}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
           </section>
 
           <section className="data-surface lists-table-section">
@@ -350,7 +331,7 @@ export function ScopeListsView({
           <section className="data-surface lists-card-section">
             <header className="subsection-header">
               <div>
-                <p className="subsection-kicker">Card detail</p>
+                <p className="subsection-kicker">List detail</p>
                 <h5 className="subsection-title">Inspect each list composition</h5>
               </div>
               {canLoadMore ? (
@@ -362,106 +343,108 @@ export function ScopeListsView({
               )}
             </header>
 
-            <div className="list-card-grid">
+            <ol className="list-detail-list">
               {visibleLists.map((list) => (
-                <article className="list-card" key={`card-${scope.key}-${list.index}`}>
-                  <header className="list-card__header">
-                    <h4 className="list-card__title">{list.name}</h4>
-                    <span className="list-card__tag">
-                      {list.source} · {list.result}
-                    </span>
-                  </header>
+                <li className="list-detail-list__item" key={`card-${scope.key}-${list.index}`}>
+                  <article className="list-card list-card--stacked">
+                    <header className="list-card__header">
+                      <h4 className="list-card__title">{list.name}</h4>
+                      <span className="list-card__tag">
+                        {list.source} · {list.result}
+                      </span>
+                    </header>
 
-                  <dl className="list-card__meta-grid">
-                    <div className="list-card__meta-item">
-                      <dt className="list-card__meta-label">Subfaction</dt>
-                      <dd className="list-card__meta-value">{list.subfaction}</dd>
-                    </div>
-                    <div className="list-card__meta-item">
-                      <dt className="list-card__meta-label">Lore</dt>
-                      <dd className="list-card__meta-value">{list.manifestationLore}</dd>
-                    </div>
-                    <div className="list-card__meta-item">
-                      <dt className="list-card__meta-label">Regiments</dt>
-                      <dd className="list-card__meta-value">{list.regiments}</dd>
-                    </div>
-                    <div className="list-card__meta-item">
-                      <dt className="list-card__meta-label">Entries</dt>
-                      <dd className="list-card__meta-value">{list.unitEntries}</dd>
-                    </div>
-                    <div className="list-card__meta-item">
-                      <dt className="list-card__meta-label">Models</dt>
-                      <dd className="list-card__meta-value">{list.models}</dd>
-                    </div>
-                  </dl>
+                    <dl className="list-card__meta-grid">
+                      <div className="list-card__meta-item">
+                        <dt className="list-card__meta-label">Subfaction</dt>
+                        <dd className="list-card__meta-value">{list.subfaction}</dd>
+                      </div>
+                      <div className="list-card__meta-item">
+                        <dt className="list-card__meta-label">Lore</dt>
+                        <dd className="list-card__meta-value">{list.manifestationLore}</dd>
+                      </div>
+                      <div className="list-card__meta-item">
+                        <dt className="list-card__meta-label">Regiments</dt>
+                        <dd className="list-card__meta-value">{list.regiments}</dd>
+                      </div>
+                      <div className="list-card__meta-item">
+                        <dt className="list-card__meta-label">Entries</dt>
+                        <dd className="list-card__meta-value">{list.unitEntries}</dd>
+                      </div>
+                      <div className="list-card__meta-item">
+                        <dt className="list-card__meta-label">Models</dt>
+                        <dd className="list-card__meta-value">{list.models}</dd>
+                      </div>
+                    </dl>
 
-                  <div className="table-scroll-wrap table-scroll-wrap--framed">
-                    <table className="unit-table">
-                      <caption className="sr-only">Units for {list.name}</caption>
-                      <thead>
-                        <tr>
-                          <th scope="col">Regiment</th>
-                          <th scope="col">Unit</th>
-                          <th className="numeric-col" scope="col">
-                            Pts
-                          </th>
-                          <th className="numeric-col" scope="col">
-                            Models
-                          </th>
-                          <th scope="col">Reinforced</th>
-                          <th scope="col">Notes</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {list.units.map((unit, unitIndex) => (
-                          <tr key={`${list.index}-${unit.name}-${unitIndex}`}>
-                            <td data-label="Regiment">{unit.regiment || '—'}</td>
-                            <td data-label="Unit">{unit.name}</td>
-                            <td className="numeric-col" data-label="Pts">{unit.points}</td>
-                            <td className="numeric-col" data-label="Models">{unit.models}</td>
-                            <td data-label="Reinforced">{unit.reinforced ? 'Yes' : 'No'}</td>
-                            <td data-label="Notes">{unit.notes.length > 0 ? unit.notes.join(' · ') : '—'}</td>
+                    <div className="table-scroll-wrap table-scroll-wrap--framed">
+                      <table className="unit-table">
+                        <caption className="sr-only">Units for {list.name}</caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">Regiment</th>
+                            <th scope="col">Unit</th>
+                            <th className="numeric-col" scope="col">
+                              Pts
+                            </th>
+                            <th className="numeric-col" scope="col">
+                              Models
+                            </th>
+                            <th scope="col">Reinforced</th>
+                            <th scope="col">Notes</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody>
+                          {list.units.map((unit, unitIndex) => (
+                            <tr key={`${list.index}-${unit.name}-${unitIndex}`}>
+                              <td data-label="Regiment">{unit.regiment || '—'}</td>
+                              <td data-label="Unit">{unit.name}</td>
+                              <td className="numeric-col" data-label="Pts">{unit.points}</td>
+                              <td className="numeric-col" data-label="Models">{unit.models}</td>
+                              <td data-label="Reinforced">{unit.reinforced ? 'Yes' : 'No'}</td>
+                              <td data-label="Notes">{unit.notes.length > 0 ? unit.notes.join(' · ') : '—'}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
 
-                  <div className="unit-mobile-list" aria-label={`Units for ${list.name}`}>
-                    {list.units.map((unit, unitIndex) => (
-                      <article className="unit-mobile-card" key={`mobile-${list.index}-${unit.name}-${unitIndex}`}>
-                        <header className="unit-mobile-card__header">
-                          <p className="unit-mobile-card__regiment">{unit.regiment || 'Unassigned regiment'}</p>
-                          <h5 className="unit-mobile-card__title">{unit.name}</h5>
-                        </header>
+                    <div className="unit-mobile-list" aria-label={`Units for ${list.name}`}>
+                      {list.units.map((unit, unitIndex) => (
+                        <article className="unit-mobile-card" key={`mobile-${list.index}-${unit.name}-${unitIndex}`}>
+                          <header className="unit-mobile-card__header">
+                            <p className="unit-mobile-card__regiment">{unit.regiment || 'Unassigned regiment'}</p>
+                            <h5 className="unit-mobile-card__title">{unit.name}</h5>
+                          </header>
 
-                        <dl className="unit-mobile-card__meta-grid">
-                          <div className="unit-mobile-card__meta-item">
-                            <dt className="unit-mobile-card__label">Pts</dt>
-                            <dd className="unit-mobile-card__value">{unit.points}</dd>
-                          </div>
-                          <div className="unit-mobile-card__meta-item">
-                            <dt className="unit-mobile-card__label">Models</dt>
-                            <dd className="unit-mobile-card__value">{unit.models}</dd>
-                          </div>
-                          <div className="unit-mobile-card__meta-item">
-                            <dt className="unit-mobile-card__label">Reinforced</dt>
-                            <dd className="unit-mobile-card__value">{unit.reinforced ? 'Yes' : 'No'}</dd>
-                          </div>
-                        </dl>
+                          <dl className="unit-mobile-card__meta-grid">
+                            <div className="unit-mobile-card__meta-item">
+                              <dt className="unit-mobile-card__label">Pts</dt>
+                              <dd className="unit-mobile-card__value">{unit.points}</dd>
+                            </div>
+                            <div className="unit-mobile-card__meta-item">
+                              <dt className="unit-mobile-card__label">Models</dt>
+                              <dd className="unit-mobile-card__value">{unit.models}</dd>
+                            </div>
+                            <div className="unit-mobile-card__meta-item">
+                              <dt className="unit-mobile-card__label">Reinforced</dt>
+                              <dd className="unit-mobile-card__value">{unit.reinforced ? 'Yes' : 'No'}</dd>
+                            </div>
+                          </dl>
 
-                        <p className="unit-mobile-card__notes">
-                          <span className="unit-mobile-card__label">Notes</span>
-                          <span className="unit-mobile-card__notes-value">
-                            {unit.notes.length > 0 ? unit.notes.join(' · ') : '—'}
-                          </span>
-                        </p>
-                      </article>
-                    ))}
-                  </div>
-                </article>
+                          <p className="unit-mobile-card__notes">
+                            <span className="unit-mobile-card__label">Notes</span>
+                            <span className="unit-mobile-card__notes-value">
+                              {unit.notes.length > 0 ? unit.notes.join(' · ') : '—'}
+                            </span>
+                          </p>
+                        </article>
+                      ))}
+                    </div>
+                  </article>
+                </li>
               ))}
-            </div>
+            </ol>
           </section>
         </>
       ) : (
@@ -487,11 +470,11 @@ function buildWinnerOverviewStats(lists: SiteList[]): WinnerOverviewStat[] {
     return [];
   }
 
-  const recordTiers = buildResultTierCounts(lists);
-  const strongestTier = recordTiers[0];
+  const topUnit = getMostCommonLabel(
+    lists.flatMap((list) => Array.from(new Set(list.units.map((unit) => unit.name))))
+  );
   const topSubfaction = getMostCommonLabel(lists.map((list) => list.subfaction));
   const topLore = getMostCommonLabel(lists.map((list) => list.manifestationLore));
-  const averageEntries = Math.round(lists.reduce((total, list) => total + list.unitEntries, 0) / lists.length);
 
   return [
     {
@@ -501,10 +484,10 @@ function buildWinnerOverviewStats(lists: SiteList[]): WinnerOverviewStat[] {
       detail: 'Already winner-only data',
     },
     {
-      eyebrow: 'Strongest finish',
-      value: strongestTier?.result ?? '—',
-      title: strongestTier ? `${strongestTier.count} list${strongestTier.count === 1 ? '' : 's'}` : 'No result data',
-      detail: 'Best record in the current pool',
+      eyebrow: 'Top unit presence',
+      value: topUnit?.count ? formatWinnerShare(topUnit.count, lists.length) : '—',
+      title: topUnit?.label ?? 'No unit data',
+      detail: topUnit ? `${topUnit.count} lists` : 'Filtered pool composition',
     },
     {
       eyebrow: 'Top subfaction',
@@ -513,10 +496,10 @@ function buildWinnerOverviewStats(lists: SiteList[]): WinnerOverviewStat[] {
       detail: 'Most common winning shell',
     },
     {
-      eyebrow: 'Avg unit entries',
-      value: `${averageEntries}`,
+      eyebrow: 'Most common lore',
+      value: topLore?.count ? `${topLore.count}` : '—',
       title: topLore?.label ?? 'No lore data',
-      detail: topLore ? 'Most common winning lore' : 'Filtered pool composition',
+      detail: topLore ? 'Lists using this lore' : 'Filtered pool composition',
     },
   ];
 }
@@ -548,22 +531,6 @@ function buildResultTierCounts(lists: SiteList[]): WinnerResultTierCount[] {
     }));
 }
 
-function buildWinnerGlanceCards(lists: SiteList[]) {
-  return [...lists]
-    .sort((left, right) => {
-      const resultStrength = getResultRank(right.result) - getResultRank(left.result);
-      if (resultStrength !== 0) {
-        return resultStrength;
-      }
-
-      return left.name.localeCompare(right.name);
-    })
-    .map((list) => ({
-      definingUnits: getDefiningUnits(list),
-      list,
-    }));
-}
-
 function getMostCommonLabel(values: string[]) {
   const counts = new Map<string, number>();
 
@@ -582,8 +549,12 @@ function getMostCommonLabel(values: string[]) {
     .map(([label, count]) => ({ count, label }))[0] ?? null;
 }
 
-function getDefiningUnits(list: SiteList) {
-  return Array.from(new Set(list.units.map((unit) => unit.name))).slice(0, 3);
+function formatWinnerShare(count: number, total: number) {
+  if (total <= 0) {
+    return '0.0%';
+  }
+
+  return `${((count / total) * 100).toFixed(1)}%`;
 }
 
 function getResultRank(result: string) {
@@ -596,8 +567,4 @@ function getResultRank(result: string) {
   const wins = Number(match[1]);
   const losses = Number(match[2]);
   return wins * 100 - losses;
-}
-
-function getResultTone(result: string) {
-  return result === '5-0' ? 'strong' : 'supporting';
 }

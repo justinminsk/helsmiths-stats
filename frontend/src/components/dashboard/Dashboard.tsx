@@ -1,6 +1,7 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 import type { DatasetPayload, ScopePayload, SiteDataPayload } from '../../models/siteData';
 import { buildHash, getInitialRoute, type DashboardRoute } from '../../lib/dashboard/routing';
+import { aggregateDatasetKey, buildDashboardDatasets } from '../../lib/dashboard/datasets';
 import {
   buildActiveControlTags,
   hasCustomListControls,
@@ -17,34 +18,49 @@ import {
 import { applyThemeTokens, getInitialTheme, storeTheme, type ThemeMode } from '../../lib/theme/theme';
 import { ScopeStatsView } from './ScopeStatsView';
 import { ScopeListsView } from './ScopeListsView';
+import { ScopeTrendsView } from './ScopeTrendsView';
 
 type DashboardProps = {
   payload: SiteDataPayload;
 };
 
+const dashboardViews: Array<{ key: DashboardRoute['viewKey']; label: string }> = [
+  { key: 'stats', label: 'Stats' },
+  { key: 'trends', label: 'Trends' },
+  { key: 'lists', label: 'Lists' },
+];
+
 export function Dashboard({ payload }: DashboardProps) {
-  const [route, setRoute] = useState<DashboardRoute>(() => getInitialRoute(payload));
+  const dashboardDatasets = useMemo(() => buildDashboardDatasets(payload), [payload]);
+  const routingPayload = useMemo(
+    () => ({
+      ...payload,
+      datasets: dashboardDatasets,
+    }),
+    [dashboardDatasets, payload]
+  );
+  const [route, setRoute] = useState<DashboardRoute>(() => getInitialRoute(routingPayload));
   const [theme, setTheme] = useState<ThemeMode>(() => getInitialTheme(payload.uiConfig.themeStorageKey as string));
   const [search, setSearch] = useState('');
+  const [weekFilter, setWeekFilter] = useState('');
   const [resultFilter, setResultFilter] = useState('');
   const [subfactionFilter, setSubfactionFilter] = useState('');
   const [sortKey, setSortKey] = useState<ListSortKey>('default');
   const [visibleCount, setVisibleCount] = useState(Number(payload.uiConfig.listRowsBatchSize));
   const [visibleColumns, setVisibleColumns] = useState<Record<ListColumnKey, boolean>>(defaultVisibleColumns);
-  const [copied, setCopied] = useState(false);
   const [actionFeedback, setActionFeedback] = useState<string>('');
   const datasetNavId = useId();
   const scopeNavId = useId();
   const viewNavId = useId();
-  const copiedTimerRef = useRef<number | null>(null);
 
   const dataset =
-    payload.datasets.find((candidate) => candidate.key === route.datasetKey) ?? payload.datasets[0];
+    dashboardDatasets.find((candidate) => candidate.key === route.datasetKey) ?? dashboardDatasets[0];
   const scope =
     dataset.scopes.find((candidate) => candidate.key === route.scopeKey) ?? dataset.scopes[0];
 
   const filteredLists = filterLists(scope.lists, {
     search,
+    week: weekFilter,
     result: resultFilter,
     subfaction: subfactionFilter,
   }).sort((left, right) => compareLists(left, right, sortKey));
@@ -52,8 +68,13 @@ export function Dashboard({ payload }: DashboardProps) {
   const visibleLists = filteredLists.slice(0, visibleCount);
   const canLoadMore = filteredLists.length > visibleLists.length;
   const activeColumns = listColumns.filter((column) => visibleColumns[column.key]);
-  const contextLabel = `${dataset.label} > ${scope.label} > ${route.viewKey === 'lists' ? 'Lists' : 'Stats'}`;
-  const datasetTone = dataset.key === 'current' ? 'Current dataset' : 'Archive snapshot';
+  const activeViewLabel = dashboardViews.find((view) => view.key === route.viewKey)?.label ?? 'Stats';
+  const contextLabel = `${dataset.label} > ${scope.label} > ${activeViewLabel}`;
+  const datasetTone =
+    dataset.key === aggregateDatasetKey ? 'All datasets' : dataset.key === 'current' ? 'Current dataset' : 'Archive snapshot';
+  const archiveDatasetCount = dashboardDatasets.filter(
+    (candidate) => candidate.key !== aggregateDatasetKey && candidate.key !== 'current'
+  ).length;
   const listBatchSize = Number(payload.uiConfig.listRowsBatchSize);
   const listControlSnapshot = {
     activeColumnCount: activeColumns.length,
@@ -63,6 +84,7 @@ export function Dashboard({ payload }: DashboardProps) {
     subfactionFilter,
     totalColumnCount: listColumns.length,
     visibleColumns,
+    weekFilter,
   };
   const hasCustomListControlState = hasCustomListControls(listControlSnapshot);
   const activeControlTags = buildActiveControlTags(listControlSnapshot);
@@ -75,18 +97,19 @@ export function Dashboard({ payload }: DashboardProps) {
 
   useEffect(() => {
     const onHashChange = () => {
-      setRoute(getInitialRoute(payload));
+      setRoute(getInitialRoute(routingPayload));
     };
 
     window.addEventListener('hashchange', onHashChange);
     return () => {
       window.removeEventListener('hashchange', onHashChange);
     };
-  }, [payload]);
+  }, [routingPayload]);
 
   useEffect(() => {
     setVisibleCount(listBatchSize);
     setSearch('');
+    setWeekFilter('');
     setResultFilter('');
     setSubfactionFilter('');
     setSortKey('default');
@@ -94,24 +117,17 @@ export function Dashboard({ payload }: DashboardProps) {
   }, [listBatchSize, payload.uiConfig, route.datasetKey, route.scopeKey]);
 
   useEffect(() => {
-    const nextHash = buildHash(payload.uiConfig.hashPrefix as string, route);
+    const nextHash = buildHash(routingPayload.uiConfig.hashPrefix as string, route);
     if (window.location.hash !== nextHash) {
       window.location.hash = nextHash;
     }
-  }, [payload.uiConfig, route]);
-
-  useEffect(() => {
-    return () => {
-      if (copiedTimerRef.current !== null) {
-        window.clearTimeout(copiedTimerRef.current);
-      }
-    };
-  }, []);
+  }, [route, routingPayload.uiConfig]);
 
   const numericColumnIndexes = getNumericColumnIndexes(activeColumns);
   const datasetTabId = `${datasetNavId}-tab-${dataset.key}`;
   const scopeTabId = `${scopeNavId}-tab-${scope.key}`;
   const statsViewTabId = `${viewNavId}-tab-stats`;
+  const trendsViewTabId = `${viewNavId}-tab-trends`;
   const listsViewTabId = `${viewNavId}-tab-lists`;
 
   function updateRoute(nextRoute: DashboardRoute) {
@@ -156,28 +172,10 @@ export function Dashboard({ payload }: DashboardProps) {
     onSelect(nextItem);
   }
 
-  async function handleCopyLink() {
-    const url = `${window.location.origin}${window.location.pathname}${buildHash(payload.uiConfig.hashPrefix as string, route)}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      setActionFeedback('Shareable view link copied.');
-      if (copiedTimerRef.current !== null) {
-        window.clearTimeout(copiedTimerRef.current);
-      }
-      copiedTimerRef.current = window.setTimeout(() => {
-        setCopied(false);
-        setActionFeedback('');
-      }, 1200);
-    } catch {
-      window.prompt('Copy this link:', url);
-    }
-  }
-
   function setDataset(nextDataset: DatasetPayload) {
     updateRoute({
       datasetKey: nextDataset.key,
-      scopeKey: nextDataset.scopes[0]?.key ?? payload.scopeOrder[0],
+      scopeKey: nextDataset.scopes[0]?.key ?? routingPayload.scopeOrder[0],
       viewKey: route.viewKey,
     });
   }
@@ -224,6 +222,11 @@ export function Dashboard({ payload }: DashboardProps) {
     setVisibleCount(listBatchSize);
   }
 
+  function handleWeekFilterChange(value: string) {
+    setWeekFilter(value);
+    setVisibleCount(listBatchSize);
+  }
+
   function handleSubfactionFilterChange(value: string) {
     setSubfactionFilter(value);
     setVisibleCount(listBatchSize);
@@ -236,6 +239,7 @@ export function Dashboard({ payload }: DashboardProps) {
 
   function resetListControls() {
     setSearch('');
+    setWeekFilter('');
     setResultFilter('');
     setSubfactionFilter('');
     setSortKey('default');
@@ -250,8 +254,16 @@ export function Dashboard({ payload }: DashboardProps) {
         <section className="control-group control-group--primary">
           <p className="control-group__label">Datasets</p>
           <nav aria-label="Dataset navigation" className="tab-row tab-row--primary" role="tablist" id={datasetNavId}>
-            {payload.datasets.map((candidate) => {
+            {dashboardDatasets.map((candidate) => {
               const isActive = candidate.key === dataset.key;
+              const datasetTabLabel =
+                candidate.key === aggregateDatasetKey
+                  ? 'All'
+                  : candidate.key === 'current'
+                    ? 'Current'
+                    : archiveDatasetCount === 1
+                      ? 'Snapshot'
+                      : candidate.label;
               return (
                 <button
                   key={candidate.key}
@@ -262,8 +274,8 @@ export function Dashboard({ payload }: DashboardProps) {
                   onKeyDown={(event) =>
                     handleTabKeyDown(
                       event,
-                      payload.datasets,
-                      payload.datasets.findIndex((item) => item.key === candidate.key),
+                      dashboardDatasets,
+                      dashboardDatasets.findIndex((item) => item.key === candidate.key),
                       (item) => `${datasetNavId}-tab-${item.key}`,
                       setDataset
                     )
@@ -273,7 +285,7 @@ export function Dashboard({ payload }: DashboardProps) {
                   tabIndex={isActive ? 0 : -1}
                   type="button"
                 >
-                  {candidate.label}
+                  {datasetTabLabel}
                 </button>
               );
             })}
@@ -283,9 +295,6 @@ export function Dashboard({ payload }: DashboardProps) {
         <section className="control-group control-group--actions">
           <p className="control-group__label">Actions</p>
           <div className="dashboard-actions">
-            <button className={`action-pill${copied ? ' is-copied' : ''}`} onClick={handleCopyLink} type="button">
-              {copied ? 'Copied view link' : 'Copy view link'}
-            </button>
             <button
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
               aria-pressed={theme === 'dark'}
@@ -365,7 +374,7 @@ export function Dashboard({ payload }: DashboardProps) {
           <section className="panel-control-group panel-control-group--view">
             <p className="panel-control-group__label">View</p>
             <nav aria-label={`${scope.label} view tabs`} className="tab-row tab-row--tertiary" role="tablist" id={viewNavId}>
-              {(['stats', 'lists'] as const).map((viewKey) => {
+              {dashboardViews.map(({ key: viewKey, label }) => {
                 const isActive = route.viewKey === viewKey;
                 const tabId = `${viewNavId}-tab-${viewKey}`;
                 return (
@@ -378,10 +387,10 @@ export function Dashboard({ payload }: DashboardProps) {
                     onKeyDown={(event) =>
                       handleTabKeyDown(
                         event,
-                        ['stats', 'lists'] as const,
-                        (['stats', 'lists'] as const).findIndex((item) => item === viewKey),
-                        (item) => `${viewNavId}-tab-${item}`,
-                        setView
+                        dashboardViews,
+                        dashboardViews.findIndex((item) => item.key === viewKey),
+                        (item) => `${viewNavId}-tab-${item.key}`,
+                        (item) => setView(item.key)
                       )
                     }
                     onClick={() => setView(viewKey)}
@@ -389,7 +398,7 @@ export function Dashboard({ payload }: DashboardProps) {
                     tabIndex={isActive ? 0 : -1}
                     type="button"
                   >
-                    {viewKey === 'stats' ? 'Stats' : 'Lists'}
+                    {label}
                   </button>
                 );
               })}
@@ -398,6 +407,8 @@ export function Dashboard({ payload }: DashboardProps) {
 
           {route.viewKey === 'stats' ? (
             <ScopeStatsView datasetKey={dataset.key} scope={scope} tabId={statsViewTabId} />
+          ) : route.viewKey === 'trends' ? (
+            <ScopeTrendsView datasetKey={dataset.key} datasets={payload.datasets} scope={scope} tabId={trendsViewTabId} />
           ) : (
             <ScopeListsView
               datasetKey={dataset.key}
@@ -411,6 +422,7 @@ export function Dashboard({ payload }: DashboardProps) {
                 totalColumnCount: listColumns.length,
                 visibleColumns,
                 visibleColumnCount: activeColumns.length,
+                weekFilter,
               }}
               controlActions={{
                 onColumnToggle: toggleColumn,
@@ -419,6 +431,7 @@ export function Dashboard({ payload }: DashboardProps) {
                 onSearchChange: handleSearchChange,
                 onSortChange: handleSortChange,
                 onSubfactionFilterChange: handleSubfactionFilterChange,
+                onWeekFilterChange: handleWeekFilterChange,
               }}
               results={{
                 activeColumns,

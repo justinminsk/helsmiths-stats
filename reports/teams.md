@@ -19,8 +19,8 @@
 ## Top units by list presence
 - Infernal Cohort with Hashutite Spears: 6/6 lists (100.0%)
 - Urak Taar, the First Daemonsmith: 6/6 lists (100.0%)
-- Ashen Elder: 5/6 lists (83.3%)
 - Deathshrieker Rocket Battery: 5/6 lists (83.3%)
+- Ashen Elder: 5/6 lists (83.3%)
 - Infernal Cohort with Hashutite Blades: 4/6 lists (66.7%)
 - Tormentor Bombard: 4/6 lists (66.7%)
 - Bull Centaurs: 4/6 lists (66.7%)
@@ -47,11 +47,10 @@
 - War Despot (unit size 1)
 
 ## Subfaction counts
+- Taar's Grand Forgehost: 2
 - The Bullfather's Horns: 2
 - Daemonsmith Cabal: 1
-- Taar's Grand Forgehost: 1
 - Castigation Battery: 1
-- Unknown: 1
 
 ## Manifestation lore counts
 - Aetherwrought Machineries: 3

@@ -311,7 +311,10 @@ def test_build_site_payload_contains_dataset_scope_and_list_details(
     assert combined_scope["story"]["weeklyTrends"][0]["metric"] == "Unit presence"
     assert combined_scope["story"]["weeklyTrends"][0]["label"] == "Bull Centaurs"
     assert combined_scope["story"]["weeklyTrends"][0]["currentValue"] == "100.0%"
-    assert [point["datasetLabel"] for point in combined_scope["story"]["weeklyTrends"][0]["points"]] == [
+    assert [
+        point["datasetLabel"]
+        for point in combined_scope["story"]["weeklyTrends"][0]["points"]
+    ] == [
         "April 6-12",
         "April 13-19",
     ]
@@ -319,8 +322,14 @@ def test_build_site_payload_contains_dataset_scope_and_list_details(
     assert combined_scope["story"]["snapshotTrends"][0]["label"] == "Bull Centaurs"
     assert combined_scope["story"]["snapshotTrends"][0]["currentValue"] == "100.0%"
     assert combined_scope["story"]["snapshotTrends"][0]["direction"] == "up"
-    assert combined_scope["story"]["snapshotTrends"][0]["deltaLabel"] == "+50.0 pts versus Snapshot (2026-04-03-pre-points)"
-    assert [point["value"] for point in combined_scope["story"]["snapshotTrends"][0]["points"]] == [
+    assert (
+        combined_scope["story"]["snapshotTrends"][0]["deltaLabel"]
+        == "+50.0 pts versus Snapshot (2026-04-03-pre-points)"
+    )
+    assert [
+        point["value"]
+        for point in combined_scope["story"]["snapshotTrends"][0]["points"]
+    ] == [
         "50.0%",
         "50.0%",
         "100.0%",

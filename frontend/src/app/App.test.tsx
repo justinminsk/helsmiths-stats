@@ -17,6 +17,7 @@ describe('Dashboard', () => {
     expect(screen.getByRole('tabpanel', { name: 'Current' })).toBeInTheDocument();
     expect(screen.getByRole('tabpanel', { name: 'Combined' })).toBeInTheDocument();
     expect(screen.getByRole('tabpanel', { name: 'Stats' })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: 'Trends' })).toBeInTheDocument();
     expect(screen.getByLabelText('Lists parsed: 12')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Open markdown report' })).toHaveAttribute(
       'href',
@@ -43,50 +44,97 @@ describe('Dashboard', () => {
   it('switches into lists view and filters lists by text', () => {
     render(<Dashboard payload={sampleSiteData} />);
 
-    fireEvent.click(screen.getAllByRole('tab', { name: 'Lists' })[0]);
-    expect(screen.getByPlaceholderText('Search source, name, or unit')).toBeInTheDocument();
+    fireEvent.click(screen.getAllByRole('tab', { name: 'Lists' }).at(-1)!);
+    const listsPanel = screen.getAllByRole('tabpanel', { name: 'Lists' }).at(-1)!;
 
-    fireEvent.change(screen.getByPlaceholderText('Search source, name, or unit'), {
+    expect(within(listsPanel).getByPlaceholderText('Search source, name, or unit')).toBeInTheDocument();
+
+    fireEvent.change(within(listsPanel).getByPlaceholderText('Search source, name, or unit'), {
       target: { value: 'Bull' },
     });
 
-    expect(screen.getAllByText('Sample List')).toHaveLength(3);
+    expect(within(listsPanel).getAllByText('Sample List')).toHaveLength(2);
     expect(window.location.hash).toBe('#tab=current|combined|lists');
+  });
+
+  it('filters and sorts lists by week in lists view', () => {
+    render(<Dashboard payload={sampleSiteData} />);
+
+    fireEvent.click(screen.getAllByRole('tab', { name: 'Lists' }).at(-1)!);
+    const listsPanel = screen.getAllByRole('tabpanel', { name: 'Lists' }).at(-1)!;
+
+    fireEvent.change(within(listsPanel).getByRole('combobox', { name: 'Week' }), {
+      target: { value: 'April 13-19' },
+    });
+
+    expect(within(listsPanel).getByText('Week: April 13-19')).toBeInTheDocument();
+    expect(within(listsPanel).getByText('Showing 1 of 1 matching lists.')).toBeInTheDocument();
+    expect(within(listsPanel).getAllByText('Ashen Pressure').length).toBeGreaterThan(0);
+    expect(within(listsPanel).queryByText('Sample List')).not.toBeInTheDocument();
+
+    fireEvent.change(within(listsPanel).getByRole('combobox', { name: 'Sort' }), {
+      target: { value: 'week-asc' },
+    });
+
+    expect(within(listsPanel).getByText('Sort: Week (earliest first)')).toBeInTheDocument();
+  });
+
+  it('opens the trends view and lets you change rollups and picks', () => {
+    render(<Dashboard payload={sampleSiteData} />);
+
+    fireEvent.click(screen.getAllByRole('tab', { name: 'Trends' })[0]);
+
+    expect(screen.getByRole('heading', { name: 'Compare units and rollups over time' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Trend comparison chart')).toBeInTheDocument();
+    expect(screen.getAllByText('Bull Centaurs').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Jan 1-11').length).toBeGreaterThan(0);
+
+    fireEvent.change(screen.getByRole('combobox', { name: 'Rollup' }), { target: { value: 'twoWeek' } });
+
+    expect(screen.getAllByText('Jan 1-11 to Mar 23-29').length).toBeGreaterThan(0);
+
+    fireEvent.change(screen.getByRole('combobox', { name: 'Metric' }), { target: { value: 'subfaction' } });
+
+    expect(screen.getAllByText("Taar's Grand Forgehost").length).toBeGreaterThan(0);
+    expect(window.location.hash).toBe('#tab=current|combined|trends');
   });
 
   it('shows a winners-at-a-glance section in lists view', () => {
     render(<Dashboard payload={sampleSiteData} />);
 
-    fireEvent.click(screen.getAllByRole('tab', { name: 'Lists' })[0]);
+    fireEvent.click(screen.getAllByRole('tab', { name: 'Lists' }).at(-1)!);
+    const listsPanel = screen.getAllByRole('tabpanel', { name: 'Lists' }).at(-1)!;
 
-    const winnersHeading = screen.getByRole('heading', { name: 'Scan the current winner pool' });
+    const winnersHeading = within(listsPanel).getByRole('heading', { name: 'Scan the current winner pool' });
     const winnersSection = winnersHeading.closest('section');
 
     expect(winnersSection).not.toBeNull();
-    expect(screen.getByRole('heading', { name: 'Scan the current winner pool' })).toBeInTheDocument();
+    expect(within(listsPanel).getByRole('heading', { name: 'Scan the current winner pool' })).toBeInTheDocument();
     expect(
-      screen.getByText('All lists here are winners. Use record tiers as a supporting lens, not the main story.')
+      within(listsPanel).getByText('All lists here are winners. Lead with recurring units, subfactions, and lores, then use record tiers as a supporting lens.')
     ).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'How the current winner pool is split' })).toBeInTheDocument();
-    expect(screen.getByLabelText('Winning record tiers')).toBeInTheDocument();
-    expect(screen.getAllByText('5-0').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('4-1').length).toBeGreaterThan(0);
-    expect(within(winnersSection!).getAllByRole('heading', { level: 6 }).length).toBeGreaterThan(0);
+    expect(within(listsPanel).getByRole('heading', { name: 'Supporting result split' })).toBeInTheDocument();
+    expect(within(listsPanel).getByLabelText('Winning record tiers')).toBeInTheDocument();
+    expect(within(listsPanel).getAllByText('5-0').length).toBeGreaterThan(0);
+    expect(within(listsPanel).getAllByText('4-1').length).toBeGreaterThan(0);
+    expect(within(winnersSection!).getAllByRole('article').length).toBeGreaterThan(0);
   });
 
   it('resets list controls after a no-results filter state', () => {
     render(<Dashboard payload={sampleSiteData} />);
 
-    fireEvent.click(screen.getAllByRole('tab', { name: 'Lists' })[0]);
-    fireEvent.change(screen.getByPlaceholderText('Search source, name, or unit'), {
+    fireEvent.click(screen.getAllByRole('tab', { name: 'Lists' }).at(-1)!);
+    const listsPanel = screen.getAllByRole('tabpanel', { name: 'Lists' }).at(-1)!;
+
+    fireEvent.change(within(listsPanel).getByPlaceholderText('Search source, name, or unit'), {
       target: { value: 'zzz' },
     });
 
-    expect(screen.getByRole('heading', { name: 'Adjust the current filters' })).toBeInTheDocument();
-    fireEvent.click(screen.getAllByRole('button', { name: 'Reset all list controls' })[0]);
+    expect(within(listsPanel).getByRole('heading', { name: 'Adjust the current filters' })).toBeInTheDocument();
+    fireEvent.click(within(listsPanel).getAllByRole('button', { name: 'Reset all list controls' }).at(-1)!);
 
-    expect(screen.getByPlaceholderText('Search source, name, or unit')).toHaveValue('');
-    expect(screen.getAllByText('Sample List')).toHaveLength(3);
+    expect(within(listsPanel).getByPlaceholderText('Search source, name, or unit')).toHaveValue('');
+    expect(within(listsPanel).getAllByText('Sample List')).toHaveLength(2);
   });
 
   it('announces theme toggles in the action area', () => {
@@ -105,26 +153,15 @@ describe('Dashboard', () => {
 
     expect(screen.getAllByRole('heading', { name: 'Fast read before the full breakdowns' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('heading', { name: 'What winners share' }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole('heading', { name: 'How the winner profile shifts each week' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('heading', { name: 'Top rankings first' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('heading', { name: 'Compact distribution groups' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('heading', { name: 'Missing or inactive options' }).length).toBeGreaterThan(0);
     expect(screen.getAllByText('Shared winner units').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Weekly winner trendlines').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Most common result').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Most common lore').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Result mix').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Pre-points era').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Post-points era').length).toBeGreaterThan(0);
+    expect(screen.queryByRole('heading', { name: 'Result breakdown' })).not.toBeInTheDocument();
     expect(screen.getAllByText('Urak Taar, the First Daemonsmith').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Bull Centaurs').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('+50.0 pts versus April 6-12').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Start').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Peak').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Net change').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Started at 50.0% in April 6-12 and sits at 100.0% in April 20-26.').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('April 20-26').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('6 · 50.0%').length).toBeGreaterThan(0);
     expect(screen.getAllByText("Taar's Grand Forgehost").length).toBeGreaterThan(0);
     expect(screen.getAllByText('Urak Taar, the First Daemonsmith').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Leader').length).toBeGreaterThan(0);

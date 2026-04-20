@@ -15,7 +15,7 @@ export function AppShell({ title, subtitle, banner, bannerTone = 'neutral', chil
           <div className="app-shell__hero-copy">
             <div className="app-shell__eyebrow-row">
               <p className="eyebrow">Helsmiths of Hashut</p>
-              <p className="hero-kicker">Python data pipeline · React interface</p>
+              <p className="hero-kicker">Winning list trends and breakdowns</p>
             </div>
             <div className="app-shell__title-block">
               <h1 className="app-title">{title}</h1>
@@ -25,16 +25,16 @@ export function AppShell({ title, subtitle, banner, bannerTone = 'neutral', chil
 
           <dl className="hero-facts" aria-label="Dashboard summary">
             <div className="hero-fact">
-              <dt>Source</dt>
-              <dd>Python-generated site contract</dd>
+              <dt>Focus</dt>
+              <dd>Winning Helsmith lists</dd>
             </div>
             <div className="hero-fact">
               <dt>Views</dt>
-              <dd>Summary tables and list explorer</dd>
+              <dd>Stats, trends, and list explorer</dd>
             </div>
             <div className="hero-fact">
-              <dt>Output</dt>
-              <dd>Static reports plus routeable React UI</dd>
+              <dt>Signal</dt>
+              <dd>Play rates, builds, lore, and artifacts</dd>
             </div>
           </dl>
         </div>
