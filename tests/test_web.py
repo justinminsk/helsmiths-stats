@@ -16,12 +16,21 @@ def _write_csv(path: Path, headers: list[str], rows: list[list[str]]) -> None:
         writer.writerows(rows)
 
 
-def _write_scope_fixture(base_dir: Path, scope: str) -> None:
+def _write_scope_fixture(
+    base_dir: Path,
+    scope: str,
+    *,
+    bull_presence_count: str = "2",
+    bull_presence_percent: str = "100.0",
+    subfaction_count: str = "1",
+    lore_count: str = "1",
+) -> None:
     scope_dir = base_dir / scope
     _write_csv(
         scope_dir / "list_level_summary.csv",
         [
             "source",
+            "week",
             "name",
             "result",
             "subfaction",
@@ -33,6 +42,7 @@ def _write_scope_fixture(base_dir: Path, scope: str) -> None:
         [
             [
                 "Singles",
+                "April 6-12",
                 f"{scope.title()} List A",
                 "5-0",
                 "Taar's Grand Forgehost",
@@ -43,30 +53,31 @@ def _write_scope_fixture(base_dir: Path, scope: str) -> None:
             ],
             [
                 "Teams",
+                "April 13-19",
                 f"{scope.title()} List B",
                 "4-1",
                 "Industrial Polluters",
                 "Aetherwrought Machineries",
                 "2",
                 "7",
-                '[{"regiment":"Regiment 1","name":"Deathshrieker Rocket Battery","points":140,"models":1,"reinforced":false,"notes":[]}]',
+                '[{"regiment":"Regiment 1","name":"Deathshrieker Rocket Battery","points":140,"models":1,"reinforced":false,"notes":[]},{"regiment":"Regiment 1","name":"Bull Centaurs","points":380,"models":6,"reinforced":true,"notes":[]}]',
             ],
         ],
     )
     _write_csv(
         scope_dir / "unit_presence_percent.csv",
         ["unit_name", "lists_with_unit", "percent_of_lists"],
-        [["Bull Centaurs", "1", "50.0"]],
+        [["Bull Centaurs", bull_presence_count, bull_presence_percent]],
     )
     _write_csv(
         scope_dir / "subfaction_counts.csv",
         ["subfaction", "list_count"],
-        [["Taar's Grand Forgehost", "1"]],
+        [["Taar's Grand Forgehost", subfaction_count]],
     )
     _write_csv(
         scope_dir / "manifestation_lore_counts.csv",
         ["manifestation_lore", "list_count"],
-        [["Forbidden Power", "1"]],
+        [["Forbidden Power", lore_count]],
     )
     _write_csv(
         scope_dir / "artifact_counts.csv",
@@ -125,15 +136,37 @@ def _configure_test_workspace(tmp_path: Path, monkeypatch) -> Path:
         _write_scope_fixture(summaries_dir, scope)
     _write_reports_fixture(reports_dir)
 
-    for snapshot_name in (
-        "2026-04-17-pre-points",
-        "2026-04-10-pre-points",
-        "2026-04-03-pre-points",
-        "2026-03-27-pre-points",
-    ):
+    snapshot_variants = {
+        "2026-04-17-pre-points": {
+            "bull_presence_count": "2",
+            "bull_presence_percent": "100.0",
+            "subfaction_count": "1",
+            "lore_count": "1",
+        },
+        "2026-04-10-pre-points": {
+            "bull_presence_count": "1",
+            "bull_presence_percent": "50.0",
+            "subfaction_count": "1",
+            "lore_count": "1",
+        },
+        "2026-04-03-pre-points": {
+            "bull_presence_count": "1",
+            "bull_presence_percent": "50.0",
+            "subfaction_count": "1",
+            "lore_count": "1",
+        },
+        "2026-03-27-pre-points": {
+            "bull_presence_count": "0",
+            "bull_presence_percent": "0.0",
+            "subfaction_count": "0",
+            "lore_count": "0",
+        },
+    }
+
+    for snapshot_name, variant in snapshot_variants.items():
         snapshot_dir = history_root / snapshot_name
         for scope in web.SCOPES:
-            _write_scope_fixture(snapshot_dir / "summaries", scope)
+            _write_scope_fixture(snapshot_dir / "summaries", scope, **variant)
         _write_reports_fixture(snapshot_dir / "reports")
 
     monkeypatch.setattr(web, "ROOT", root)
@@ -264,9 +297,48 @@ def test_build_site_payload_contains_dataset_scope_and_list_details(
     }
     assert combined_scope["statsTables"][0]["key"] == "resultBreakdown"
     assert combined_scope["statsTables"][0]["rows"] == [["4-1", "1"], ["5-0", "1"]]
+    assert combined_scope["story"]["coreSignals"][0] == {
+        "label": "Top subfaction",
+        "value": "Taar's Grand Forgehost",
+        "detail": "1 of 2 lists",
+    }
+    assert combined_scope["story"]["sharedUnits"][0] == {
+        "name": "Bull Centaurs",
+        "listCount": 2,
+        "share": "100.0%",
+    }
+    assert combined_scope["story"]["sharedUnitPairs"] == []
+    assert combined_scope["story"]["weeklyTrends"][0]["metric"] == "Unit presence"
+    assert combined_scope["story"]["weeklyTrends"][0]["label"] == "Bull Centaurs"
+    assert combined_scope["story"]["weeklyTrends"][0]["currentValue"] == "100.0%"
+    assert [
+        point["datasetLabel"]
+        for point in combined_scope["story"]["weeklyTrends"][0]["points"]
+    ] == [
+        "April 6-12",
+        "April 13-19",
+    ]
+    assert combined_scope["story"]["snapshotTrends"][0]["metric"] == "Unit presence"
+    assert combined_scope["story"]["snapshotTrends"][0]["label"] == "Bull Centaurs"
+    assert combined_scope["story"]["snapshotTrends"][0]["currentValue"] == "100.0%"
+    assert combined_scope["story"]["snapshotTrends"][0]["direction"] == "up"
+    assert (
+        combined_scope["story"]["snapshotTrends"][0]["deltaLabel"]
+        == "+50.0 pts versus Snapshot (2026-04-03-pre-points)"
+    )
+    assert [
+        point["value"]
+        for point in combined_scope["story"]["snapshotTrends"][0]["points"]
+    ] == [
+        "50.0%",
+        "50.0%",
+        "100.0%",
+        "100.0%",
+    ]
 
     first_list = combined_scope["lists"][0]
     assert first_list["name"] == "Combined List A"
+    assert first_list["weekLabel"] == "April 6-12"
     assert first_list["regiments"] == 1
     assert first_list["unitEntries"] == 3
     assert first_list["models"] == 10

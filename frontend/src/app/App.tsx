@@ -10,6 +10,22 @@ type LoadState =
   | { status: 'ready'; payload: SiteDataPayload; source: 'live' | 'sample' }
   | { status: 'error'; message: string; fallback: SiteDataPayload };
 
+type StatusPanelProps = {
+  title: string;
+  detail: string;
+  tone?: 'neutral' | 'warning';
+};
+
+function StatusPanel({ title, detail, tone = 'neutral' }: StatusPanelProps) {
+  return (
+    <section aria-live="polite" className={`status-panel status-panel--${tone}`} role="status">
+      <p className="status-panel__eyebrow">Dashboard state</p>
+      <h2 className="status-panel__title">{title}</h2>
+      <p className="status-panel__detail">{detail}</p>
+    </section>
+  );
+}
+
 export function App() {
   const [state, setState] = useState<LoadState>({ status: 'loading' });
 
@@ -47,8 +63,11 @@ export function App() {
 
   if (state.status === 'loading') {
     return (
-      <AppShell title="Helsmith Stats" subtitle="Python-backed React dashboard">
-        <p className="status-message">Loading the Python-generated site contract…</p>
+      <AppShell title="Helsmith Stats" subtitle="Play rates of winning lists">
+        <StatusPanel
+          detail="Loading the latest Helsmith list data and summary views."
+          title="Preparing dashboard"
+        />
       </AppShell>
     );
   }
@@ -57,9 +76,11 @@ export function App() {
     return (
       <AppShell
         title="Helsmith Stats"
-        subtitle="Python-backed React dashboard"
-        banner={`Live contract unavailable. Showing bundled sample data instead. ${state.message}`}
+        subtitle="Play rates of winning lists"
+        banner="Latest data unavailable. Showing bundled sample data instead."
+        bannerTone="warning"
       >
+        <StatusPanel detail={state.message} title="Sample data fallback active" tone="warning" />
         <Dashboard payload={state.fallback} />
       </AppShell>
     );
@@ -68,11 +89,12 @@ export function App() {
   return (
     <AppShell
       title="Helsmith Stats"
-      subtitle="Python-backed React dashboard"
+      subtitle="Play rates of winning lists"
+      bannerTone={state.source === 'sample' ? 'sample' : 'success'}
       banner={
         state.source === 'sample'
           ? 'Showing bundled sample data.'
-          : 'Loaded the Python-generated site contract successfully.'
+          : 'Loaded Helsmith list data successfully.'
       }
     >
       <Dashboard payload={state.payload} />

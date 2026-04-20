@@ -1,7 +1,10 @@
 import type { SiteList } from '../../models/siteData';
+import { compareWeekLabels, getWeekIdentity } from './weeks';
 
 export type ListSortKey =
   | 'default'
+  | 'week-desc'
+  | 'week-asc'
   | 'regiments-desc'
   | 'regiments-asc'
   | 'models-desc'
@@ -11,6 +14,7 @@ export type ListSortKey =
   | 'name-asc';
 
 export type ListColumnKey =
+  | 'weekLabel'
   | 'source'
   | 'name'
   | 'result'
@@ -27,6 +31,7 @@ export type ListColumn = {
 };
 
 export const listColumns: ListColumn[] = [
+  { key: 'weekLabel', label: 'Week', render: (list) => list.weekLabel || 'Unspecified' },
   { key: 'source', label: 'Source', render: (list) => list.source },
   { key: 'name', label: 'Name', render: (list) => list.name },
   { key: 'result', label: 'Result', render: (list) => list.result },
@@ -42,6 +47,7 @@ export const listColumns: ListColumn[] = [
 ];
 
 export const defaultVisibleColumns: Record<ListColumnKey, boolean> = {
+  weekLabel: true,
   source: true,
   name: true,
   result: true,
@@ -54,14 +60,16 @@ export const defaultVisibleColumns: Record<ListColumnKey, boolean> = {
 
 export function filterLists(
   lists: SiteList[],
-  filters: { search: string; result: string; subfaction: string }
+  filters: { search: string; result: string; subfaction: string; week: string }
 ) {
   const query = filters.search.trim().toLowerCase();
   const result = filters.result.trim().toLowerCase();
   const subfaction = filters.subfaction.trim().toLowerCase();
+  const week = getWeekIdentity(filters.week);
 
   return lists.filter((list) => {
     const searchHaystack = [
+      list.weekLabel,
       list.source,
       list.name,
       list.result,
@@ -74,6 +82,7 @@ export function filterLists(
 
     return (
       (query.length === 0 || searchHaystack.includes(query)) &&
+      (week.length === 0 || getWeekIdentity(list.weekLabel) === week) &&
       (result.length === 0 || list.result.toLowerCase() === result) &&
       (subfaction.length === 0 || list.subfaction.toLowerCase() === subfaction)
     );
@@ -82,6 +91,10 @@ export function filterLists(
 
 export function compareLists(left: SiteList, right: SiteList, sortKey: ListSortKey) {
   switch (sortKey) {
+    case 'week-desc':
+      return compareWeekLabels(right.weekLabel, left.weekLabel) || left.index - right.index;
+    case 'week-asc':
+      return compareWeekLabels(left.weekLabel, right.weekLabel) || left.index - right.index;
     case 'models-desc':
       return right.models - left.models;
     case 'models-asc':
@@ -107,4 +120,22 @@ export function getNumericColumnIndexes(columns: ListColumn[]) {
       ? [index]
       : []
   );
+}
+
+export function getListWeekOptions(lists: SiteList[]) {
+  const labelsByIdentity = new Map<string, string>();
+
+  lists.forEach((list) => {
+    if (!list.weekLabel) {
+      return;
+    }
+
+    const identity = getWeekIdentity(list.weekLabel);
+    const existing = labelsByIdentity.get(identity);
+    if (!existing || list.weekLabel.length > existing.length) {
+      labelsByIdentity.set(identity, list.weekLabel);
+    }
+  });
+
+  return Array.from(labelsByIdentity.values()).sort((left, right) => compareWeekLabels(left, right));
 }

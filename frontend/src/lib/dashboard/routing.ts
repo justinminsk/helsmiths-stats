@@ -3,15 +3,18 @@ import type { SiteDataPayload } from '../../models/siteData';
 export type DashboardRoute = {
   datasetKey: string;
   scopeKey: string;
-  viewKey: 'stats' | 'lists';
+  viewKey: 'stats' | 'trends' | 'lists';
 };
+
+const dashboardViews = new Set<DashboardRoute['viewKey']>(['stats', 'trends', 'lists']);
 
 export function buildHash(hashPrefix: string, route: DashboardRoute) {
   return `${hashPrefix}${route.datasetKey}|${route.scopeKey}|${route.viewKey}`;
 }
 
 export function getInitialRoute(payload: SiteDataPayload): DashboardRoute {
-  const fallbackDataset = payload.datasets[0];
+  const fallbackDataset =
+    payload.datasets.find((candidate) => candidate.key === payload.defaultDatasetKey) ?? payload.datasets[0];
   const fallbackScope = fallbackDataset?.scopes[0];
   const defaultRoute: DashboardRoute = {
     datasetKey: fallbackDataset?.key ?? payload.defaultDatasetKey,
@@ -31,6 +34,9 @@ export function getInitialRoute(payload: SiteDataPayload): DashboardRoute {
   }
 
   const [datasetKey, scopeKey, rawViewKey] = parts;
+  const viewKey = dashboardViews.has(rawViewKey as DashboardRoute['viewKey'])
+    ? (rawViewKey as DashboardRoute['viewKey'])
+    : 'stats';
   const dataset = payload.datasets.find((candidate) => candidate.key === datasetKey);
   if (!dataset) {
     return defaultRoute;
@@ -41,13 +47,13 @@ export function getInitialRoute(payload: SiteDataPayload): DashboardRoute {
     return {
       datasetKey: dataset.key,
       scopeKey: dataset.scopes[0]?.key ?? defaultRoute.scopeKey,
-      viewKey: rawViewKey === 'lists' ? 'lists' : 'stats',
+      viewKey,
     };
   }
 
   return {
     datasetKey: dataset.key,
     scopeKey: scope.key,
-    viewKey: rawViewKey === 'lists' ? 'lists' : 'stats',
+    viewKey,
   };
 }

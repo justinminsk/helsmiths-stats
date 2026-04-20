@@ -5,6 +5,7 @@
 ## Da ting go skkkkrrrraaa, papakakaka Skivipipopop and a poopooturrrboom Skrra, tutukukututoom, poompoom 2000/2000 pts
 
 - Source: Teams
+- Week: April 6-12
 - Result: 5-0
 - Subfaction: Daemonsmith Cabal
 - Manifestation lore: Aetherwrought Machineries
@@ -24,34 +25,10 @@
 - Infernal Razers with Blunderbusses - 220 pts - 10 models - reinforced
 - Tormentor Bombard - 130 pts - 1 models
 
-## Renoir did nothing wrong 2000/2000 pts
-
-- Source: Teams
-- Result: 4-1
-- Subfaction: Taar's Grand Forgehost
-- Manifestation lore: Primal Energy
-- Unit entries: 13
-
-### General's Regiment
-- Urak Taar, the First Daemonsmith - 340 pts - 1 models - notes: General
-- Infernal Cohort with Hashutite Blades - 90 pts - 10 models
-- Infernal Cohort with Hashutite Blades - 90 pts - 10 models
-- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
-- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
-### Regiment 1
-- Ashen Elder - 120 pts - 1 models
-- Dominator Engine with Bane Maces - 160 pts - 1 models
-- Dominator Engine with Bane Maces - 160 pts - 1 models
-- Infernal Cohort with Hashutite Blades - 90 pts - 10 models
-### Regiment 2
-- Scourge of Ghyran War Despot - 130 pts - 1 models - notes: Ruthless Overseer, Talisman of Obsidian
-- Deathshrieker Rocket Battery - 140 pts - 1 models
-- Deathshrieker Rocket Battery - 140 pts - 1 models
-- Tormentor Bombard - 130 pts - 1 models
-
 ## L3 retour SO_Mōnoco_HoH 1950/2000 pts
 
 - Source: Teams
+- Week: April 6-12
 - Result: 4-1
 - Subfaction: Castigation Battery
 - Manifestation lore: Forbidden Power
@@ -74,8 +51,9 @@
 ## List 8
 
 - Source: Teams
+- Week: April 6-12
 - Result: 4-1
-- Subfaction: Unknown
+- Subfaction: Taar's Grand Forgehost
 - Manifestation lore: Aetherwrought Machineries
 - Unit entries: 13
 
@@ -99,6 +77,7 @@
 ## Molnar Chaos Dwarves - 2.000 Pti. 1970/2000 pts
 
 - Source: Teams
+- Week: April 6-12
 - Result: 4-1
 - Subfaction: The Bullfather's Horns
 - Manifestation lore: Aetherwrought Machineries
@@ -115,9 +94,36 @@
 - Dominator Engine with Bane Maces - 160 pts - 1 models
 - Dominator Engine with Bane Maces - 160 pts - 1 models
 
+## Renoir did nothing wrong 2000/2000 pts
+
+- Source: Teams
+- Week: April 6-12
+- Result: 4-1
+- Subfaction: Taar's Grand Forgehost
+- Manifestation lore: Primal Energy
+- Unit entries: 13
+
+### General's Regiment
+- Urak Taar, the First Daemonsmith - 340 pts - 1 models - notes: General
+- Infernal Cohort with Hashutite Blades - 90 pts - 10 models
+- Infernal Cohort with Hashutite Blades - 90 pts - 10 models
+- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
+- Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
+### Regiment 1
+- Ashen Elder - 120 pts - 1 models
+- Dominator Engine with Bane Maces - 160 pts - 1 models
+- Dominator Engine with Bane Maces - 160 pts - 1 models
+- Infernal Cohort with Hashutite Blades - 90 pts - 10 models
+### Regiment 2
+- Scourge of Ghyran War Despot - 130 pts - 1 models - notes: Ruthless Overseer, Talisman of Obsidian
+- Deathshrieker Rocket Battery - 140 pts - 1 models
+- Deathshrieker Rocket Battery - 140 pts - 1 models
+- Tormentor Bombard - 130 pts - 1 models
+
 ## I am already rock hard baby! 2000/2000 pts
 
 - Source: Teams
+- Week: April 13-19
 - Result: 4-1
 - Subfaction: The Bullfather's Horns
 - Manifestation lore: Forbidden Power
@@ -134,3 +140,4 @@
 - Anointed Sentinels - 260 pts - 3 models - reinforced
 - Infernal Cohort with Hashutite Blades - 180 pts - 10 models - reinforced
 - Infernal Cohort with Hashutite Spears - 200 pts - 20 models - reinforced
+

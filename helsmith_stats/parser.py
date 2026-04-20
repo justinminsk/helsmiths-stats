@@ -24,6 +24,14 @@ from .normalization import (
 )
 
 
+WEEK_HEADING_PATTERN = re.compile(
+    r"^(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
+    r"Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|"
+    r"Dec(?:ember)?)\s+\d{1,2}(?:\s*[-–]\s*\d{1,2})?(?:,\s*\d{4})?$",
+    re.IGNORECASE,
+)
+
+
 def _normalize_regiment_name(line: str) -> str | None:
     normalized = clean_line(line).replace("’", "'")
     normalized = re.sub(r"^[\-*~ ]+|[\-*~ ]+$", "", normalized).strip()
@@ -49,6 +57,7 @@ def parse_lists(text: str) -> list[ListData]:
     lists: list[ListData] = []
     current_source = UNKNOWN
     current_result = UNKNOWN
+    current_week_label = ""
     current_list: ListData | None = None
     current_unit: UnitData | None = None
     current_regiment = UNKNOWN
@@ -87,6 +96,9 @@ def parse_lists(text: str) -> list[ListData]:
                 current_source = title
                 current_result = UNKNOWN
                 continue
+            if WEEK_HEADING_PATTERN.fullmatch(title):
+                current_week_label = title
+                continue
             if title in {"5-0", "4-1"}:
                 current_result = title
                 continue
@@ -109,7 +121,9 @@ def parse_lists(text: str) -> list[ListData]:
                 close_current()
             if current_list is None:
                 current_list = ListData(
-                    source=current_source, result_bucket=current_result
+                    source=current_source,
+                    week_label=current_week_label,
+                    result_bucket=current_result,
                 )
                 current_list.name = pending_name or line
                 if pending_subfaction:
@@ -139,7 +153,9 @@ def parse_lists(text: str) -> list[ListData]:
         if current_list is None:
             if line.startswith(STARTER_PREFIXES):
                 current_list = ListData(
-                    source=current_source, result_bucket=current_result
+                    source=current_source,
+                    week_label=current_week_label,
+                    result_bucket=current_result,
                 )
                 if pending_name:
                     current_list.name = pending_name
@@ -179,10 +195,18 @@ def parse_lists(text: str) -> list[ListData]:
             continue
 
         if line.startswith("Battle Formation:"):
-            current_list.subfaction = normalize_subfaction(line.split(":", 1)[1])
+            parsed_subfaction = normalize_subfaction(line.split(":", 1)[1])
+            if parsed_subfaction != UNKNOWN:
+                current_list.subfaction = parsed_subfaction
             continue
 
         if line.startswith("Faction:"):
+            parsed_subfaction = normalize_subfaction(line.split(":", 1)[1])
+            if (
+                parsed_subfaction not in {UNKNOWN, "Helsmiths of Hashut"}
+                and current_list.subfaction == UNKNOWN
+            ):
+                current_list.subfaction = parsed_subfaction
             continue
 
         regiment_name = _normalize_regiment_name(line)

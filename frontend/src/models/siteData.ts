@@ -12,6 +12,7 @@ export type SiteUnit = {
 export type SiteList = {
   index: number;
   source: string;
+  weekLabel?: string;
   name: string;
   result: string;
   subfaction: string;
@@ -29,6 +30,48 @@ export type StatsTable = {
   rows: string[][];
 };
 
+export type ScopeStorySignal = {
+  label: string;
+  value: string;
+  detail: string;
+};
+
+export type ScopeStorySharedUnit = {
+  name: string;
+  listCount: number;
+  share: string;
+};
+
+export type ScopeStorySharedUnitPair = {
+  units: string[];
+  listCount: number;
+  share: string;
+};
+
+export type ScopeStoryTrendPoint = {
+  datasetKey: string;
+  datasetLabel: string;
+  eraLabel?: string;
+  value: string;
+};
+
+export type ScopeStoryTrend = {
+  metric: string;
+  label: string;
+  currentValue: string;
+  deltaLabel: string;
+  direction: 'up' | 'down' | 'flat';
+  points: ScopeStoryTrendPoint[];
+};
+
+export type ScopeStory = {
+  coreSignals: ScopeStorySignal[];
+  sharedUnits: ScopeStorySharedUnit[];
+  sharedUnitPairs: ScopeStorySharedUnitPair[];
+  weeklyTrends?: ScopeStoryTrend[];
+  snapshotTrends: ScopeStoryTrend[];
+};
+
 export type ScopePayload = {
   key: string;
   label: string;
@@ -43,6 +86,7 @@ export type ScopePayload = {
     results: string[];
     subfactions: string[];
   };
+  story?: ScopeStory;
   statsTables: StatsTable[];
   lists: SiteList[];
 };

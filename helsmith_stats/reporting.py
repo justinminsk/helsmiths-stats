@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from .constants import REPORT_SECTION_LIMIT
 from .models import ListData, MetricCounter, ScopeMetrics, UnitData
+from .weeks import sort_lists_by_week
 
 
 def append_counter_section(
@@ -95,24 +96,26 @@ def _unit_line(unit: UnitData) -> str:
 
 
 def build_lists_report(scope_name: str, lists_for_scope: list[ListData]) -> str:
+    ordered_lists = sort_lists_by_week(lists_for_scope)
     report_lines = [
         f"# Helsmith lists - {scope_name}",
         "",
-        f"- Lists parsed: {len(lists_for_scope)}",
+        f"- Lists parsed: {len(ordered_lists)}",
         "",
     ]
 
-    if not lists_for_scope:
+    if not ordered_lists:
         report_lines.append("No lists parsed.")
         report_lines.append("")
         return "\n".join(report_lines)
 
-    for army_list in lists_for_scope:
+    for army_list in ordered_lists:
         report_lines.extend(
             [
                 f"## {army_list.name}",
                 "",
                 f"- Source: {army_list.source}",
+                f"- Week: {army_list.week_label or 'Unspecified'}",
                 f"- Result: {army_list.result_bucket}",
                 f"- Subfaction: {army_list.subfaction}",
                 f"- Manifestation lore: {army_list.manifestation_lore}",

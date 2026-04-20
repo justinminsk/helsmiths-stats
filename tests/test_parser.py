@@ -4,6 +4,7 @@ from helsmith_stats.parser import parse_lists
 def test_parse_lists_handles_sources_aliases_and_traits() -> None:
     markdown = """
 # **Singles**
+### April 6-12
 ##### 4-1
 
 **List A 2000/2000 pts**
@@ -18,6 +19,7 @@ Scourge of Ghyran Cohort with Hashutite Spears (220)
 Created with Warhammer Age of Sigmar: The App
 
 # **Teams**
+### April 13-19
 ##### 5-0
 
 **List B 2000/2000 pts**
@@ -35,6 +37,7 @@ Created with Warhammer Age of Sigmar: The App
 
     singles = parsed[0]
     assert singles.source == "Singles"
+    assert singles.week_label == "April 6-12"
     assert singles.result_bucket == "4-1"
     assert singles.subfaction == "Taar's Grand Forgehost"
     assert singles.manifestation_lore == "Forbidden Power"
@@ -56,9 +59,33 @@ Created with Warhammer Age of Sigmar: The App
 
     teams = parsed[1]
     assert teams.source == "Teams"
+    assert teams.week_label == "April 13-19"
     assert teams.result_bucket == "5-0"
     assert teams.subfaction == "Industrial Polluters"
     assert teams.manifestation_lore == "Aetherwrought Machineries"
     sentinels = next(unit for unit in teams.units if unit.name == "Anointed Sentinels")
     assert sentinels.points == 300
     assert sentinels.models == 6
+
+
+def test_parse_lists_uses_faction_line_as_subfaction_fallback() -> None:
+    markdown = """
+# **Teams**
+### April 6-12
+##### 4-1
+
+**no name**
+Grand Alliance: Chaos
+Faction: Taar's Grand Forgehost
+Battle Formation:
+Manifestation Lore: Aetherwrought Machineries
+Regiment 1
+1 x Urak Taar, the First Daemonsmith (340 points)
+Created with Warhammer Age of Sigmar: The App
+"""
+
+    parsed = parse_lists(markdown)
+
+    assert len(parsed) == 1
+    assert parsed[0].subfaction == "Taar's Grand Forgehost"
+    assert parsed[0].manifestation_lore == "Aetherwrought Machineries"
