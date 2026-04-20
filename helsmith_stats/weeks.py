@@ -4,9 +4,7 @@ import re
 
 from .models import ListData
 
-WEEK_LABEL_PATTERN = re.compile(
-    r"^([A-Za-z]+)\s+(\d{1,2})(?:\s*[-–]\s*(\d{1,2}))?$"
-)
+WEEK_LABEL_PATTERN = re.compile(r"^([A-Za-z]+)\s+(\d{1,2})(?:\s*[-–]\s*(\d{1,2}))?$")
 
 MONTH_LOOKUP = {
     "jan": 1,
