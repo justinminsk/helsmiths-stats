@@ -57,6 +57,24 @@ export function Dashboard({ payload }: DashboardProps) {
     dashboardDatasets.find((candidate) => candidate.key === route.datasetKey) ?? dashboardDatasets[0];
   const scope =
     dataset.scopes.find((candidate) => candidate.key === route.scopeKey) ?? dataset.scopes[0];
+  const trendDatasets = useMemo(() => {
+    if (dataset.key === aggregateDatasetKey) {
+      return payload.datasets
+        .map((candidate) => {
+          const matchingScope = candidate.scopes.find((item) => item.key === scope.key);
+          return matchingScope ? { ...candidate, scopes: [matchingScope] } : null;
+        })
+        .filter((candidate): candidate is DatasetPayload => candidate !== null);
+    }
+
+    const matchingDataset = payload.datasets.find((candidate) => candidate.key === dataset.key);
+    if (!matchingDataset) {
+      return [];
+    }
+
+    const matchingScope = matchingDataset.scopes.find((candidate) => candidate.key === scope.key);
+    return matchingScope ? [{ ...matchingDataset, scopes: [matchingScope] }] : [];
+  }, [dataset.key, payload.datasets, scope.key]);
 
   const filteredLists = filterLists(scope.lists, {
     search,
@@ -408,7 +426,7 @@ export function Dashboard({ payload }: DashboardProps) {
           {route.viewKey === 'stats' ? (
             <ScopeStatsView datasetKey={dataset.key} scope={scope} tabId={statsViewTabId} />
           ) : route.viewKey === 'trends' ? (
-            <ScopeTrendsView datasetKey={dataset.key} datasets={payload.datasets} scope={scope} tabId={trendsViewTabId} />
+            <ScopeTrendsView datasetKey={dataset.key} datasets={trendDatasets} scope={scope} tabId={trendsViewTabId} />
           ) : (
             <ScopeListsView
               datasetKey={dataset.key}
