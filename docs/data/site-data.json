@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20 15:11:32 Mountain Daylight Time",
+  "generatedAt": "2026-04-20 15:29:27 Mountain Daylight Time",
   "defaultDatasetKey": "current",
   "scopeOrder": [
     "combined",
@@ -484,12 +484,12 @@
                   "80.0%"
                 ],
                 [
-                  "Tormentor Bombard",
+                  "Ashen Elder",
                   "7",
                   "70.0%"
                 ],
                 [
-                  "Ashen Elder",
+                  "Tormentor Bombard",
                   "7",
                   "70.0%"
                 ],
@@ -2208,12 +2208,12 @@
                   "100.0%"
                 ],
                 [
-                  "Infernal Cohort with Hashutite Spears",
+                  "Deathshrieker Rocket Battery",
                   "3",
                   "75.0%"
                 ],
                 [
-                  "Tormentor Bombard",
+                  "Infernal Cohort with Hashutite Spears",
                   "3",
                   "75.0%"
                 ],
@@ -2223,14 +2223,9 @@
                   "75.0%"
                 ],
                 [
-                  "Deathshrieker Rocket Battery",
+                  "Tormentor Bombard",
                   "3",
                   "75.0%"
-                ],
-                [
-                  "Scourge of Ghyran War Despot",
-                  "2",
-                  "50.0%"
                 ],
                 [
                   "Ashen Elder",
@@ -2243,7 +2238,12 @@
                   "50.0%"
                 ],
                 [
-                  "Infernal Razers with Blunderbusses",
+                  "Scourge of Ghyran War Despot",
+                  "2",
+                  "50.0%"
+                ],
+                [
+                  "Bull Centaurs",
                   "2",
                   "50.0%"
                 ],
@@ -2253,7 +2253,7 @@
                   "50.0%"
                 ],
                 [
-                  "Bull Centaurs",
+                  "Infernal Razers with Blunderbusses",
                   "2",
                   "50.0%"
                 ],
@@ -3312,17 +3312,17 @@
                   "83.3%"
                 ],
                 [
+                  "Bull Centaurs",
+                  "4",
+                  "66.7%"
+                ],
+                [
                   "Infernal Cohort with Hashutite Blades",
                   "4",
                   "66.7%"
                 ],
                 [
                   "Tormentor Bombard",
-                  "4",
-                  "66.7%"
-                ],
-                [
-                  "Bull Centaurs",
                   "4",
                   "66.7%"
                 ],
@@ -10372,12 +10372,12 @@
                   "78.6%"
                 ],
                 [
-                  "Bull Centaurs",
+                  "Ashen Elder",
                   "10",
                   "71.4%"
                 ],
                 [
-                  "Ashen Elder",
+                  "Bull Centaurs",
                   "10",
                   "71.4%"
                 ],
@@ -10397,12 +10397,12 @@
                   "35.7%"
                 ],
                 [
-                  "Infernal Cohort with Hashutite Blades",
+                  "Scourge of Ghyran War Despot",
                   "5",
                   "35.7%"
                 ],
                 [
-                  "Scourge of Ghyran War Despot",
+                  "Infernal Cohort with Hashutite Blades",
                   "5",
                   "35.7%"
                 ],
@@ -10412,7 +10412,7 @@
                   "35.7%"
                 ],
                 [
-                  "Daemonsmith",
+                  "Hobgrotz Vandalz",
                   "4",
                   "28.6%"
                 ]

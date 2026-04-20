@@ -1,9 +1,13 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { Dashboard } from '../components/dashboard/Dashboard';
 import { sampleSiteData } from '../testing/sampleSiteData';
 
 describe('Dashboard', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   beforeEach(() => {
     window.location.hash = '';
     window.localStorage.clear();
@@ -87,16 +91,21 @@ describe('Dashboard', () => {
     expect(screen.getByRole('heading', { name: 'Compare units and rollups over time' })).toBeInTheDocument();
     expect(screen.getByLabelText('Trend comparison chart')).toBeInTheDocument();
     expect(screen.getAllByText('Bull Centaurs').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Jan 1-11').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Apr 6-12').length).toBeGreaterThan(0);
 
     fireEvent.change(screen.getByRole('combobox', { name: 'Rollup' }), { target: { value: 'twoWeek' } });
 
-    expect(screen.getAllByText('Jan 1-11 to Mar 23-29').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Apr 6-12 to Apr 13-19').length).toBeGreaterThan(0);
 
     fireEvent.change(screen.getByRole('combobox', { name: 'Metric' }), { target: { value: 'subfaction' } });
 
     expect(screen.getAllByText("Taar's Grand Forgehost").length).toBeGreaterThan(0);
     expect(window.location.hash).toBe('#tab=current|combined|trends');
+
+    fireEvent.click(within(screen.getAllByRole('tablist', { name: 'Dataset navigation' }).at(-1)!).getByRole('tab', { name: 'All' }));
+
+    expect(window.location.hash).toBe('#tab=all|combined|trends');
+    expect(screen.getAllByRole('button', { name: /Jan 1-11/i }).length).toBeGreaterThan(0);
   });
 
   it('shows a winners-at-a-glance section in lists view', () => {
