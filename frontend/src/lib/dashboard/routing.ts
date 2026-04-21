@@ -3,10 +3,10 @@ import type { SiteDataPayload } from '../../models/siteData';
 export type DashboardRoute = {
   datasetKey: string;
   scopeKey: string;
-  viewKey: 'stats' | 'trends' | 'lists';
+  viewKey: 'stats' | 'trends' | 'lists' | 'submit';
 };
 
-const dashboardViews = new Set<DashboardRoute['viewKey']>(['stats', 'trends', 'lists']);
+const dashboardViews = new Set<DashboardRoute['viewKey']>(['stats', 'trends', 'lists', 'submit']);
 
 export function buildHash(hashPrefix: string, route: DashboardRoute) {
   return `${hashPrefix}${route.datasetKey}|${route.scopeKey}|${route.viewKey}`;
