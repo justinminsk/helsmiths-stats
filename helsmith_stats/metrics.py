@@ -41,7 +41,8 @@ def collect_scope_metrics(lists_for_scope: list[ListData]) -> ScopeMetrics:
 
         units_in_this_list = set()
         for unit in army_list.units:
-            metrics.unit_entries[unit.name] += 1
+            entries = 2 if unit.reinforced else 1
+            metrics.unit_entries[unit.name] += entries
             units_in_this_list.add(unit.name)
             metrics.model_counts[unit.name] += unit.models
 

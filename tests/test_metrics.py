@@ -50,6 +50,7 @@ def test_collect_scope_metrics_counts_presence_and_traits() -> None:
     metrics = collect_scope_metrics(lists_for_scope)
 
     assert metrics.unit_entries["Bull Centaurs"] == 2
+    assert metrics.unit_entries["Infernal Cohort with Hashutite Spears"] == 2
     assert metrics.unit_presence_lists["Bull Centaurs"] == 2
     assert metrics.model_counts["Bull Centaurs"] == 9
     assert metrics.artifacts["Scroll of Petrification"] == 1
