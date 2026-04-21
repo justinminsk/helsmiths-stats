@@ -19,6 +19,7 @@ import { applyThemeTokens, getInitialTheme, storeTheme, type ThemeMode } from '.
 import { ScopeStatsView } from './ScopeStatsView';
 import { ScopeListsView } from './ScopeListsView';
 import { ScopeTrendsView } from './ScopeTrendsView';
+import { ScopeSubmitView } from './ScopeSubmitView';
 
 type DashboardProps = {
   payload: SiteDataPayload;
@@ -28,6 +29,7 @@ const dashboardViews: Array<{ key: DashboardRoute['viewKey']; label: string }> =
   { key: 'stats', label: 'Stats' },
   { key: 'trends', label: 'Trends' },
   { key: 'lists', label: 'Lists' },
+  { key: 'submit', label: 'Submit List' },
 ];
 
 export function Dashboard({ payload }: DashboardProps) {
@@ -427,6 +429,8 @@ export function Dashboard({ payload }: DashboardProps) {
             <ScopeStatsView datasetKey={dataset.key} scope={scope} tabId={statsViewTabId} />
           ) : route.viewKey === 'trends' ? (
             <ScopeTrendsView datasetKey={dataset.key} datasets={trendDatasets} scope={scope} tabId={trendsViewTabId} />
+          ) : route.viewKey === 'submit' ? (
+            <ScopeSubmitView tabId={`${viewNavId}-tab-submit`} />
           ) : (
             <ScopeListsView
               datasetKey={dataset.key}
