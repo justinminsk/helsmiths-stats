@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from 'react';
+import logoUrl from '../../assets/logo.png';
 
 type AppShellProps = PropsWithChildren<{
   title: string;
@@ -17,9 +18,12 @@ export function AppShell({ title, subtitle, banner, bannerTone = 'neutral', chil
               <p className="eyebrow">Helsmiths of Hashut</p>
               <p className="hero-kicker">Winning list trends and breakdowns</p>
             </div>
-            <div className="app-shell__title-block">
-              <h1 className="app-title">{title}</h1>
-              <p className="app-subtitle">{subtitle}</p>
+            <div className="app-shell__title-block" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <img src={logoUrl} alt="Helsmiths of Hashut" style={{ width: '4rem', height: '4rem', borderRadius: '12px' }} />
+              <div>
+                <h1 className="app-title">{title}</h1>
+                <p className="app-subtitle">{subtitle}</p>
+              </div>
             </div>
           </div>
 

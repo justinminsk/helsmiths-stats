@@ -12,16 +12,16 @@
   --soft-radius: 18px;
   --panel-padding: 1rem;
   --section-gap: 1.15rem;
-  --color-text: #fff7ef;
-  --color-text-soft: #f1e6da;
-  --color-muted: #d2beab;
-  --color-border: #5e4225;
+  --color-text: #F0EDE6;
+  --color-text-soft: #A9A9B0;
+  --color-muted: #6B6B73;
+  --color-border: #3B3B44;
   --color-border-soft: color-mix(in srgb, var(--color-border) 68%, transparent 32%);
   --color-border-strong: color-mix(in srgb, var(--color-border) 76%, transparent 24%);
-  --color-accent-strong: #dcaa32;
-  --color-focus: #00c8a8;
-  --color-bg-elevated: rgba(24, 16, 9, 0.88);
-  --color-bg-muted: rgba(12, 8, 7, 0.92);
+  --color-accent-strong: #FF5A00;
+  --color-focus: #E32400;
+  --color-bg-elevated: rgba(30, 30, 36, 0.88);
+  --color-bg-muted: rgba(18, 18, 20, 0.92);
   --surface-panel: linear-gradient(
     180deg,
     color-mix(in srgb, var(--color-bg-elevated) 94%, white 6%),
@@ -30,38 +30,38 @@
   --surface-soft: color-mix(in srgb, var(--color-bg-elevated) 78%, transparent 22%);
   --surface-field: color-mix(in srgb, var(--color-bg-elevated) 86%, transparent 14%);
   --surface-frame: color-mix(in srgb, var(--color-bg-muted) 82%, transparent 18%);
-  --surface-outline: inset 0 0 0 1px rgba(200, 146, 26, 0.08);
+  --surface-outline: inset 0 0 0 1px rgba(255, 90, 0, 0.15);
   color-scheme: light dark;
   font-family: var(--font-ui);
   background:
-    radial-gradient(circle at top right, rgba(0, 200, 168, 0.14), transparent 28%),
-    radial-gradient(circle at top left, rgba(200, 64, 144, 0.12), transparent 24%),
-    var(--color-bg, #0f0b08);
+    radial-gradient(circle at top right, rgba(255, 90, 0, 0.14), transparent 35%),
+    radial-gradient(circle at top left, rgba(227, 36, 0, 0.12), transparent 30%),
+    var(--color-bg, #0C0C0E);
   color: var(--color-text);
   line-height: 1.5;
   font-weight: 400;
 }
 
 [data-theme='light'] {
-  --color-text: #24180d;
-  --color-text-soft: #4d3620;
-  --color-muted: #725540;
-  --color-border: #b89772;
+  --color-text: #18181B;
+  --color-text-soft: #4A4A52;
+  --color-muted: #82828C;
+  --color-border: #C2C2C8;
   --color-border-soft: color-mix(in srgb, var(--color-border) 58%, transparent 42%);
   --color-border-strong: color-mix(in srgb, var(--color-border) 78%, transparent 22%);
-  --color-accent-strong: #915700;
-  --color-focus: #007a68;
-  --color-bg-elevated: rgba(255, 249, 241, 0.92);
-  --color-bg-muted: rgba(244, 233, 220, 0.96);
+  --color-accent-strong: #E64A00;
+  --color-focus: #C41C00;
+  --color-bg-elevated: rgba(244, 244, 246, 0.92);
+  --color-bg-muted: rgba(229, 229, 233, 0.96);
   --surface-panel: linear-gradient(
     180deg,
     color-mix(in srgb, var(--color-bg-elevated) 96%, white 4%),
-    color-mix(in srgb, var(--color-bg-muted) 98%, #efd9c2 2%)
+    color-mix(in srgb, var(--color-bg-muted) 98%, #d1d1d6 2%)
   );
   --surface-soft: color-mix(in srgb, var(--color-bg-elevated) 94%, white 6%);
   --surface-field: color-mix(in srgb, white 92%, var(--color-bg-muted) 8%);
   --surface-frame: color-mix(in srgb, white 76%, var(--color-bg-muted) 24%);
-  --surface-outline: inset 0 0 0 1px rgba(145, 87, 0, 0.08);
+  --surface-outline: inset 0 0 0 1px rgba(230, 74, 0, 0.12);
 }
 
 * {

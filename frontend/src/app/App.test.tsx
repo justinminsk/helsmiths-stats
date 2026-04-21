@@ -10,6 +10,10 @@ describe('Dashboard', () => {
 
   beforeEach(() => {
     window.location.hash = '';
+    Object.defineProperty(window, 'localStorage', {
+      value: { getItem: () => null, setItem: () => {}, removeItem: () => {}, clear: () => {} },
+      writable: true,
+    });
     window.localStorage.clear();
   });
 
