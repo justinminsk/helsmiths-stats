@@ -397,3 +397,74 @@ Infernal Cohort with Hashutite Spears (200)
 
 Created with Warhammer Age of Sigmar: The App
 App: 1.29.0 | Data: 412
+
+### April 20-26
+
+##### 5-0
+
+**Durhock - Boartenders - 178639482**
+Mini BBQ party 2000/2000 pts
+
+Helsmiths of Hashut | Taar's Grand Forgehost
+Army of Renown
+General's Handbook 2025-26
+Drops: 3
+Spell Lore - Taar's Grand Forgehost Spell Lore
+Prayer Lore - Taar's Grand Forgehost Prayer Lore
+Manifestation Lore - Morbid Conjuration (20 Points)
+
+Battle Tactic Cards: Intercept and Recover, Master The Paths
+
+General's Regiment
+Urak Taar, the First Daemonsmith (340)
+• General
+Infernal Cohort with Hashutite Spears (100)
+Infernal Cohort with Hashutite Spears (200)
+• Reinforced
+Infernal Cohort with Hashutite Spears (100)
+
+Regiment 1
+Scourge of Ghyran War Despot (130)
+• Ruthless Oversser
+• Talisman of Obsidian
+Deathshrieker Rocket Battery (140)
+Infernal Razers with Blunderbusses (220)
+• Reinforced
+Tormentor Bombard (130)
+
+Regiment 2
+Ashen Elder (120)
+Dominator Engine with Bane Maces (160)
+Dominator Engine with Immolation Cannons (170)
+Dominator Engine with Immolation Cannons (170)
+
+
+Created with Warhammer Age of Sigmar: The App
+App: 1.29.0 | Data: 412
+
+**list**
+Helsmiths of Hashut | Domination Force
+2000/2000 points
+2 drops
+Battle Tactic Cards: Intercept and Recover / Restless Energy
+Spell Lore: Lore of Infernal Power
+Prayer Lore: Prayers of the Scorched Sect
+Manifestation Lore: Primal Energy (10 pts)
+General’s Regiment
+Urak Taar, the First Daemonsmith (340)
+• General
+6x Anointed Sentinels (260)
+• Reinforced
+6x Bull Centaurs (380)
+• Reinforced
+6x Bull Centaurs (380)
+• Reinforced
+Tormentor Bombard (130)
+Regiment 1
+Daemonsmith on Infernal Taurus (290)
+• An Eye for Weakness
+• Scroll of Petrifaction
+• Overdrive Switch
+10x Hobgrot Vandalz (70)
+10x Hobgrot Vandalz (70)
+10x Hobgrot Vandalz (70)
